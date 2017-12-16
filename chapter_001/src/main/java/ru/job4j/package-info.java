@@ -1,0 +1,4 @@
+/**
+* Calculate.
+*/
+package ru.nkocheshkov
