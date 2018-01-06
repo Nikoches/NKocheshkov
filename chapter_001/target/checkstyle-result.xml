@@ -2,9 +2,14 @@
 <checkstyle version="6.11.2">
 <file name="C:\projects\NKocheshkov\chapter_001\src\main\java\ru\job4j\Calculate.java">
 </file>
+<file name="C:\projects\NKocheshkov\chapter_001\src\main\java\ru\job4j\Calculator\Calculator.java">
+<error line="1" column="9" severity="error" message="Name &apos;ru.job4j.Calculator&apos; must match pattern &apos;^[a-z]+(\.[a-z0-9]*)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"/>
+</file>
 <file name="C:\projects\NKocheshkov\chapter_001\src\main\java\ru\job4j\package-info.java">
 </file>
 <file name="C:\projects\NKocheshkov\chapter_001\src\test\java\ru\job4j\CalculateTest.java">
+</file>
+<file name="C:\projects\NKocheshkov\chapter_001\src\test\java\ru\job4j\calculator\CalculatorTest.java">
 </file>
 <file name="C:\projects\NKocheshkov\chapter_001\src\test\java\ru\job4j\package-info.java">
 </file>
