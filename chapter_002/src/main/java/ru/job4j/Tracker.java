@@ -31,14 +31,12 @@ public class Tracker {
      * Метод генерирует уникальный ключ для заявки.
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
      *
-     * @return Уникальный ключ.
      */
-    int unicInt = 0;
+    private int unicInt = 0;
 
     private String generateId() {
         Random random = new Random();
-        String number = Integer.toString(random.nextInt(29 + 1) + unicInt++);
-        return number;
+        return Integer.toString(random.nextInt(29 + 1) + unicInt++);
     }
 
     public void replace(String id, Item item) {

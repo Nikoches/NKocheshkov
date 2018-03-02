@@ -2,12 +2,12 @@ package ru.job4j;
 
 public class Item {
     private String id;
-    public String name;
+    private String name;
 
-    public String description;
+    private String description;
 
-    public long create;
-    public Item(String name, String description, long create){
+    private long create;
+    Item(String name, String description, long create){
         this.name=name;
         this.description=description;
         this.create=create;
