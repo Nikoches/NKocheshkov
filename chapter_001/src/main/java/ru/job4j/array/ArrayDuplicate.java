@@ -1,6 +1,7 @@
 package ru.job4j.array;
 import java.util.Arrays;
 public class ArrayDuplicate {
+    int [] values;
     public String[] remove(String[] array){
         int u= array.length;
      for (int i = 0;i<u;i++){
