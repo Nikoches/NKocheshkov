@@ -81,10 +81,18 @@ public class Tracker {
         for (int i=0;i<this.position;i++){
             if (items[i].getId().equals(id)){
                 uq=i;break;
+            }}
+        for (;uq<this.position;uq++){
+         items[uq]=items[uq+1];
+        }
+      /**  for (int i=0;i<this.position;i++){
+            if (items[i].getId().equals(id)){
+                uq=i;break;
             }
         for (int k = uq; k < uq - 1; k++) //сдвиг последующих элементов
                 this.items[k] = this.items[k + 1];
             uq--;
-        }
-}
+        }**/
+
+    }
 }

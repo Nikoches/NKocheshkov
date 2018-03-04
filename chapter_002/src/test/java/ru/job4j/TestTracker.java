@@ -37,6 +37,6 @@ public class TestTracker {
         Item ThirdItem = new Item("test3","testDescription",123L);
         tracker.add(ThirdItem);
         tracker.deleteItem(SecondItem.getId());
-        assertThat(tracker.findById(SecondItem.getId()).getName(), is("test2"));
+        assertThat(tracker.findAll()[1].getName(), is("test3"));
     }
 }
