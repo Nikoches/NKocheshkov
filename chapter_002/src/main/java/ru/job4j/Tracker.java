@@ -42,8 +42,8 @@ public class Tracker {
     public void replace(String id, Item item) {
         for (int i=0;i<this.position;i++){
             if (this.items[i].getId().equals(id)){
-              this.items[i]=item;
-              break;
+                this.items[i]=item;
+                break;
             }
         }
     }
@@ -69,12 +69,12 @@ public class Tracker {
     public Item findById(String id) {
         int uq=0;
         for (int i=0;i<this.position;i++){
-         if (items[i].getId().equals(id)){
-             uq=i;break;
+            if (items[i].getId().equals(id)){
+                uq=i;break;
             }
             else uq=0;
-          }
-    return items[uq];
+        }
+        return items[uq];
     }
     public void deleteItem(String id){
         int uq=0;
@@ -82,17 +82,10 @@ public class Tracker {
             if (items[i].getId().equals(id)){
                 uq=i;break;
             }}
-        for (;uq<this.position;uq++){
-         items[uq]=items[uq+1];
-        }
-      /**  for (int i=0;i<this.position;i++){
-            if (items[i].getId().equals(id)){
-                uq=i;break;
-            }
-        for (int k = uq; k < uq - 1; k++) //сдвиг последующих элементов
-                this.items[k] = this.items[k + 1];
-            uq--;
-        }**/
+        items[uq]=items[this.position-1];
+        items[this.position-1]=null;
+        this.position--;
 
-    }
-}
+
+
+}}
