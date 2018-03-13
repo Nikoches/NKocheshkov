@@ -32,11 +32,11 @@ public class Tracker {
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
      *
      */
-    private int unicInt = 0;
+    private int unicInt =0;
 
     private String generateId() {
         Random random = new Random();
-        return Integer.toString(random.nextInt(29 + 1) + unicInt++);
+        return (Integer.toString(random.nextInt(15)) + Integer.toString(unicInt++));
     }
 
     public void replace(String id, Item item) {
@@ -49,8 +49,8 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        Item[] founditems = new Item[position + 1];
-        System.arraycopy(items, 0, founditems, 0, position + 1);
+        Item[] founditems = new Item[position];
+        System.arraycopy(items, 0, founditems, 0, position);
         return founditems;
     }
 
@@ -67,25 +67,23 @@ public class Tracker {
     }
 
     public Item findById(String id) {
-        int uq=0;
+        int unicId=0;
         for (int i=0;i<this.position;i++){
             if (items[i].getId().equals(id)){
-                uq=i;break;
+                unicId=i;break;
             }
-            else uq=0;
+            else unicId=0;
         }
-        return items[uq];
+        return items[unicId];
     }
     public void deleteItem(String id){
-        int uq=0;
+        int unicId=0;
         for (int i=0;i<this.position;i++){
             if (items[i].getId().equals(id)){
-                uq=i;break;
+                unicId=i;break;
             }}
-        items[uq]=items[this.position-1];
+        items[unicId]=items[this.position-1];
         items[this.position-1]=null;
         this.position--;
-
-
-
-}}
+    }
+}
