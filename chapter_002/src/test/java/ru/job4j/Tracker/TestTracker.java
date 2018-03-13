@@ -1,5 +1,8 @@
-package ru.job4j;
+package ru.job4j.Tracker;
 import org.junit.Test;
+import ru.job4j.Tracker.Item;
+import ru.job4j.Tracker.Tracker;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 public class TestTracker {

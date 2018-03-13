@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.Tracker;
 
 /**
  * @version $Id$
@@ -18,6 +18,8 @@ public class StartUI {
      * Получение данных от пользователя.
      */
     private final Input input;
+    private static final String FindById = "4";
+    private static final String FindByName = "5";
     private static final String ShowAll = "1";
     private static final String Delete = "3";
     /**
@@ -54,6 +56,10 @@ public class StartUI {
                 this.showAllItem();
             }else if (Replace.equals(answer)){
                 this.editItem();
+            }else if (FindById.equals(answer)){
+                this.findById();
+            }else if (FindByName.equals(answer)){
+                this.findByName();
             }
         }
     }
@@ -95,6 +101,17 @@ public class StartUI {
         this.tracker.replace(id,item);
         item.setId(id);
     }
+    private void findById(){
+        System.out.println("------------ Поиск заявки по id --------------");
+        String id = this.input.ask("Введите id заявки :");
+        System.out.println("id="+this.tracker.findById(id).getId()+" имя="+this.tracker.findById(id).getName()+" описание="+this.tracker.findById(id).getDescription());
+    }
+    private void findByName(){
+        System.out.println("------------ Поиск заявки по имени --------------");
+        String name = this.input.ask("Введите имя заявки :");
+        for (Item i:this.tracker.findByName(name)) {
+            System.out.println("id="+i.getId()+" имя="+i.getName()+" описание="+i.getDescription());
+        }}
     /**
      * Запускт программы.
      * @param args
