@@ -36,7 +36,7 @@ public class Tracker {
 
     private String generateId() {
         Random random = new Random();
-        return (Integer.toString(random.nextInt(15)) + Integer.toString(unicInt++));
+        return ((Integer.toString(random.nextInt(15)) + Integer.toString(unicInt++)));
     }
 
     public void replace(String id, Item item) {
@@ -55,21 +55,21 @@ public class Tracker {
     }
 
     public Item[] findByName(String key) {
-        Item[] foundItems = new Item[position + 1];
-        int j = 0;
-        for (int i = 0; i < this.position; i++) {
-            if (items[i].getName().equals(key)) {
-                foundItems[j] = items[i];
-                j++;
+        Item[] foundItems = new Item[position];
+        int index1=0;
+        for (int index=0;index<this.position;index++) {
+            if (items[index].getName().equals(key)) {
+                foundItems[index1] = items[index1];
+                index1++;
             }
         }
         return foundItems;
     }
     public Item findById(String id) {
         int unicId=0;
-        for (int i=0;i<this.position;i++){
-            if (items[i].getId().equals(id)){
-                unicId=i;break;
+        for (int index=0;index<this.position;index++){
+            if (items[index].getId().equals(id)){
+                unicId=index;break;
             }
             else unicId=0;
         }
@@ -77,9 +77,9 @@ public class Tracker {
     }
     public void deleteItem(String id){
         int unicId=0;
-        for (int i=0;i<this.position;i++){
-            if (items[i].getId().equals(id)){
-                unicId=i;break;
+        for (int index=0;index<this.position;index++){
+            if (items[index].getId().equals(id)){
+                unicId=index;break;
             }}
         items[unicId]=items[this.position-1];
         items[this.position-1]=null;
