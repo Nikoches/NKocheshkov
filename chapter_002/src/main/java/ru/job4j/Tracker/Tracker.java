@@ -71,8 +71,7 @@ public class Tracker {
             if (items[index].getId().equals(id)){
                 unicId=index;
                 break;
-            }
-            else return null;
+            } else return null;
         }
         return items[unicId];
     }
