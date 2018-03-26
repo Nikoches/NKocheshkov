@@ -69,9 +69,10 @@ public class Tracker {
         int unicId=0;
         for (int index=0;index<this.position;index++){
             if (items[index].getId().equals(id)){
-                unicId=index;break;
+                unicId=index;
+                break;
             }
-            else unicId=0;
+            else return null;
         }
         return items[unicId];
     }
