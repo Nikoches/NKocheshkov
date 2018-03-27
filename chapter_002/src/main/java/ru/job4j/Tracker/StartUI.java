@@ -105,8 +105,11 @@ public class StartUI {
         System.out.println("------------ Поиск заявки по id --------------");
         String id = this.input.ask("Введите id заявки :");
         Item item = this.tracker.findById(id);
-       if (item!=null) {System.out.println(String.format("id=%s имя=%s описание=%s", item.getId(), item.getName(), item.getDescription()));}
-       else System.out.println("Ничего не нашлось!");
+       if (item!=null) {
+           System.out.println(String.format("id=%s имя=%s описание=%s", item.getId(), item.getName(), item.getDescription()));
+       } else {
+           System.out.println("Ничего не нашлось!");
+       }
        // System.out.printf("id=%s",this.tracker.findById(id).getId()," имя=%s",this.tracker.findById(id).getName()," описание=%s",this.tracker.findById(id).getDescription());
     }
     private void findByName(){
