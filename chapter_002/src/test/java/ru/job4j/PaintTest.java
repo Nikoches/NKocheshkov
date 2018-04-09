@@ -9,11 +9,6 @@ import java.util.StringJoiner;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * @author Petr Arsentev (parsentev@yandex.ru)
- * @version $Id$
- * @since 0.1
- */
 public class PaintTest {
     // поле содержит дефолтный вывод в консоль.
     private final PrintStream stdout = System.out;
@@ -55,12 +50,11 @@ public class PaintTest {
         assertThat(
                 new String(this.out.toByteArray()),
                 is(
-                        new StringJoiner(
-                                System.lineSeparator(), "",
-                                System.lineSeparator())
-                                .add("  ^  ")
-                                .add(" ^ ^ ")
-                                .add("^^^^^")
+                        new StringBuilder()
+                                .append("   *  ")
+                                .append("  *** ")
+                                .append(" ***** ")
+                                .append(System.lineSeparator())
                                 .toString()
                 )
         );
