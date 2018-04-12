@@ -17,7 +17,6 @@ public class StartUI {
     /**
      * Получение данных от пользователя.
      */
-    private final Input input;
     private static final String FIND_BY_ID = "4";
     private static final String FIND_BY_NAME = "5";
     private static final String SHOW_ALL = "1";
@@ -25,6 +24,7 @@ public class StartUI {
     /**
      * Хранилище заявок.
      */
+    private final Input input;
     private final Tracker tracker;
 
     /**
@@ -41,7 +41,7 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-        boolean exit = false;
+       /* boolean exit = false;
         while (!exit) {
             this.showMenu();
             String answer = this.input.ask("Введите пункт меню : ");
@@ -61,12 +61,20 @@ public class StartUI {
             }else if (FIND_BY_NAME.equals(answer)){
                 this.findByName();
             }
-        }
+        }*/
+       MenuTracker menu = new MenuTracker(this.input,tracker);
+       menu.fillActions();
+
+       do{
+           menu.show();
+           int key = Integer.valueOf(input.ask("select:"));
+           menu.select(key);
+       }while (!"y".equals(this.input.ask("exit? y/n")));
     }
 
     /**
      * Метод реализует добавленяи новый заявки в хранилище.
-     */
+
     private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки :");
