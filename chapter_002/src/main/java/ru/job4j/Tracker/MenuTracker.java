@@ -131,7 +131,9 @@ public class MenuTracker {
             System.out.println("------------ Поиск заявки по имени --------------");
             String name = input.ask("Введите имя заявки :");
             for (Item index:tracker.findByName(name)) {
+                if(index!=null){
                 System.out.println(String.format("id=%s имя=%s описание=%s",index.getId(),index.getName(),index.getDescription()));
+                }
             }
         }
 
