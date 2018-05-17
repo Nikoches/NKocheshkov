@@ -1,21 +1,31 @@
 package ru.job4j.Tracker;
 
-public class ValidateInput extends ConsoleInput {
-    public int ask(String question,int [] ranges){
-        boolean invalid = true;
-        int value= -1;
-        do{
-            try{
-            value=super.ask(question,ranges);
-            invalid=false;
+public class ValidateInput implements Input {
 
-             } catch(NumberFormatException nfe){
-            System.out.println("Please eneter valide Data");
-        }catch(MenuOutException menu){
-                System.out.println("You are out of menu range");
-            }
-    }while(invalid);
-        return(value);
+    private final Input input;
+
+    public ValidateInput(final Input input) {
+        this.input = input;
     }
 
+    @Override
+    public String ask(String question) {
+        return this.input.ask(question);
+    }
+
+    public int ask(String question, int[] range){
+        boolean invalid = true;
+        int value = -1;
+        do {
+            try {
+                value = this.input.ask(question, range);
+                invalid = false;
+            } catch (MenuOutException moe) {
+                System.out.println("Please select key from menu.");
+            } catch (NumberFormatException nfe) {
+                System.out.println("Please enter validate data again.");
+            }
+        } while (invalid);
+        return  value;
+    }
 }
