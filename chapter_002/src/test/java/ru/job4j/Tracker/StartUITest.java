@@ -36,13 +36,13 @@ public class StartUITest {
         // создаём Tracker
         Tracker tracker = new Tracker();
         //Напрямую добавляем заявку
-        Item item = tracker.add(new Item("test name","desc",123L));
+        tracker.add(new Item("test name","desc",123L));
         //создаём StubInput с последовательностью действий
-        Input input = new StubInput(new String[]{"1", item.getId(), "test name", "desc", "6"});
+        Input input = new StubInput(new String[]{"1", "y"});
         // создаём StartUI и вызываем метод init()
         new StartUI(input, tracker).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
-        assertThat(tracker.findById(item.getId()).getName(), is("test name"));
+        assertThat(tracker.findAll()[0].getName(), is("test name"));
     }
     //DELETE
     @Test

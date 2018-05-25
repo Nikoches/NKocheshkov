@@ -57,12 +57,13 @@ public class Tracker {
     public Item[] findByName(String key) {
         Item[] foundItems = new Item[position+1];
         int index1=0;
+        if (key != null){
         for (int index=0;index<this.position;index++) {
             if (items[index].getName().equals(key)) {
                 foundItems[index1] = items[index1];
                 index1++;
             }
-        }
+        }}else return null;
         return foundItems;
     }
     public Item findById(String id) {
