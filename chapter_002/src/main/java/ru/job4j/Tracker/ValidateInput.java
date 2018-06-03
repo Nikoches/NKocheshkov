@@ -16,7 +16,10 @@ public class ValidateInput implements Input {
     public int ask(String question, int[] range){
         boolean invalid = true;
         int value = -1;
-        do {
+        if ((this.input.ask(question, range)<1) || (this.input.ask(question, range)>6)){
+            throw new MenuOutException ("Please select key from menu.");
+        }else  return  value;
+        /*do {
             try {
                 value = this.input.ask(question, range);
                 invalid = false;
@@ -25,7 +28,6 @@ public class ValidateInput implements Input {
             } catch (NumberFormatException nfe) {
                 System.out.println("Please enter validate data again.");
             }
-        } while (invalid);
-        return  value;
+        } while (invalid);*/
     }
 }
