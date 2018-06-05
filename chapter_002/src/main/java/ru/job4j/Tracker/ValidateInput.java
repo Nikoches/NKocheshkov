@@ -14,20 +14,15 @@ public class ValidateInput implements Input {
     }
 
     public int ask(String question, int[] range){
-        boolean invalid = true;
-        int value = -1;
-        if ((this.input.ask(question, range)<1) || (this.input.ask(question, range)>6)){
-            throw new MenuOutException ("Please select key from menu.");
-        }else  return  value;
-        /*do {
-            try {
-                value = this.input.ask(question, range);
-                invalid = false;
-            } catch (MenuOutException moe) {
-                System.out.println("Please select key from menu.");
-            } catch (NumberFormatException nfe) {
-                System.out.println("Please enter validate data again.");
-            }
-        } while (invalid);*/
+      int value=Integer.valueOf(this.ask(question));
+      boolean exist= false;
+      for(int i: range){
+          if(value==range[i]){
+                exist=true;
+          }
+      }
+      if(exist){
+          return value;
+      }else throw new MenuOutException ("Please select key from menu.");
     }
 }
