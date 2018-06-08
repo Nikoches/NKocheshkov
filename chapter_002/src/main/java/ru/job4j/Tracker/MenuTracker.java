@@ -4,6 +4,7 @@ public class MenuTracker {
     private Input input;
     private Tracker tracker;
     private UserAction[] actions = new UserAction[6];
+    private int position;
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -19,14 +20,112 @@ public class MenuTracker {
     }
 
     public void fillActions() {
-        this.actions[0] = this.new AddItem();
-        this.actions[1] = new MenuTracker.ShowAll();
-        this.actions[2] = new EditItem();
-        this.actions[3] = new MenuTracker.DeleteItem();
-        this.actions[4] = new FoundById();
-        this.actions[5] = new FoundByName();
+        this.actions[position++] = this.new AddItem(0, "AddItem");
+        this.actions[position++] = new MenuTracker.ShowAll(1, "ShowAll");
+        this.actions[position++] = new EditItem(2, "EditItem");
+        this.actions[position++] = new MenuTracker.DeleteItem(3, "DeleteItem");
+        this.actions[position++] = new FoundById(4, "FoundById");
+        this.actions[position++] = new MenuTracker.FoundByName(5, "FoundByName");
     }
 
+    public void select(int key) {
+        this.actions[key].execute(this.input, this.tracker);
+    }
+
+    private class AddItem extends BaseAction {
+
+        public AddItem(int key, String name) {
+            super(key, name);
+        }
+
+        public void execute(Input input, Tracker tracker) {
+            String name = input.ask("Enter name:");
+            String desc = input.ask("Enter description:");
+            tracker.add(new Item(name, desc, 1002001));
+        }
+        //public String info();
+    }
+
+    private static class ShowAll extends BaseAction {
+
+        public ShowAll(int key, String name) {
+            super(key, name);
+        }
+
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("------------ Заявки: --------------");
+            for (Item index : tracker.findAll()) {
+                System.out.println(String.format("id=%s имя=%s описание=%s", index.getId(), index.getName(), index.getDescription()));
+            }
+        }
+    }
+
+    private class EditItem extends BaseAction {
+        public EditItem(int key, String name) {
+            super(key, name);
+        }
+
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("------------ Редактирование заявки --------------");
+            String id = input.ask("Введите id заявки :");
+            String name = input.ask("Введите имя заявки :");
+            String desc = input.ask("Введите описание заявки :");
+            Item item = new Item(name, desc, 123L);
+            tracker.replace(id, item);
+            item.setId(id);
+        }
+    }
+
+    private static class DeleteItem extends BaseAction {
+
+        public DeleteItem(int key, String name) {
+            super(key, name);
+        }
+
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("------------ Удаление заявки --------------");
+            String id = input.ask("Введите id заявки :");
+            tracker.deleteItem(id);
+            System.out.println(String.format("------------ Заявка с id=%s удалена --------------", id));
+        }
+    }
+
+    private class FoundById extends BaseAction {
+        public FoundById(int key, String name) {
+            super(key, name);
+        }
+
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("------------ Поиск заявки по id --------------");
+            String id = input.ask("Введите id заявки :");
+
+            Item item = tracker.findById(id);
+            if (item != null) {
+                System.out.println(String.format("id=%s имя=%s описание=%s", item.getId(), item.getName(), item.getDescription()));
+            } else {
+                System.out.println("Ничего не нашлось!");
+            }
+        }
+    }
+
+    private static class FoundByName extends BaseAction {
+        public FoundByName(int key, String name) {
+            super(key, name);
+        }
+
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("------------ Поиск заявки по имени --------------");
+            String name = input.ask("Введите имя заявки :");
+            for (Item index : tracker.findByName(name)) {
+                if (index != null) {
+                    System.out.println(String.format("id=%s имя=%s описание=%s", index.getId(), index.getName(), index.getDescription()));
+                }
+            }
+        }
+    }
+}
+
+    /*
     public void select(int key) {
         this.actions[key].execute(this.input, this.tracker);
     }
@@ -142,4 +241,4 @@ public class MenuTracker {
         }
     }
 }
-
+*/
