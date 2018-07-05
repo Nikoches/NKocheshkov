@@ -1,7 +1,7 @@
 package ru.job4j.chess;
 
 public class Special {
-    int d1;
+    int d1,nn;
 
     public int direction(int xd, int xs, int yd, int ys) {
         if (yd > ys && xd > xs) {
