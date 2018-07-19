@@ -12,7 +12,10 @@ public class Special {
             d1 = 2;
         } else if (xd > xs && yd < ys) {
             d1 = 3;
-        }else d1=4;
+        } else {
+            d1 = 4;
+        }
+
         return d1;
     }
 }

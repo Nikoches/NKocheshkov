@@ -25,34 +25,34 @@ public class KnightWhite extends Special implements Figure {
     @Override
     public Cell[] way(Cell source, Cell dest) {
         Cell[] steps = new Cell[0];
-       int direct = direction(dest.x,source.x,dest.y,source.y);
-       switch (direct){
+       int direct = direction(dest.x, source.x, dest.y, source.y);
+       switch (direct) {
            case 0:
-               if ((dest.y-1==source.y)&&(dest.x-2==source.x)){
-                   steps = new Cell[] { dest };
-               }else if ((dest.y-2==source.y)&&(dest.x-1==source.x)){
-                   steps = new Cell[] { dest };
+               if ((dest.y - 1 == source.y) && (dest.x - 2 == source.x)) {
+                   steps = new Cell[] {dest};
+               } else if ((dest.y - 2 == source.y) && (dest.x - 1 == source.x)) {
+                   steps = new Cell[] {dest};
                }
                break;
            case 1:
-               if ((dest.y-1==source.y)&&(dest.x+2==source.x)){
-                   steps = new Cell[] { dest };
-               }else if ((dest.y-2==source.y)&&(dest.x+1==source.x)){
-                   steps = new Cell[] { dest };
+               if ((dest.y - 1 == source.y) && (dest.x + 2 == source.x)) {
+                   steps = new Cell[] {dest};
+               } else if ((dest.y - 2 == source.y) && (dest.x + 1 == source.x)) {
+                   steps = new Cell[] {dest};
                }
                break;
            case 2:
-               if ((dest.y+1==source.y)&&(dest.x-2==source.x)){
-                   steps = new Cell[] { dest };
-               }else if ((dest.y+2==source.y)&&(dest.x-1==source.x)){
-                   steps = new Cell[] { dest };
+               if ((dest.y + 1 == source.y) && (dest.x - 2 == source.x)) {
+                   steps = new Cell[] {dest};
+               } else if ((dest.y + 2 == source.y) && (dest.x - 1 == source.x)) {
+                   steps = new Cell[] {dest};
                }
                break;
            case 3:
-               if ((dest.y+1==source.y)&&(dest.x+2==source.x)){
-                   steps = new Cell[] { dest };
-               }else if ((dest.y+2==source.y)&&(dest.x+1==source.x)){
-                   steps = new Cell[] { dest };
+               if ((dest.y + 1 == source.y) && (dest.x + 2 == source.x)) {
+                   steps = new Cell[] {dest};
+               } else if ((dest.y + 2 == source.y) && (dest.x + 1 == source.x)) {
+                   steps = new Cell[] {dest};
                }
                break;
        }
