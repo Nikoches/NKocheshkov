@@ -12,11 +12,22 @@ public class Special {
             d1 = 2;
         } else if (xd > xs && yd < ys) {
             d1 = 3;
-        } else {
-            d1 = 4;
-        }
-
+        }else {d1=404;}
         return d1;
+    }
+    public int direct(int xd, int xs, int yd, int ys) {
+        if (xd == xs && yd>ys) {
+            d1 = 4;
+        } else if (xd == xs && yd<ys) {
+            d1 = 5;
+        } else if (xd > xs && yd == ys) {
+            d1 = 6;
+        } else if (xd < xs && yd == ys) {
+            d1 = 7;
+        }else {d1=404;}
+        return d1;
+
+
     }
 }
 

@@ -25,8 +25,36 @@ public class RookWhite extends Special implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        int x1=dest.x,y1=dest.y;
-        return new Cell[] { dest };
+        Cell[] steps = new Cell[0];
+        int a=0,b=0,c = 0;
+        switch (direct(dest.x, source.x, dest.y, source.y)) {
+            case 4:
+                a = source.y; c = dest.y;
+                b = 1;
+                break;
+            case 5:
+                a = source.y;c = dest.y;
+                b = - 1;
+                break;
+            case 6:
+                a = source.x;c = dest.x;
+                b = 1;
+                break;
+            case 7:
+                a = source.x;c = dest.x;
+                b = -1;
+                break;
+            case 404:
+                steps = new Cell[]{};
+        }
+            while ((a >= 0) && (a <= 7) ) {
+                a+=b;
+                if (a == c) {
+                    steps = new Cell[] {dest};
+                    break;
+                }
+            }
+        return steps;
     }
 
     @Override
