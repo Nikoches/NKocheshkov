@@ -1,7 +1,7 @@
 package ru.job4j.chess;
 
 public class Special {
-    int d1;
+    protected int d1;
 
     public int direction(int xd, int xs, int yd, int ys) {
         if (xd > xs && yd > ys) {
@@ -12,7 +12,7 @@ public class Special {
             d1 = 2;
         } else if (xd > xs && yd < ys) {
             d1 = 3;
-        }else {d1=404;}
+        }else d1 =13;
         return d1;
     }
     public int direct(int xd, int xs, int yd, int ys) {
@@ -24,7 +24,7 @@ public class Special {
             d1 = 6;
         } else if (xd < xs && yd == ys) {
             d1 = 7;
-        }else {d1=404;}
+        }
         return d1;
 
 

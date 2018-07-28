@@ -33,16 +33,15 @@ public class BishopWhite extends Special implements Figure {
             case 1:a = -1; b = 1; break;
             case 2:a = -1; b = -1; break;
             case 3:a = 1; b = -1; break;
-            case 404: steps = new Cell[]{};
+            case 13:a = 13; b = -1; break;
         }
-            while (x1 <= 7 && x1 >= 0 && y1<= 7 && y1 >= 0) {
+            while (0<=x1 && x1<=7 && 0<=y1 && y1<=7) {
                 x1 += a; y1 += b;
                 if (dest.x == x1 & dest.y == y1) {
                     steps = new Cell[] {dest};
                     break;
                 }
             }
-
         return steps;
     }
 
