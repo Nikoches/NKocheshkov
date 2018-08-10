@@ -1,27 +1,28 @@
 package search;
 import java.util.LinkedList;
-import java.util.ListIterator;
-
 public class PriorityQueue {
-    private LinkedList<Task> tasks = new LinkedList<>();
-
     /**
      * Метод должен вставлять в нужную позицию элемент.
      * Позиция определять по полю приоритет.
      * Для вставик использовать add(int index, E value)
      * @param task задача
      */
+private LinkedList<Task> tasks = new LinkedList<>();
     public void put(Task task) {
-        tasks.add(task);
-        for (Task task1:tasks) {
-           if (task.getPriority()<task1.getPriority()){
-              tasks.set(tasks.indexOf(task1),task);
-           }
+        int index = 0;
+        while (index < tasks.size()) {
+            if (task.getPriority() < tasks.get(index).getPriority()) {
+                break;
+            }
+            index++;
         }
-      //TODO добавить вставку в связанный список.
+        tasks.add(index, task);
     }
 
     public Task take() {
+        for (Task task1:tasks) {
+            System.out.println(task1.getDesc()+' '+ task1.getPriority());
+        }
         return this.tasks.poll();
     }
 }
