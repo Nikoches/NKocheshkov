@@ -21,7 +21,7 @@ private LinkedList<Task> tasks = new LinkedList<>();
 
     public Task take() {
         for (Task task1:tasks) {
-            System.out.println(task1.getDesc()+' '+ task1.getPriority());
+            System.out.println(task1.getDesc() + ' ' +  task1.getPriority());
         }
         return this.tasks.poll();
     }
