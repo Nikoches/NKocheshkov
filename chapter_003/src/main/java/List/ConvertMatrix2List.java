@@ -16,4 +16,14 @@ public class ConvertMatrix2List {
         }
         return list;
     }
+    public List<Integer> convert (List<int[]> list){
+        List<Integer> list_all = new ArrayList<>();
+        for(int[] X:list){
+            for (int X1:X){
+                list_all.add(X1);
+            }
+        }
+        return list_all;
+    }
+
 }

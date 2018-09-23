@@ -1,6 +1,5 @@
 package List;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 
 public class ConvertList2Array {
@@ -18,4 +17,4 @@ public class ConvertList2Array {
 
         }
         return array;  }
-}
+    }
