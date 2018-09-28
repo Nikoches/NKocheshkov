@@ -1,7 +1,6 @@
 package List;
 import java.util.*;
 
-
 public class ConvertList2Array {
     public int[][] toArray(List<Integer> list, int rows) {
         int noe = list.size() % rows == 0 ? list.size() / rows : list.size() / rows + 1;
@@ -14,7 +13,6 @@ public class ConvertList2Array {
                 } else {
                     i1++;
                 }
-
         }
         return array;  }
     }
