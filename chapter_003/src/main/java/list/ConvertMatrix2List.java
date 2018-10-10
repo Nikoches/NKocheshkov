@@ -1,4 +1,4 @@
-package List;
+package list;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 public class ConvertMatrix2List {
     public List<Integer> toList(int[][] array) {
         List<Integer> list = new ArrayList<>();
-        for (int[] x:array) {
+        for (int[] x : array) {
             for (int x1 : x) {
                 list.add(x1);
             }
@@ -16,14 +16,13 @@ public class ConvertMatrix2List {
         }
         return list;
     }
-    public List<Integer> convert (List<int[]> list){
-        List<Integer> list_all = new ArrayList<>();
-        for(int[] X:list){
-            for (int X1:X){
-                list_all.add(X1);
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> listall = new ArrayList<>();
+        for (int[] z : list) {
+            for (int z1 : z) {
+                listall.add(z1);
             }
         }
-        return list_all;
+        return listall;
     }
-
 }

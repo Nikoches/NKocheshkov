@@ -1,4 +1,4 @@
-package List;
+package list;
 import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +11,7 @@ public class ConvertMatrix2ListTest {
         ConvertMatrix2List list = new ConvertMatrix2List();
         int[][] input = {
                 {1, 2},
-                {3, 4,}
+                {3, 4}
         };
         List<Integer> expect = Arrays.asList(
                 1, 2, 3, 4

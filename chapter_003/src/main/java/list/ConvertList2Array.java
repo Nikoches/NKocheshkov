@@ -1,4 +1,4 @@
-package List;
+package list;
 import java.util.*;
 
 public class ConvertList2Array {
@@ -8,7 +8,7 @@ public class ConvertList2Array {
         int[][] array = new int[rows][noe];
             for (Integer x : list) {
                 array[i][i1] = x;
-                if (i1 >= noe-1) {
+                if (i1 >= noe - 1) {
                     i++; i1 = 0;
                 } else {
                     i1++;
