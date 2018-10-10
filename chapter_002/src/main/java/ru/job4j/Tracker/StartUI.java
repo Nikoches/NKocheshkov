@@ -1,5 +1,5 @@
 package ru.job4j.Tracker;
-
+import java.util.*;
 /**
  * @version $Id$
  * @since 0.1
@@ -26,8 +26,8 @@ public class StartUI {
      */
     private final Input input;
     private final Tracker tracker;
-    private int[] ranges  = new int[]{0,1,2,3,4,5};
-
+  //  private int[] ranges  = new int[]{0,1,2,3,4,5};
+    ArrayList<Integer> ranges = new ArrayList<>();
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.

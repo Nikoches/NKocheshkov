@@ -1,5 +1,7 @@
 package ru.job4j.Tracker;
 
+import java.util.ArrayList;
+
 public class ValidateInput implements Input {
 
     private final Input input;
@@ -13,11 +15,12 @@ public class ValidateInput implements Input {
         return this.input.ask(question);
     }
 
-    public int ask(String question, int[] range){
+    public int ask(String question, ArrayList<Integer> ranges){
       int value=Integer.valueOf(this.ask(question));
       boolean exist= false;
-      for(int i: range){
-          if(value==range[i]){
+      for(Integer i: ranges){
+          System.out.println(i);
+          if(value==(int)i){
                 exist=true;
           }
       }

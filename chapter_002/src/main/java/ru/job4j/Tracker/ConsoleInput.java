@@ -7,10 +7,10 @@ public class ConsoleInput implements Input {
         System.out.println(question);
         return scanner.nextLine();
     }
-    public int ask (String question,int[] range){
+    public int ask (String question,ArrayList<Integer> ranges){
         int key = Integer.valueOf(this.ask(question));
         boolean exist= false;
-        for (int value:range){
+        for (Integer value:ranges){
             if (value == key){
                 exist=true;
                 break;
