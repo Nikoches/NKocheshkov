@@ -1,9 +1,6 @@
 package usermap;
 
 import java.util.*;
-
-import usermap.User;
-import usermap.UserConvert;
 import org.junit.Test;;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -23,12 +20,6 @@ public class UserMapTest {
         expected.put(2, new User(2, "Nikita", "Yekaterinburg"));
         Map<Integer, User> actual = new HashMap<>();
         actual = tryOne.process(usersList);
-        Set<Map.Entry<Integer, User>> set = actual.entrySet();
-        for (HashMap.Entry<Integer, User> me : set) {
-            System.out.print(me.getKey() + ": ");
-            System.out.println(me.getValue());
-        }
-
         assertThat(actual, is(expected));
     }
 }
