@@ -19,8 +19,7 @@ public class ValidateInput implements Input {
       int value=Integer.valueOf(this.ask(question));
       boolean exist= false;
       for(Integer i: ranges){
-          System.out.println(i);
-          if(value==(int)i){
+          if(value==(Integer)i){
                 exist=true;
           }
       }

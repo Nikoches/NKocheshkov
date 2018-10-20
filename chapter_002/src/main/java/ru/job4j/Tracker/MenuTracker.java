@@ -1,10 +1,14 @@
 package ru.job4j.Tracker;
+import java.util.*;
+import java.util.ArrayList;
 
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[6];
+   // private UserAction[] actions = new UserAction[6];
+    ArrayList<UserAction> actions = new ArrayList<UserAction>();
     private int position;
+    ArrayList<Integer> ranges = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -19,17 +23,19 @@ public class MenuTracker {
         }
     }
 
-    public void fillActions() {
-        this.actions[position++] = this.new AddItem(0, "AddItem");
-        this.actions[position++] = new MenuTracker.ShowAll(1, "ShowAll");
-        this.actions[position++] = new EditItem(2, "EditItem");
-        this.actions[position++] = new MenuTracker.DeleteItem(3, "DeleteItem");
-        this.actions[position++] = new FoundById(4, "FoundById");
-        this.actions[position++] = new MenuTracker.FoundByName(5, "FoundByName");
+    public ArrayList<Integer> fillActions() {
+        this.actions.add(this.new AddItem(0, "AddItem"));
+        this.actions.add(new MenuTracker.ShowAll(1, "ShowAll"));
+        this.actions.add(new EditItem(2, "EditItem"));
+        this.actions.add(new MenuTracker.DeleteItem(3, "DeleteItem"));
+        this.actions.add(new FoundById(4, "FoundById"));
+        this.actions.add(new MenuTracker.FoundByName(5, "FoundByName"));
+        Collections.addAll(ranges,0,1,2,3,4,5);
+        return ranges;
     }
 
     public void select(int key) {
-        this.actions[key].execute(this.input, this.tracker);
+        this.actions.get(key).execute(this.input, this.tracker);
     }
 
     private class AddItem extends BaseAction {
@@ -43,7 +49,6 @@ public class MenuTracker {
             String desc = input.ask("Enter description:");
             tracker.add(new Item(name, desc, 1002001));
         }
-        //public String info();
     }
 
     private static class ShowAll extends BaseAction {

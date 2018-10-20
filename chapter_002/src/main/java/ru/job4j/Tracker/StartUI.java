@@ -5,28 +5,21 @@ import java.util.*;
  * @since 0.1
  */
 public class StartUI {
-    /**
-     * Константа меню для добавления новой заявки.
-     */
+    /**Константа меню для добавления новой заявки.
     private static final String ADD = "0";
     private static final String REPLACE = "2";
-    /**
-     * Константа для выхода из цикла.
-     */
+      Константа для выхода из цикла.
     private static final String EXIT = "6";
-    /**
      * Получение данных от пользователя.
-     */
     private static final String FIND_BY_ID = "4";
     private static final String FIND_BY_NAME = "5";
     private static final String SHOW_ALL = "1";
     private static final String DELETE = "3";
-    /**
-     * Хранилище заявок.
+
+      Хранилище заявок.
      */
     private final Input input;
     private final Tracker tracker;
-  //  private int[] ranges  = new int[]{0,1,2,3,4,5};
     ArrayList<Integer> ranges = new ArrayList<>();
     /**
      * Конструтор инициализирующий поля.
@@ -37,13 +30,12 @@ public class StartUI {
         this.input = input;
         this.tracker = tracker;
     }
-
     /**
      * Основой цикл программы.
      */
     public void init() {
        MenuTracker menu = new MenuTracker(this.input,tracker);
-       menu.fillActions();
+       ArrayList<Integer> ranges =  menu.fillActions();
        do{
            menu.show();
            menu.select(input.ask("Select",ranges));

@@ -1,4 +1,5 @@
 package ru.job4j.Tracker;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -9,8 +10,7 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final Item[] items = new Item[100];
-
+    ArrayList<Item> items = new ArrayList<Item>();
     /**
      * Указатель ячейки для новой заявки.
      */
@@ -23,7 +23,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -40,50 +40,64 @@ public class Tracker {
     }
 
     public void replace(String id, Item item) {
+        for(Item reitem:items){
+            if (reitem.getId().equals(id)){
+                items.set(items.indexOf(reitem),item);
+            }
+        }
+
+
+/*
         for (int i=0;i<this.position;i++){
             if (this.items[i].getId().equals(id)){
                 this.items[i]=item;
                 break;
             }
-        }
+        }*/
     }
 
     public Item[] findAll() {
         Item[] founditems = new Item[position];
-        System.arraycopy(items, 0, founditems, 0, position);
+        founditems=items.toArray(founditems);
         return founditems;
     }
 
     public Item[] findByName(String key) {
         Item[] foundItems = new Item[position+1];
-        int index1=0;
         if (key != null){
-        for (int index=0;index<this.position;index++) {
-            if (items[index].getName().equals(key)) {
-                foundItems[index1] = items[index1];
-                index1++;
+         for (Item fitem:items){
+             if (fitem.getName().equals(key)){
+               foundItems[position++] =fitem;
+             }else return null;
             }
-        }}else return null;
+        }
         return foundItems;
     }
     public Item findById(String id) {
-        int unicId=0;
-        for (int index=0;index<this.position;index++){
-            if (items[index].getId().equals(id)){
-                unicId=index;
-                break;
-            } else return null;
+        Item fbritem = null;
+        for(Item fbitem:items){
+            if(fbitem.getId().equals(id)){
+                fbritem = fbitem;
+            }
         }
-        return items[unicId];
+        return fbritem;
     }
     public void deleteItem(String id){
         int unicId=0;
-        for (int index=0;index<this.position;index++){
+       /* for (int index=0;index<this.position;index++){
             if (items[index].getId().equals(id)){
                 unicId=index;break;
             }}
         items[unicId]=items[this.position-1];
         items[this.position-1]=null;
         this.position--;
+        */
+        for(Item ditem:items) {
+            if (ditem.getId().equals(id)) {
+              items.remove(ditem.getId());
+            }
+        }
+
+
     }
 }
