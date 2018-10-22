@@ -1,6 +1,6 @@
 package ru.job4j.Tracker;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class StubInput implements Input {
     /**
@@ -38,19 +38,19 @@ public class StubInput implements Input {
     }
 
     @Override
-    public int ask(String question, ArrayList<Integer> ranges) {
+    public int ask(String question, List<Integer> ranges) {
 
         int key = Integer.valueOf(this.ask(question));
-        boolean exist= false;
-        for (Integer value:ranges){
-            if (value == key){
-                exist=true;
+        boolean exist = false;
+        for (Integer value : ranges) {
+            if (value == key) {
+                exist = true;
                 break;
             }
         }
-        if (exist){
+        if (exist) {
             return key;
-        }else{
+        } else {
             throw new MenuOutException("You are out of menu range");
         }
     }

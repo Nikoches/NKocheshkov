@@ -5,12 +5,12 @@ public class Item {
     private String name;
     private String description;
     private long create;
-    Item(String name, String description, long create){
-        this.name=name;
-        this.description=description;
-        this.create=create;
+    Item(String name, String description, long create) {
+        this.name = name;
+        this.description = description;
+        this.create = create;
     }
-    public String getName(){
+    public String getName() {
         return this.name;
     }
     public String getDescription() {

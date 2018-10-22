@@ -5,22 +5,9 @@ import java.util.*;
  * @since 0.1
  */
 public class StartUI {
-    /**Константа меню для добавления новой заявки.
-    private static final String ADD = "0";
-    private static final String REPLACE = "2";
-      Константа для выхода из цикла.
-    private static final String EXIT = "6";
-     * Получение данных от пользователя.
-    private static final String FIND_BY_ID = "4";
-    private static final String FIND_BY_NAME = "5";
-    private static final String SHOW_ALL = "1";
-    private static final String DELETE = "3";
-
-      Хранилище заявок.
-     */
     private final Input input;
     private final Tracker tracker;
-    ArrayList<Integer> ranges = new ArrayList<>();
+    List<Integer> ranges = new ArrayList<>();
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
@@ -30,16 +17,14 @@ public class StartUI {
         this.input = input;
         this.tracker = tracker;
     }
-    /**
-     * Основой цикл программы.
-     */
+
     public void init() {
-       MenuTracker menu = new MenuTracker(this.input,tracker);
-       ArrayList<Integer> ranges =  menu.fillActions();
-       do{
+       MenuTracker menu = new MenuTracker(this.input, tracker);
+       List<Integer> ranges =  menu.fillActions();
+       do {
            menu.show();
-           menu.select(input.ask("Select",ranges));
-       }while (!"y".equals(this.input.ask("exit? y/n")));
+           menu.select(input.ask("Select", ranges));
+       } while (!"y".equals(this.input.ask("exit? y/n")));
     }
 
     /**
@@ -101,7 +86,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-
         new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }

@@ -1,14 +1,11 @@
 package ru.job4j.Tracker;
 import java.util.*;
-import java.util.ArrayList;
 
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-   // private UserAction[] actions = new UserAction[6];
-    ArrayList<UserAction> actions = new ArrayList<UserAction>();
-    private int position;
-    ArrayList<Integer> ranges = new ArrayList<>();
+    List<UserAction> actions = new ArrayList<UserAction>();
+    List<Integer> ranges = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -23,14 +20,16 @@ public class MenuTracker {
         }
     }
 
-    public ArrayList<Integer> fillActions() {
+    public List<Integer> fillActions() {
         this.actions.add(this.new AddItem(0, "AddItem"));
         this.actions.add(new MenuTracker.ShowAll(1, "ShowAll"));
         this.actions.add(new EditItem(2, "EditItem"));
         this.actions.add(new MenuTracker.DeleteItem(3, "DeleteItem"));
         this.actions.add(new FoundById(4, "FoundById"));
         this.actions.add(new MenuTracker.FoundByName(5, "FoundByName"));
-        Collections.addAll(ranges,0,1,2,3,4,5);
+        for (UserAction act:actions) {
+            ranges.add(act.key());
+        }
         return ranges;
     }
 

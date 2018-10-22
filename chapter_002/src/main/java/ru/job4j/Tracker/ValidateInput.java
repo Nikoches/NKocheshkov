@@ -1,6 +1,6 @@
 package ru.job4j.Tracker;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class ValidateInput implements Input {
 
@@ -15,16 +15,18 @@ public class ValidateInput implements Input {
         return this.input.ask(question);
     }
 
-    public int ask(String question, ArrayList<Integer> ranges){
-      int value=Integer.valueOf(this.ask(question));
-      boolean exist= false;
-      for(Integer i: ranges){
-          if(value==(Integer)i){
-                exist=true;
+    public int ask(String question, List<Integer> ranges) {
+      int value = Integer.valueOf(this.ask(question));
+      boolean exist = false;
+      for (Integer i: ranges) {
+          if (value == i) {
+                exist = true;
           }
       }
-      if(exist){
+      if (exist) {
           return value;
-      }else throw new MenuOutException ("Please select key from menu.");
+      } else {
+          throw new MenuOutException("Please select key from menu.");
+        }
     }
 }
