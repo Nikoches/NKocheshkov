@@ -28,7 +28,7 @@ public class ValidateInputTest {
     @Test
     public void whenInvalidInput() {
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"invalid","1"})
+                new StubInput(new String[] {"invalid", "1"})
         );
         //input.ask("Enter", new ArrayList<Integer>{});
         assertThat(
@@ -39,9 +39,9 @@ public class ValidateInputTest {
         );
     }
     @Test
-    public void whenUsedMenuOut(){
+    public void whenUsedMenuOut() {
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"4","1"})
+                new StubInput(new String[] {"4", "1"})
         );
 
    // input.ask("Enter", new int[] {1});

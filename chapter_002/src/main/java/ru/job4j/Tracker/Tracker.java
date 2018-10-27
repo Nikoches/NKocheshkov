@@ -10,7 +10,7 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    List<Item> items = new ArrayList<Item>();
+    private List<Item> items = new ArrayList<Item>();
     /**
      * Указатель ячейки для новой заявки.
      * Метод реализаущий добавление заявки в хранилище
@@ -36,7 +36,15 @@ public class Tracker {
     }
 
     public void replace(String id, Item item) {
-       items.set(items.indexOf(findById(id)), item);
+      // items.set(items.indexOf(findById(id)), item);
+        int setid=0;
+        for (int i=0;i<items.size();i++){
+            if (items.get(i).getId().equals(id)){
+                setid=i;
+                break;
+            }
+        }
+        items.set(setid,item);
     }
 
     public List<Item>  findAll() {
@@ -60,21 +68,22 @@ public class Tracker {
     }
     public Item findById(String id) {
         Item fbritem = null;
-        for (Item fbitem : items) {
-            if (fbitem.getId().equals(id)) {
-                fbritem = fbitem;
+        for (int i=0;i<items.size();i++){
+            if (items.get(i).getId().equals(id)){
+               fbritem = items.get(i);
+               break;
             }
         }
         return fbritem;
     }
     public void deleteItem(String id) {
-        Item deleteid = null;
-        for (Item ditem : items) {
-            if (ditem.getId().equals(id)) {
-              deleteid = ditem;
-            }
+        int deleteid = 0;
+        for (int i=0;i<items.size();i++){
+                if (items.get(i).getId().equals(id)){
+                    deleteid=i;
+                    break;
+                }
         }
         items.remove(deleteid);
-
     }
 }
