@@ -37,10 +37,10 @@ public class Tracker {
 
     public void replace(String id, Item item) {
       // items.set(items.indexOf(findById(id)), item);
-        int setid=0;
-        for (int i=0;i<items.size();i++){
-            if (items.get(i).getId().equals(id)){
-                setid=i;
+        int setid = 0;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
+                setid = i;
                 break;
             }
         }
@@ -59,7 +59,7 @@ public class Tracker {
          for (Item fitem : items) {
              if (fitem.getName().equals(key)) {
                foundItems.add(fitem);
-             }
+                }
             }
         } else {
             return null;
@@ -68,8 +68,8 @@ public class Tracker {
     }
     public Item findById(String id) {
         Item fbritem = null;
-        for (int i=0;i<items.size();i++){
-            if (items.get(i).getId().equals(id)){
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
                fbritem = items.get(i);
                break;
             }
@@ -78,9 +78,9 @@ public class Tracker {
     }
     public void deleteItem(String id) {
         int deleteid = 0;
-        for (int i=0;i<items.size();i++){
-                if (items.get(i).getId().equals(id)){
-                    deleteid=i;
+        for (int i = 0; i < items.size(); i++) {
+                if (items.get(i).getId().equals(id)) {
+                    deleteid = i;
                     break;
                 }
         }
