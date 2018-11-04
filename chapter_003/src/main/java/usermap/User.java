@@ -11,6 +11,7 @@ public class User {
         this.city = city;
         this.name = name;
     }
+    int hh =0;
 
     public Integer getId() {
         return id;
