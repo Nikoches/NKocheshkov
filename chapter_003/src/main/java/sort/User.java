@@ -9,11 +9,10 @@ public class User implements Comparable<User> {
     }
     @Override
     public int compareTo(User o) {
-       return this.age>o.age?1:-1;
+       return this.age - o.age;
     }
-
     @Override
     public String toString() {
-        return (this.age + this.name);
+        return (String.format("%s, %s %n ",this.age,this.name));
     }
 }
