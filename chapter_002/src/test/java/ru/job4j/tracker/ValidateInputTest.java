@@ -1,10 +1,9 @@
-package ru.job4j.Tracker;
+package ru.job4j.tracker;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 

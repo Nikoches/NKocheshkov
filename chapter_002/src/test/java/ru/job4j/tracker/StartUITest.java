@@ -1,9 +1,7 @@
-package ru.job4j.Tracker;
+package ru.job4j.tracker;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.job4j.Tracker.Item;
-import ru.job4j.Tracker.Tracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -25,7 +23,7 @@ public class StartUITest {
     //ADD
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        Tracker tracker = new Tracker();     // создаём Tracker
+        Tracker tracker = new Tracker();     // создаём tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
         //assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
@@ -33,7 +31,7 @@ public class StartUITest {
     //UPDATE
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
-        // создаём Tracker
+        // создаём tracker
         Tracker tracker = new Tracker();
         //Напрямую добавляем заявку
         tracker.add(new Item("test name", "desc", 123L));

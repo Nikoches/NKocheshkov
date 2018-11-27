@@ -37,5 +37,11 @@ public class User1 {
         return id == user1.id && (city != null && city.equals(user1.getCity()))
                 &&  (name != null && name.equals(user1.getName()));
     }
-
+    public int hashCode() {
+        int res = 17;
+        res = 31 * res + name.hashCode();
+        res = 31 * res + id;
+        res = 31 * res + city.hashCode();
+        return res;
+    }
 }

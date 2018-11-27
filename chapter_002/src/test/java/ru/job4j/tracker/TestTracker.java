@@ -1,7 +1,5 @@
-package ru.job4j.Tracker;
+package ru.job4j.tracker;
 import org.junit.Test;
-import ru.job4j.Tracker.Item;
-import ru.job4j.Tracker.Tracker;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -35,11 +33,11 @@ public class TestTracker {
         Tracker tracker = new Tracker();
         Item firstItem = new Item("test1", "testDescription", 123L);
         tracker.add(firstItem);
-        Item SecondItem = new Item("test2", "testDescription", 123L);
-        tracker.add(SecondItem);
-        Item ThirdItem = new Item("test3", "testDescription", 123L);
-        tracker.add(ThirdItem);
-        tracker.deleteItem(SecondItem.getId());
+        Item secondItem = new Item("test2", "testDescription", 123L);
+        tracker.add(secondItem);
+        Item thirdItem = new Item("test3", "testDescription", 123L);
+        tracker.add(thirdItem);
+        tracker.deleteItem(secondItem.getId());
        // assertThat(tracker.findAll().getName(), is("test3"));
     }
 }

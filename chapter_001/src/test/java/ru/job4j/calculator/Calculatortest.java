@@ -1,11 +1,10 @@
 package ru.job4j.calculator;
 import org.junit.Test;
-import ru.job4j.Calculator.Calculator;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class CalculatorTest {
+public class Calculatortest {
     @Test
     public void whenAddOnePlusOneThenTwo() {
         Calculator calc = new Calculator();

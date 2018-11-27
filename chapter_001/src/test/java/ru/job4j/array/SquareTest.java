@@ -7,17 +7,17 @@ import static org.junit.Assert.assertThat;
 
 public class SquareTest {
     @Test
-    public void WhenSquareFour() {
+    public void whenSquareFour() {
         Square sqr = new Square();
         int[] rst = sqr.calculate(4);
-        int[] rss = {1,4,9,16};
+        int[] rss = {1, 4, 9, 16};
         assertThat(rst, is(rss));
     }
     @Test
-    public void WhenSquareSeven() {
+    public void whenSquareSeven() {
         Square sqr = new Square();
         int[] rst = sqr.calculate(7);
-        int[] rss = {1,4,9,16,25,36,49};
+        int[] rss = {1, 4, 9, 16, 25, 36, 49};
         assertThat(rst, is(rss));
     }
 }

@@ -1,4 +1,4 @@
-package ru.job4j.Tracker;
+package ru.job4j.tracker;
 import java.util.*;
 import java.util.Random;
 
@@ -44,7 +44,7 @@ public class Tracker {
                 break;
             }
         }
-        items.set(setid,item);
+        items.set(setid, item);
     }
 
     public List<Item>  findAll() {

@@ -1,12 +1,10 @@
-package ru.job4j.MaxTest;
+package ru.job4j.maxtest;
 import org.junit.Test;
 import ru.job4j.max.Max;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-public class MaxTest {
+public class Maxtest {
     @Test
     public void whenFirstLessSecond() {
         Max max1 = new Max();
@@ -24,7 +22,7 @@ public class MaxTest {
     @Test
     public void guessWhat() {
         Max max1 = new Max();
-        int result = max1.max2(3, 2,5);
+        int result = max1.max2(3, 2, 5);
         assertThat(result, is(5));
 
     }

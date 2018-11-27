@@ -2,7 +2,7 @@ package ru.job4j;
 
 public class Start {
     public static void main(String[] args) {
-        check ch1 = new check();
+        Check ch1 = new Check();
         String x;
         int i = 0;
         while (i < 10) {

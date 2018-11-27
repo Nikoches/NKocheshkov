@@ -1,21 +1,13 @@
 package usermap;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class UserConvert {
-    /* list<User> users = new ArrayList<>();
-     public void addUser (int id,String name,String City){
-         users.add(new User (id,name,City));
-     }
-     public list<User> getUsers(){
-         return users;
-     }*/
-    public Map<Integer, User> process(List<User> userslist) {
-        HashMap<Integer, User> mapF = new HashMap<>();
-        for (User x : userslist) {
+    public Map<Integer, User1> process(List<User1> userslist) {
+        HashMap<Integer, User1> mapF = new HashMap<>();
+        for (User1 x : userslist) {
             mapF.put(x.getId(), x);
         }
         return mapF;

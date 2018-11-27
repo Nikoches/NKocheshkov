@@ -1,13 +1,11 @@
-package ru.job4j.DummyBot;
+package ru.job4j.dummybot;
 
 import org.junit.Test;
 import ru.job4j.condition.Dummybot;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-public class DummyBotTest {
+public class Dummybottest {
     @Test
     public void whenGreetBot() {
         Dummybot bot = new Dummybot();
@@ -30,5 +28,7 @@ public class DummyBotTest {
         assertThat(
                 bot.answer("Сколько будет 2 + 2?"),
                 is("Это ставит меня в тупик. Спросите другой вопрос.")
-        );}    }
+        );
+    }
+}
 
