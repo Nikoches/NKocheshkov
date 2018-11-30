@@ -10,13 +10,15 @@ public class ListCompare implements Comparator<String> {
             for (int i = 0; i < kol; i++) {
                 if (Character.compare(left.charAt(i), right.charAt(i)) > 0) {
                   rst = 1;
+                } else if (Character.compare(left.charAt(i), right.charAt(i)) < 0){
+                    rst=-1;
                 }
              }
         if ((rst == 0) && (left.length() < right.length())) {
             rst = -1;
         }
         if ((rst == 0) && (left.length() > right.length())) {
-            rst = -1;
+            rst = 1;
         }
      return rst;
     }
