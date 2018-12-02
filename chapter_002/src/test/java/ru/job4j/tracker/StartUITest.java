@@ -10,6 +10,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 public class StartUITest {
+    String n1 = System.getProperty("line.separator");
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     @Before
@@ -26,7 +27,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();     // создаём tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
-        //assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+        assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
     //UPDATE
     @Test
@@ -40,7 +41,7 @@ public class StartUITest {
         // создаём StartUI и вызываем метод init()
         new StartUI(input, tracker).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
-       // assertThat(tracker.findAll()[0].getName(), is("test name"));
+        assertThat(tracker.findAll().get(0).getName(), is("test name"));
     }
     //DELETE
     @Test
@@ -70,7 +71,7 @@ public class StartUITest {
         Item item1 = tracker.add(new Item("test name1", "desc1", 123L));
         Input input = new StubInput(new String[]{"1", "y"});
         new StartUI(input, tracker).init();
-        assertThat(new String(this.out.toByteArray()), is(String.format("0.add the new item\r\n1.Show all items\r\n2.Edit Item\r\n3.Delete Item\r\n4.Found by ID\r\n5.Found by Name\r\n------------ Заявки: --------------\r\nid=%s имя=%s описание=%s\r\nid=%s имя=%s описание=%s\r\n", item.getId(), item.getName(), item.getDescription(), item1.getId(), item1.getName(), item1.getDescription())));
+        assertThat(new String(this.out.toByteArray()), is(String.format("0 : AddItem" + n1 + "1 : ShowAll" + n1 + "2 : EditItem" + n1 + "3 : DeleteItem" + n1 + "4 : FoundById" + n1 + "5 : FoundByName" + n1 +  "------------ Заявки: --------------" + n1 + "id=%s имя=%s описание=%s" + n1 + "id=%s имя=%s описание=%s" + n1, item.getId(), item.getName(), item.getDescription(), item1.getId(), item1.getName(), item1.getDescription())));
 
     }
     //FIND BY ID
@@ -81,7 +82,7 @@ public class StartUITest {
         Item item1 = tracker.add(new Item("test name1", "desc1", 123L));
         Input input = new StubInput(new String[]{"4", item.getId(), "y"});
         new StartUI(input, tracker).init();
-        assertThat(new String(this.out.toByteArray()), is(String.format("0.add the new item\r\n1.Show all items\r\n2.Edit Item\r\n3.Delete Item\r\n4.Found by ID\r\n5.Found by Name\r\n------------ Поиск заявки по id --------------\r\nid=%s имя=%s описание=%s\r\n", item.getId(), item.getName(), item.getDescription())));
+        assertThat(new String(this.out.toByteArray()), is(String.format("0 : AddItem" + n1 + "1 : ShowAll" + n1 + "2 : EditItem" + n1 + "3 : DeleteItem" + n1 + "4 : FoundById" + n1 + "5 : FoundByName" + n1 + "------------ Поиск заявки по id --------------" + n1 + "id=%s имя=%s описание=%s" + n1, item.getId(), item.getName(), item.getDescription())));
 
     }
     //FIND BY ID
@@ -92,7 +93,6 @@ public class StartUITest {
         Item item1 = tracker.add(new Item("test name1", "desc1", 123L));
         Input input = new StubInput(new String[]{"5", "test", "y"});
         new StartUI(input, tracker).init();
-        assertThat(new String(this.out.toByteArray()), is(String.format("0.add the new item\r\n1.Show all items\r\n2.Edit Item\r\n3.Delete Item\r\n4.Found by ID\r\n5.Found by Name\r\n------------ Поиск заявки по имени --------------\r\nid=%s имя=%s описание=%s\r\n", item.getId(), item.getName(), item.getDescription())));
-
+        assertThat(new String(this.out.toByteArray()), is(String.format("0 : AddItem" + n1 + "1 : ShowAll" + n1 + "2 : EditItem" + n1 + "3 : DeleteItem" + n1 + "4 : FoundById" + n1 + "5 : FoundByName" + n1 + "------------ Поиск заявки по имени --------------" + n1 + "id=%s имя=%s описание=%s" + n1, item.getId(), item.getName(), item.getDescription())));
     }
 }
