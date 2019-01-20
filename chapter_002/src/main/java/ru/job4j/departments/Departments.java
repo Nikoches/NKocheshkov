@@ -30,7 +30,6 @@ public class Departments {
         Depart[] depsnames = new Depart[pulledDeps.length * check.split("\\\\").length];
 
         //ЗАПОЛНЯЕМ МАССИВ НЕУНИКАЛЬНЫМИ ДЕПАРТАМЕНТАМИ
-
         for (int i = 0; i < pulledDeps.length; i++) {
             for (int j = 0; j < pulledDeps[i].split("\\\\").length; j++) {
                 String path = "";
@@ -40,7 +39,6 @@ public class Departments {
                 depsnames[counterDepsnames++] = new Depart(path);
             }
         }
-
 
         //ЗАПОЛНЯЕМ УНИКАЛЬНЫМИ ДЕПАРТАМЕНТАМИ
         for (int i = 0; i < depsnames.length; i++) {
