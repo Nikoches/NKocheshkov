@@ -6,49 +6,33 @@ public class DepartmentsTest {
     @Test
     public void sortdepUp() {
         Departments dep = new Departments();
-        String[] pulledDeps = dep.pulldep();
-        Depart [] Depart = new Depart[50];
-        String  check = "";
-        int x=0;
-        //ВЫЧИСЛЯЕМ ДЛИННУ МАССИВА ИМЕН
-        for (int i = 1; i < pulledDeps.length;i++){
-            if (pulledDeps[i].split("\\\\").length > pulledDeps[i-1].split("\\\\").length) {
-                check = pulledDeps[i];
-            }
-        }
-        //ЗАПОЛНЯЕМ МАССИВ ДЕПАРТАМЕНТОВ
-        Depart []depsnames = new Depart[pulledDeps.length * check.split("\\\\").length];
-
-        //ЗАПОЛНЯЕМ МАССИВ НЕУНИКАЛЬНЫМИ ДЕПАРТАМЕНТАМИ
-        for(int i = 0;i<pulledDeps.length;i++) {
-            for (int j = 0; j < pulledDeps[i].split("\\\\").length; j++) {
-                String path = "";
-                for (int x2 = 0; x2 < pulledDeps[i].split("\\\\").length - j; x2++) {
-                    path += pulledDeps[i].split("\\\\")[x2] + "\\";
+        Depart[] departs = dep.checklength();
+        boolean isSorted = false;
+        while(!isSorted){
+            isSorted = true;
+            for (int i = 1; i < departs.length; i++) {
+                int number1 = departs[i].number.length();
+                int number2 = departs[i-1].number.length();
+                int maxresult = number1 < number2 ? number1 : number2;
+                if(number1 == number2){
+                    for(int j = 0;j < maxresult;j++){
+                        if(departs[i].number.toCharArray()[j] > departs[i-1].number.toCharArray()[j]){
+                           Depart c = departs[i];
+                           departs[i] = departs[i-1];
+                           departs[i-1] = c;
+                           isSorted = false;
+                        }
+                    }
+                } else {
+                    Depart c = departs[i-1];
+                    departs[i-1] = departs[i];
+                    departs[i] = c;
+                    isSorted = false;
                 }
-                depsnames[x++] = new Depart(path);
             }
-        }
-
-        //ЗАПОЛНЯЕМ УНИКАЛЬНЫМИ ДЕПАРТАМЕНТАМИ
-        for(int i = 0; i < depsnames.length; i++ ){
-            for(int j = 0; j < depsnames.length; j++){
-                if (j!=i && depsnames[i]!= null && depsnames[j] != null && depsnames[i].number == depsnames[j].number){
-                    System.out.println("УДАЛЕНО : " + depsnames[j].name +" "+ depsnames[j].number + " дубликат к " + depsnames[i].name +" " + depsnames[i].number );
-                    depsnames[j] = null;
-                }
-
-            }
-        }
-
-
-        //ПЕЧАТЬ ИМЕН
-        System.out.println("ЭТО ТВОЯ ДЛИННА = " + depsnames.length + " ЭТО ТВОЯ ДЛИННА = " + check.split("\\\\").length);
-        for(int p = 0; p < depsnames.length; p++){
-            if(depsnames[p] != null){
-            System.out.println(depsnames[p].name);
-        }
+       }
+    for(Depart c:departs){
+        System.out.println("\n"+c.path + " " + c.number);
         }
     }
-    }
-
+}
