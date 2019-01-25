@@ -7,25 +7,24 @@ public class Departments {
     int counterDepsnames = 0, lengthdepart = 0;
     int counterDepart = 0;
 
-    public String[] pulldep() {
-        depat1[0] = "K1\\SK1";
-        depat1[1] = "K1\\SK1\\SSK1";
-        depat1[2] = "K1\\SK1\\SSK2";
-        depat1[3] = "K1\\SK2";
-        depat1[4] = "K2\\";
-        depat1[5] = "K2\\SK1\\SSK1";
-        depat1[6] = "K2\\SK1\\SSK2";
+    private String[] pulldep() {
+        depat1[0] = "K1\\SK1\\SSK1\\";
+        depat1[1] = "K1\\SK1\\SSK2\\";
+        depat1[2] = "K1\\";
+        depat1[3] = "K1\\SK2\\";
+        depat1[4] = "K2\\SK2\\";
+        depat1[5] = "K2\\SK1\\SSK1\\";
+        depat1[6] = "K2\\SK1\\SSK2\\";
         return depat1;
     }
 
     //ВЫЧИСЛЯЕМ ДЛИННУ МАССИВА ИМЕН
     public  Depart[] checklength() {
-        for (int i = 1; i < pulledDeps.length; i++) {
-            if (pulledDeps[i].split("\\\\").length > pulledDeps[i - 1].split("\\\\").length) {
+        for (int i = 0; i < pulledDeps.length; i++) {
+            if (check.split("\\\\").length < pulledDeps[i].split("\\\\").length) {
                 check = pulledDeps[i];
             }
         }
-
 
         Depart[] depsnames = new Depart[pulledDeps.length * check.split("\\\\").length];
 
@@ -42,17 +41,20 @@ public class Departments {
 
         //ЗАПОЛНЯЕМ УНИКАЛЬНЫМИ ДЕПАРТАМЕНТАМИ
         for (int i = 0; i < depsnames.length; i++) {
-            for (int j = i + 1; j < depsnames.length; j++) {
+            for (int j = i + 1; j < depsnames.length - 1; j++) {
                 if (depsnames[i] != null && depsnames[j] != null && depsnames[i].number.equals(depsnames[j].number)) {
                     depsnames[j] = null;
-                    lengthdepart++;
                 }
             }
         }
-
+        for(Depart z:depsnames){
+            if (z != null){
+                lengthdepart++;
+            }
+        }
 
         //УБИРАЕМ НУЛЕВЫЕ ЭЛЕМЕНТЫ
-        Depart[] depart = new Depart[lengthdepart + 1];
+        Depart[] depart = new Depart[lengthdepart];
         for (Depart c : depsnames) {
             if (c != null) {
                 depart[counterDepart++] = c;
