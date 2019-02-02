@@ -1,10 +1,12 @@
-package com;
+package banking;
 
+/*
 
+*/
 public class Account {
 
-    double values;
-    String reqs;
+    private double values;
+    private String reqs;
 
     public Account(double values, String requisites) {
         this.values = values;
@@ -20,7 +22,7 @@ public class Account {
         return this.reqs;
     }
 
-    boolean transfer(Account destination, double amount) {
+    protected boolean transfer(Account destination, double amount) {
         boolean success = false;
         if (amount > 0 && amount < this.values && destination != null) {
             success = true;
@@ -31,22 +33,18 @@ public class Account {
     }
 
     public String toString() {
-        String otvet;
-        otvet = "Account{" + "values=" + values + ", reqs='" + reqs + "\\" + "}";
-        return otvet;
+        return String.format("Account{ values = %s, reqs='%s\\ }", this.values, this.reqs);
     }
 
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
+        boolean equality =false;
         Account account = (Account) o;
-
-        return this.reqs.equals(account.reqs);
+        if (o == null || getClass() != o.getClass()) {
+            equality = false;
+        } else  if (this == o && this.reqs.equals(account.reqs)) {
+            equality = true;
+        }
+        return equality;
     }
 
     public int hashCode() {
