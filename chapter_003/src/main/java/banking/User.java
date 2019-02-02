@@ -1,10 +1,10 @@
 package banking;
 
-public class User implements Comparable<User>{
+public class User implements Comparable<User> {
     private String name;
     private String pasport;
 
-    public User(String pasport,String name){
+    public User(String pasport, String name) {
         this.pasport = pasport;
         this.name = name;
     }
@@ -18,19 +18,19 @@ public class User implements Comparable<User>{
     }
 
     public boolean equals(Object obj) {
-        boolean equality =false;
+        boolean equality = false;
         if (obj == this) {
             equality = true;
         }
         User user = (User) obj;
-        equality = name!=null && pasport != null && name.equals(user.name) && pasport.equals(user.pasport);
+        equality = name != null && pasport != null && name.equals(user.name) && pasport.equals(user.pasport);
 
         if (obj == null || obj.getClass() != this.getClass()) {
             equality = false;
         }
         return equality;
     }
-    public int compareTo(User obj){
+    public int compareTo(User obj) {
 
        return this.getName().compareTo(obj.getName());
 

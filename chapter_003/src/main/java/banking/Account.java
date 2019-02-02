@@ -18,7 +18,7 @@ public class Account {
     }
 
 
-    public String getReqs () {
+    public String getReqs() {
         return this.reqs;
     }
 
@@ -37,7 +37,7 @@ public class Account {
     }
 
     public boolean equals(Object o) {
-        boolean equality =false;
+        boolean equality = false;
         Account account = (Account) o;
         if (o == null || getClass() != o.getClass()) {
             equality = false;
