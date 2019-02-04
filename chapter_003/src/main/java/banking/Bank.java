@@ -34,12 +34,25 @@ public class Bank {
 
     /** ДОБАВЛЕНИЕ АККАУНТА К ЮЕЗРУ  */
     public void addAccountToUser(String userpassport, Account account) {
-        this.userstab.get(getuser(userpassport)).add(account);
+        if(getuser(userpassport)!= null){
+            this.userstab.get(getuser(userpassport)).add(account);
+        }
     }
 
-    /** ПОЛУЧИТЬ АККАУНТ ЮЗЕРА  ПО РЕКВЕЗИТАМ*/
+    /** ПОЛУЧИТЬ АККАУНТ ЮЗЕРА  ПО РЕКВЕЗИТАМ И ЮЗЕРА*/
     private Account getActualAccount(User user, String userreq) {
         ArrayList<Account> list = this.userstab.get(user);
+        Account useracc = null;
+        for (Account useraccounts : list) {
+            if (useraccounts.getReqs().equals(userreq)) {
+                useracc = useraccounts;
+                break;
+            }
+        }
+        return useracc;
+    }
+    private Account getActualAccount(String pasport, String userreq) {
+        ArrayList<Account> list = this.userstab.get(getuser(pasport));
         Account useracc = null;
         for (Account useraccounts : list) {
             if (useraccounts.getReqs().equals(userreq)) {
@@ -62,10 +75,7 @@ public class Bank {
 
     public boolean transfer(String userpasport, String srcRequisite,
                             String destPassport, String dstRequisite, double amount) {
-
-        return userstab.get(getuser(userpasport)).contains(getActualAccount(getuser(userpasport), srcRequisite))
-                && userstab.get(getuser(destPassport)).contains(getActualAccount(getuser(destPassport), dstRequisite))
-                &&  getActualAccount(getuser(userpasport), srcRequisite).transfer(getActualAccount(getuser(destPassport), dstRequisite), amount);
+        return getActualAccount(userpasport,srcRequisite).transfer(getActualAccount(destPassport,dstRequisite),amount);
     }
 
     public String toString() {
