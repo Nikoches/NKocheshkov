@@ -47,8 +47,8 @@ public class Departments {
                 }
             }
         }
-        for(Depart z:depsnames){
-            if (z != null){
+        for (Depart z:depsnames) {
+            if (z != null) {
                 lengthdepart++;
             }
         }

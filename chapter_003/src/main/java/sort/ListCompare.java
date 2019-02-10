@@ -13,7 +13,7 @@ public class ListCompare implements Comparator<String> {
                 break;
             }
         }
-        if (( result == 0)) {
+        if (result == 0) {
             result = Integer.compare(left.length(), right.length());
         }
         return result;

@@ -32,7 +32,7 @@ public class Bank {
     /** ДОБАВЛЕНИЕ АККАУНТА К ЮЕЗРУ  */
     public void addAccountToUser(String userpassport, Account account) {
         final User user = getuser(userpassport);
-        if(user!= null){
+        if (user != null) {
             this.userstab.get(user).add(account);
         }
     }
@@ -41,7 +41,7 @@ public class Bank {
     private Account getActualAccount(User user, String userreq) {
         ArrayList<Account> list = this.userstab.get(user);
         Account useracc = null;
-        if(list != null) {
+        if (list != null) {
             for (Account useraccounts : list) {
                 if (useraccounts.getReqs().equals(userreq)) {
                     useracc = useraccounts;
@@ -54,7 +54,7 @@ public class Bank {
     private Account getActualAccount(String pasport, String userreq) {
         ArrayList<Account> list = this.userstab.get(getuser(pasport));
         Account useracc = null;
-        if(list != null){
+        if (list != null) {
             for (Account useraccounts : list) {
                 if (useraccounts.getReqs().equals(userreq)) {
                     useracc = useraccounts;
@@ -77,7 +77,7 @@ public class Bank {
 
     public boolean transfer(String userpasport, String srcRequisite,
                             String destPassport, String dstRequisite, double amount) {
-        return getActualAccount(userpasport,srcRequisite).transfer(getActualAccount(destPassport,dstRequisite),amount);
+        return getActualAccount(userpasport, srcRequisite).transfer(getActualAccount(destPassport, dstRequisite), amount);
     }
 
     public String toString() {
