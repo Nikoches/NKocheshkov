@@ -33,7 +33,7 @@ public class Account {
     }
 
     public String toString() {
-        return String.format("Account{ values = %s, reqs='%s\\ }", this.values, this.reqs);
+        return String.format("Account{ values = %s, reqs = %s }", this.values, this.reqs);
     }
 
     public boolean equals(Object o) {

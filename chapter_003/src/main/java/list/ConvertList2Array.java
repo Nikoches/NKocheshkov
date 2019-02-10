@@ -13,6 +13,7 @@ public class ConvertList2Array {
                 } else {
                     i1++;
                 }
+            }
+        return array;
         }
-        return array;  }
     }

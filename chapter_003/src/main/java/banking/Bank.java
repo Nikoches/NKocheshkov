@@ -1,14 +1,11 @@
 package banking;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 
 public class Bank {
 
-    private TreeMap<User, ArrayList<Account>> userstab = new TreeMap<>();
+    private Map<User, ArrayList<Account>> userstab = new HashMap<>();
 
     /** ПОЛУЧИТЬ ЮЗЕРА ПО ПАСПОРТУ */
     private User getuser(String userpasport) {
@@ -24,7 +21,7 @@ public class Bank {
 
     /**ДОБАВЛЕНИЕ ЮЗЕРА*/
     public void addUser(User user) {
-        this.userstab.put(user, new ArrayList<>());
+        this.userstab.putIfAbsent(user, new ArrayList<>());
     }
 
     /**  УДАЛЕНИЕ ЮЗЕРА И ВСЕХ ЕГО АККАУНТОВ */
@@ -34,8 +31,9 @@ public class Bank {
 
     /** ДОБАВЛЕНИЕ АККАУНТА К ЮЕЗРУ  */
     public void addAccountToUser(String userpassport, Account account) {
-        if(getuser(userpassport)!= null){
-            this.userstab.get(getuser(userpassport)).add(account);
+        final User user = getuser(userpassport);
+        if(user!= null){
+            this.userstab.get(user).add(account);
         }
     }
 
@@ -43,10 +41,12 @@ public class Bank {
     private Account getActualAccount(User user, String userreq) {
         ArrayList<Account> list = this.userstab.get(user);
         Account useracc = null;
-        for (Account useraccounts : list) {
-            if (useraccounts.getReqs().equals(userreq)) {
-                useracc = useraccounts;
-                break;
+        if(list != null) {
+            for (Account useraccounts : list) {
+                if (useraccounts.getReqs().equals(userreq)) {
+                    useracc = useraccounts;
+                    break;
+                }
             }
         }
         return useracc;
@@ -54,10 +54,12 @@ public class Bank {
     private Account getActualAccount(String pasport, String userreq) {
         ArrayList<Account> list = this.userstab.get(getuser(pasport));
         Account useracc = null;
-        for (Account useraccounts : list) {
-            if (useraccounts.getReqs().equals(userreq)) {
-                useracc = useraccounts;
-                break;
+        if(list != null){
+            for (Account useraccounts : list) {
+                if (useraccounts.getReqs().equals(userreq)) {
+                    useracc = useraccounts;
+                    break;
+                }
             }
         }
         return useracc;
