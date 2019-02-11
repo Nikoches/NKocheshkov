@@ -77,7 +77,12 @@ public class Bank {
 
     public boolean transfer(String userpasport, String srcRequisite,
                             String destPassport, String dstRequisite, double amount) {
-        return getActualAccount(userpasport, srcRequisite).transfer(getActualAccount(destPassport, dstRequisite), amount);
+        boolean change;
+        if (getActualAccount(userpasport, srcRequisite) == null) {
+            change = false;
+        } else change = getActualAccount(userpasport, srcRequisite).transfer(getActualAccount(destPassport, dstRequisite), amount);
+
+        return change;
     }
 
     public String toString() {
