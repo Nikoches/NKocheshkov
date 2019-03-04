@@ -1,21 +1,23 @@
 package ru.job4j.tracker;
 import java.util.*;
+import java.util.function.Consumer;
 
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    List<UserAction> actions = new ArrayList<UserAction>();
+    List<UserAction> actions = new ArrayList<>();
     List<Integer> ranges = new ArrayList<>();
-
-    public MenuTracker(Input input, Tracker tracker) {
+    private final Consumer<String> output;
+    public MenuTracker(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
 
     public void show() {
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(action.info());
+                this.output.accept(action.info());
             }
         }
     }
@@ -50,16 +52,15 @@ public class MenuTracker {
         }
     }
 
-    private static class ShowAll extends BaseAction {
-
+    private  class ShowAll extends BaseAction {
         public ShowAll(int key, String name) {
             super(key, name);
         }
-
+        @Override
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Заявки: --------------");
+            output.accept("------------ Заявки: --------------");
             for (Item index : tracker.findAll()) {
-                System.out.println(String.format("id=%s имя=%s описание=%s", index.getId(), index.getName(), index.getDescription()));
+                output.accept(String.format("id=%s имя=%s описание=%s", index.getId(), index.getName(), index.getDescription()));
             }
         }
     }
@@ -70,7 +71,7 @@ public class MenuTracker {
         }
 
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Редактирование заявки --------------");
+            output.accept("------------ Редактирование заявки --------------");
             String id = input.ask("Введите id заявки :");
             String name = input.ask("Введите имя заявки :");
             String desc = input.ask("Введите описание заявки :");
@@ -80,17 +81,17 @@ public class MenuTracker {
         }
     }
 
-    private static class DeleteItem extends BaseAction {
+    private  class DeleteItem extends BaseAction {
 
         public DeleteItem(int key, String name) {
             super(key, name);
         }
 
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Удаление заявки --------------");
+            output.accept("------------ Удаление заявки --------------");
             String id = input.ask("Введите id заявки :");
             tracker.deleteItem(id);
-            System.out.println(String.format("------------ Заявка с id=%s удалена --------------", id));
+            output.accept(String.format("------------ Заявка с id=%s удалена --------------", id));
         }
     }
 
@@ -100,29 +101,29 @@ public class MenuTracker {
         }
 
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Поиск заявки по id --------------");
+            output.accept("------------ Поиск заявки по id --------------");
             String id = input.ask("Введите id заявки :");
 
             Item item = tracker.findById(id);
             if (item != null) {
-                System.out.println(String.format("id=%s имя=%s описание=%s", item.getId(), item.getName(), item.getDescription()));
+                output.accept(String.format("id=%s имя=%s описание=%s", item.getId(), item.getName(), item.getDescription()));
             } else {
-                System.out.println("Ничего не нашлось!");
+                output.accept("Ничего не нашлось!");
             }
         }
     }
 
-    private static class FoundByName extends BaseAction {
+    private  class FoundByName extends BaseAction {
         public FoundByName(int key, String name) {
             super(key, name);
         }
 
         public void execute(Input input, Tracker tracker) {
-            System.out.println("------------ Поиск заявки по имени --------------");
+            output.accept("------------ Поиск заявки по имени --------------");
             String name = input.ask("Введите имя заявки :");
             for (Item index : tracker.findByName(name)) {
                 if (index != null) {
-                    System.out.println(String.format("id=%s имя=%s описание=%s", index.getId(), index.getName(), index.getDescription()));
+                    output.accept(String.format("id=%s имя=%s описание=%s", index.getId(), index.getName(), index.getDescription()));
                 }
             }
         }
