@@ -19,7 +19,7 @@ public class SchoolTest {
         students.add(st4);
         List<Student> expected = new LinkedList<>();
         expected.add(st1);
-        expected.add(st4);
+        expected.add(st2);
         List<Student> real = sch.collect(students,student -> student.getScore()  >= 90);
         assertThat(real, is (expected));
 
