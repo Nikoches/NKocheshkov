@@ -1,8 +1,9 @@
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import java.util.LinkedList;
-import java.util.List;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class SchoolTest {
     Student st1 = new Student("vova",100);
@@ -10,7 +11,7 @@ public class SchoolTest {
     Student st3  = new Student("petya",40);
     Student st4  =new Student("roman",30);
     @Test
-    public void whenAclass(){
+    public void whenAclass() {
          School sch = new School();
         LinkedList<Student> students = new LinkedList<>();
         students.add(st1);
@@ -23,5 +24,18 @@ public class SchoolTest {
         List<Student> real = sch.collect(students,student -> student.getScore()  >= 90);
         assertThat(real, is (expected));
 
+    }
+
+    @Test
+    public void convert() {
+        Map<String,Student> mapOfStudent = new TreeMap<>();
+        LinkedList<Student> students = new LinkedList<>();
+        students.add(st1);
+        students.add(st2);
+        students.add(st3);
+        students.add(st4);
+        mapOfStudent  = students.stream()
+                .distinct()
+                .collect(Collectors.toMap(Student -> Student.getName(), Student -> Student ));
     }
 }
