@@ -1,3 +1,6 @@
+package job4j;
+
+
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -36,6 +39,6 @@ public class SchoolTest {
         students.add(st4);
         mapOfStudent  = students.stream()
                 .distinct()
-                .collect(Collectors.toMap(Student -> Student.getName(), Student -> Student ));
+                .collect(Collectors.toMap(Student::getName, Student -> Student ));
     }
 }
