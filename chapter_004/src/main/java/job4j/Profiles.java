@@ -22,8 +22,8 @@ public class Profiles {
         adreses.add(new Adress("SPB", "Popova", 7, 4));
         adreses.add(new Adress("SPB", "Popova", 7, 4));
         profili = adreses.stream()
-                .distinct()
                 .sorted(Adress::compareTo)
+                .distinct()
                 .map(Profile::new)
                 .collect(Collectors.toCollection(LinkedList::new));
         return profili;
