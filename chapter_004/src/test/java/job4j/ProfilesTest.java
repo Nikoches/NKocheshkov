@@ -29,17 +29,8 @@ public class ProfilesTest {
         }
     @Test
     public void checkingMathes() {
-        LinkedList<Adress> adreses = new LinkedList<>();
-        LinkedList<Profile> profili;
-        adreses.add(new Adress("SPB", "Popova", 10, 4));
-        adreses.add(new Adress("Msk", "Popova", 666, 4));
-        adreses.add(new Adress("SPB", "Popova", 7, 4));
-        adreses.add(new Adress("SPB", "Popova", 7, 4));
-        profili = adreses.stream()
-                .distinct()
-                .sorted(Adress::compareTo)
-                .map(Profile::new)
-                .collect(Collectors.toCollection(LinkedList::new));
+        Profiles pro = new Profiles();
+        List<Profile> profili = pro.checkingMathes();
         System.out.println(profili);
         }
     }
