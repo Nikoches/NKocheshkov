@@ -30,8 +30,18 @@ public class ProfilesTest {
     @Test
     public void checkingMathes() {
         Profiles pro = new Profiles();
-        List<Profile> profili = pro.checkingMathes();
+        LinkedList<Adress> adreses = new LinkedList<>();
+        adreses.add(new Adress("SPB", "Popova", 10, 4));
+        adreses.add(new Adress("Msk", "Popova", 666, 4));
+        adreses.add(new Adress("SPB", "Popova", 7, 4));
+        adreses.add(new Adress("SPB", "Popova", 7, 4));
+        List<Profile> profili = pro.checkingMathes(adreses);
         System.out.println(profili);
+        List<Profile> existing = new LinkedList<>();
+        existing.add(new Profile(new Adress("Msk", "Popova", 666, 4)));
+        existing.add(new Profile(new Adress("SPB", "Popova", 10, 4)));
+        existing.add(new Profile(new Adress("SPB", "Popova", 7, 4)));
+        assertThat(profili, is( existing));
         }
     }
 

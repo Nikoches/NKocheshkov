@@ -14,13 +14,8 @@ public class Profiles {
         System.out.println(adreses);
         return adreses;
     }
-    public List<Profile> checkingMathes() {
-        LinkedList<Adress> adreses = new LinkedList<>();
+    public List<Profile> checkingMathes(LinkedList<Adress> adreses) {
         LinkedList<Profile> profili;
-        adreses.add(new Adress("SPB", "Popova", 10, 4));
-        adreses.add(new Adress("Msk", "Popova", 666, 4));
-        adreses.add(new Adress("SPB", "Popova", 7, 4));
-        adreses.add(new Adress("SPB", "Popova", 7, 4));
         profili = adreses.stream()
                 .sorted(Adress::compareTo)
                 .distinct()
