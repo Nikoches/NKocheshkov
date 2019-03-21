@@ -1,6 +1,7 @@
 package banking;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Bank {
@@ -40,6 +41,11 @@ public class Bank {
     /** ПОЛУЧИТЬ АККАУНТ ЮЗЕРА  ПО РЕКВЕЗИТАМ И ЮЗЕРА*/
     private Account getActualAccount(User user, String userreq) {
         ArrayList<Account> list = this.userstab.get(user);
+        List<Account> indeed = list.stream()
+                .filter(account -> account.getReqs().equals(userreq))
+                .collect(Collectors.toList());
+
+       /*
         Account useracc = null;
         if (list != null) {
             for (Account useraccounts : list) {
@@ -48,12 +54,16 @@ public class Bank {
                     break;
                 }
             }
-        }
-        return useracc;
+        }*/
+        return indeed.get(0);
     }
     private Account getActualAccount(String pasport, String userreq) {
         ArrayList<Account> list = this.userstab.get(getuser(pasport));
-        Account useracc = null;
+
+        List<Account> indeed = list.stream()
+                .filter(account -> account.getReqs().equals(userreq))
+                .collect(Collectors.toList());
+       /* Account useracc = null;
         if (list != null) {
             for (Account useraccounts : list) {
                 if (useraccounts.getReqs().equals(userreq)) {
@@ -61,8 +71,8 @@ public class Bank {
                     break;
                 }
             }
-        }
-        return useracc;
+        }*/
+        return indeed.get(0);
     }
 
     /** УДАЛИТЬ АККАУНТ У ЮЗЕРА */
