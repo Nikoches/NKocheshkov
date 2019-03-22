@@ -41,38 +41,16 @@ public class Bank {
     /** ПОЛУЧИТЬ АККАУНТ ЮЗЕРА  ПО РЕКВЕЗИТАМ И ЮЗЕРА*/
     private Account getActualAccount(User user, String userreq) {
         ArrayList<Account> list = this.userstab.get(user);
-        List<Account> indeed = list.stream()
+        return list.stream()
                 .filter(account -> account.getReqs().equals(userreq))
-                .collect(Collectors.toList());
-
-       /*
-        Account useracc = null;
-        if (list != null) {
-            for (Account useraccounts : list) {
-                if (useraccounts.getReqs().equals(userreq)) {
-                    useracc = useraccounts;
-                    break;
-                }
-            }
-        }*/
-        return indeed.get(0);
+                .findAny().orElse(null);
     }
     private Account getActualAccount(String pasport, String userreq) {
         ArrayList<Account> list = this.userstab.get(getuser(pasport));
-
-        List<Account> indeed = list.stream()
+        return list.stream()
                 .filter(account -> account.getReqs().equals(userreq))
-                .collect(Collectors.toList());
-       /* Account useracc = null;
-        if (list != null) {
-            for (Account useraccounts : list) {
-                if (useraccounts.getReqs().equals(userreq)) {
-                    useracc = useraccounts;
-                    break;
-                }
-            }
-        }*/
-        return indeed.get(0);
+                .findAny().orElse(null);
+
     }
 
     /** УДАЛИТЬ АККАУНТ У ЮЗЕРА */
@@ -81,7 +59,6 @@ public class Bank {
     }
 
     public List<Account> getUserAccounts(String userpassport) {
-
         return this.userstab.get(getuser(userpassport));
     }
 
