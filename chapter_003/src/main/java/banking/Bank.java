@@ -10,14 +10,11 @@ public class Bank {
 
     /** ПОЛУЧИТЬ ЮЗЕРА ПО ПАСПОРТУ */
     private User getuser(String userpasport) {
-        User user = null;
-        for (Map.Entry<User, ArrayList<Account>> item : userstab.entrySet()) {
-            if (item.getKey().getPasport().equals(userpasport)) {
-                user = item.getKey();
-                break;
-            }
-        }
-        return user;
+        return userstab.entrySet().stream()
+                 .filter(User -> User.getKey().getPasport().equals(userpasport))
+                 .findAny().get().getKey();
+
+
     }
 
     /**ДОБАВЛЕНИЕ ЮЗЕРА*/
@@ -55,7 +52,13 @@ public class Bank {
 
     /** УДАЛИТЬ АККАУНТ У ЮЗЕРА */
     public void deleteAccountFromUser(String userpassport, Account account) {
-        this.userstab.get(getuser(userpassport)).remove(account);
+        if (userstab.entrySet().stream()
+                .filter(User -> User.getKey().getPasport().equals(userpassport))
+                .map(User -> User.getValue())
+                .anyMatch(Account -> Account == null)){
+
+            this.userstab.get(getuser(userpassport)).remove(account);
+        }
     }
 
     public List<Account> getUserAccounts(String userpassport) {
