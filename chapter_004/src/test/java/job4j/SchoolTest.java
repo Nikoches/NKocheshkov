@@ -12,7 +12,7 @@ public class SchoolTest {
     Student st1 = new Student("vova",100);
     Student st2  = new Student("slava",90);
     Student st3  = new Student("petya",40);
-    Student st4  =new Student("roman",30);
+    Student st4  = new Student("roman",30);
     @Test
     public void whenAclass() {
          School sch = new School();
