@@ -1,9 +1,9 @@
-package job4j;
+package ru.job4j;
 
 import org.junit.Test;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -25,7 +25,7 @@ public class ProfilesTest {
             chkadresa.add(new Adress("SPB", "Popova", 7, 4));
             List<Adress> adresa;
             adresa = link.collect(profiles);
-            assertThat(adresa, is( chkadresa));
+            assertThat(adresa, is(chkadresa));
         }
     @Test
     public void checkingMathes() {
@@ -41,7 +41,7 @@ public class ProfilesTest {
         existing.add(new Profile(new Adress("Msk", "Popova", 666, 4)));
         existing.add(new Profile(new Adress("SPB", "Popova", 10, 4)));
         existing.add(new Profile(new Adress("SPB", "Popova", 7, 4)));
-        assertThat(profili, is( existing));
+        assertThat(profili, is(existing));
         }
     }
 

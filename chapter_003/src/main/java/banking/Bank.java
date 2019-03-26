@@ -55,7 +55,7 @@ public class Bank {
         if (userstab.entrySet().stream()
                 .filter(User -> User.getKey().getPasport().equals(userpassport))
                 .map(User -> User.getValue())
-                .anyMatch(Account -> Account == null)){
+                .anyMatch(Account -> Account == null)) {
 
             this.userstab.get(getuser(userpassport)).remove(account);
         }
@@ -70,7 +70,9 @@ public class Bank {
         boolean change;
         if (getActualAccount(userpasport, srcRequisite) == null) {
             change = false;
-        } else change = getActualAccount(userpasport, srcRequisite).transfer(getActualAccount(destPassport, dstRequisite), amount);
+        } else {
+            change = getActualAccount(userpasport, srcRequisite).transfer(getActualAccount(destPassport, dstRequisite), amount);
+        }
 
         return change;
     }

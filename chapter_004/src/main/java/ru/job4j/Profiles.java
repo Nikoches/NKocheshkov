@@ -1,13 +1,18 @@
-package job4j;
+package ru.job4j;
 
-
+/**
+ * Package  stream task.
+ *
+ * @author Nikita Kocheshkov (nikoches@yandex.ru)
+ * @version $Id$
+ */
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Profiles {
-    public List<Adress> collect (List <Profile> profiles) {
+    public List<Adress> collect(List<Profile> profiles) {
         LinkedList<Adress> adreses = profiles.stream()
                 .map(Profile::getAdress)
                 .collect(Collectors.toCollection(LinkedList::new));

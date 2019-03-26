@@ -1,9 +1,14 @@
-package job4j;
-
+package ru.job4j;
+/**
+ * Package  stream task.
+ *
+ * @author Nikita Kocheshkov (nikoches@yandex.ru)
+ * @version $Id$
+ */
 public class Student {
     private String name;
     private int score;
-    public Student(String name,int score){
+    public Student(String name, int score) {
         this.name = name;
         this.score = score;
     }
@@ -26,9 +31,12 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "name = " + name + '\'' +
-                ", score = " + score +
-                '}';
+        return "Task{"
+                + "name = "
+                + name
+                + '\''
+                + ", score = "
+                + score
+                + '}';
     }
 }

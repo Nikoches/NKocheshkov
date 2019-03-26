@@ -1,6 +1,5 @@
-package job4j;
+package ru.job4j;
 
-import job4j.Func;
 import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;

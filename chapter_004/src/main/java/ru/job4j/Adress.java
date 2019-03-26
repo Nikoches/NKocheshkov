@@ -1,11 +1,16 @@
-package job4j;
-
-public class Adress implements Comparable<Adress>{
+package ru.job4j;
+/**
+ * Package  stream task.
+ *
+ * @author Nikita Kocheshkov (nikoches@yandex.ru)
+ * @version $Id$
+ */
+public class Adress implements Comparable<Adress> {
     private String city;
     private String street;
     private int home;
     private int apartment;
-    public Adress(String city, String street, int home, int apartment){
+    public Adress(String city, String street, int home, int apartment) {
         this.city = city;
         this.street = street;
         this.home = home;
@@ -16,17 +21,18 @@ public class Adress implements Comparable<Adress>{
         return "city= " + city + " str=" + street + home + " apr=" + apartment;
     }
 
-    public String getCity(){
+    public String getCity() {
         return this.city;
     }
 
-    public boolean  equals(Object obj){
-        boolean equality = false;
+    public boolean  equals(Object obj) {
+        boolean equality;
         if (obj == this) {
             equality = true;
         }
         Adress adres = (Adress) obj;
-        equality = city != null && street != null && city.equals(adres.city) && street.equals(adres.street) && home == adres.home && apartment == adres.apartment;
+        equality = city != null && street != null && city.equals(adres.city) && street.equals(adres.street)
+                && home == adres.home && apartment == adres.apartment;
 
         if (obj == null || obj.getClass() != this.getClass()) {
             equality = false;
@@ -41,7 +47,7 @@ public class Adress implements Comparable<Adress>{
         return res;
     }
 
-    public int compareTo(Adress adres){
+    public int compareTo(Adress adres) {
         return this.city.compareTo(adres.city);
     }
 }

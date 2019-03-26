@@ -1,4 +1,4 @@
-package job4j;
+package ru.job4j;
 
 import org.junit.Test;
 
@@ -10,11 +10,11 @@ import static org.junit.Assert.assertThat;
 public class ConvertingMantrixTest {
 
     @Test
-    public void convert(){
+    public void convert() {
         ConvertingMantrix mantrix = new ConvertingMantrix();
-        Integer [][] array = {{1,2}, {3,4}};
+        Integer[][] array = {{1, 2}, {3, 4}};
         System.out.println(mantrix.converting(array));
-        List<Integer> matrix = List.of(1,2,3,4);
-        assertThat(mantrix.converting(array), is (matrix));
+        List<Integer> matrix = List.of(1, 2, 3, 4);
+        assertThat(mantrix.converting(array), is(matrix));
     }
 }
