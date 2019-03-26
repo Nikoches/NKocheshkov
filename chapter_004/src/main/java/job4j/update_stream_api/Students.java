@@ -12,7 +12,7 @@ public class Students {
         return students.stream()
                 .sorted()
                 .flatMap(Stream::ofNullable)
-                .takeWhile(student -> student.getScope()<= bound)
+                .takeWhile(student -> student.getScope()>= bound)
                 .collect(Collectors.toList());
     }
 }

@@ -1,7 +1,7 @@
 package job4j.update_stream_api;
 
 import java.util.Comparator;
-public class Student implements Comparator<Student> {
+public class Student implements Comparable<Student> {
 
     private String name;
     private int scope;
@@ -10,9 +10,9 @@ public class Student implements Comparator<Student> {
         this.scope = scope;
     }
         @Override
-        public int compare (Student a, Student b){
+        public int compareTo (Student a){
 
-            return b.getScope() - a.getScope();
+            return a.getScope() - this.getScope();
         }
         @Override
         public boolean equals(final Object obj) {
