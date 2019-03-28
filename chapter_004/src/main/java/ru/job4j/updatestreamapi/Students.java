@@ -5,6 +5,7 @@ package ru.job4j.updatestreamapi;
  * @author Nikita Kocheshkov (nikoches@yandex.ru)
  * @version $Id$
  */
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,7 +19,7 @@ public class Students {
 
     public List<Student> levelOf(List<Student> students, int bound) {
         return students.stream()
-                .sorted()
+                .sorted(new Student("pavel",50))
                 .flatMap(Stream::ofNullable)
                 .takeWhile(student -> student.getScope() >= bound)
                 .collect(Collectors.toList());

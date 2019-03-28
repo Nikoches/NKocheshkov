@@ -1,11 +1,14 @@
 package ru.job4j.updatestreamapi;
+
+import java.util.Comparator;
+
 /**
  * Package for new features stream task.
  *
  * @author Nikita Kocheshkov (nikoches@yandex.ru)
  * @version $Id$
  */
-public class Student implements Comparable<Student> {
+public class Student implements Comparator<Student> {
     /** Поле имя */
     private String name;
     /** Поле кол-во баллов */
@@ -16,8 +19,17 @@ public class Student implements Comparable<Student> {
         this.scope = scope;
     }
         @Override
-        public int compareTo(Student a) {
-            return a.getScope() - this.getScope();
+        public int compare(Student a, Student b){int rez;
+        if (a == null && b == null) {
+        rez = 0;
+    } else if (a == null) {
+        rez = 1;
+    } else if (b == null) {
+        rez = -1;
+    } else {
+        rez = Integer.compare(b.getScope(), a.getScope());
+    }
+        return rez;
         }
         @Override
         public boolean equals(final Object obj) {
