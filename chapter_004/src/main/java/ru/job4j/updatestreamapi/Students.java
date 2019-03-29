@@ -19,8 +19,8 @@ public class Students {
 
     public List<Student> levelOf(List<Student> students, int bound) {
         return students.stream()
-                .sorted(new Student("pavel",50))
                 .flatMap(Stream::ofNullable)
+                .sorted(Comparator.comparing(Student::getScope))
                 .takeWhile(student -> student.getScope() >= bound)
                 .collect(Collectors.toList());
     }
