@@ -19,7 +19,8 @@ public class Student implements Comparator<Student> {
         this.scope = scope;
     }
         @Override
-        public int compare(Student a, Student b){int rez;
+        public int compare(Student a, Student b) {
+        int rez;
         if (a == null && b == null) {
         rez = 0;
     } else if (a == null) {

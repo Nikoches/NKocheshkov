@@ -27,7 +27,8 @@ public class SortUserTest {
                 new User(7, "anton")
         );
         SortUser ss1 = new SortUser();
-        System.out.println(ss1.sortNameLength(usersList));
+        ss1.sortNameLength(usersList);
+       // System.out.println(ss1.sortNameLength(usersList));
     }
 
     @Test
