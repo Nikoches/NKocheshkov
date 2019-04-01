@@ -13,11 +13,11 @@ public class PhoneDictionary {
     /**
      * Вернуть список всех пользователей, который содержат key в любых полях.
      * @param key Ключ поиска.
-     * @return Список подощедщих пользователей.
+     * @return Список подошедщих пользователей.
      */
     public List<Person> find(String key) {
         List<Person> result = new ArrayList<>();
-        for (Person man:persons) {
+        for (var man:persons) {
             if (String.format("%s+%s+%s+%s", man.getName(), man.getSurname(), man.getAddress(), man.getPhone()).contains(key)) {
                 result.add(man);
             }
