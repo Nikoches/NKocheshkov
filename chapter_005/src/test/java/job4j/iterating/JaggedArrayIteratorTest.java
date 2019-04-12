@@ -20,15 +20,11 @@ public class JaggedArrayIteratorTest {
 
     @Test
     public void testsThatNextMethodDoesntDependsOnPriorHasNextInvocation () {
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        //assertThat(it.next(), is(1));
-        //assertThat(it.next(), is(3));
-        //assertThat(it.next(), is(4));
-        //assertThat(it.next(), is(7));
+
+        assertThat(it.next(), is(1));
+        assertThat(it.next(), is(3));
+        assertThat(it.next(), is(4));
+        assertThat(it.next(), is(7));
     }
 
     @Test

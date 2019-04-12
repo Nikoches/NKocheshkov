@@ -20,8 +20,8 @@ public class SortUserTest {
     }
     @Test
     public void sorttestlistbyname() {
-        List<User> usersList;
-        usersList = List.of(
+        //List<User> usersList;
+        List<User> usersList = List.of(
                 new User(12, "vova"),
                 new User(21, "adamson"),
                 new User(7, "anton")

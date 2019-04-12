@@ -7,8 +7,8 @@ public class MatrixIterator implements Iterator {
     public MatrixIterator(final  int[][] matrix) {
         this.matrix = matrix;
     }
-    private int first_counter = 0;
-    private int second_counter = 0;
+    private int i = 0;
+    private int j = 0;
 
     /**
      * Returns {@code true} if the iteration has more elements.
@@ -20,7 +20,7 @@ public class MatrixIterator implements Iterator {
     @Override
     public boolean hasNext() {
 
-        return matrix.length > first_counter && matrix[first_counter].length > second_counter;
+        return matrix.length > i && matrix[i].length > j;
     }
 
     /**
@@ -30,12 +30,12 @@ public class MatrixIterator implements Iterator {
      */
     @Override
     public Object next() {
-        Object ss = null;
-        if(matrix[first_counter].length > second_counter && matrix.length > first_counter){
-            ss = matrix[first_counter][second_counter++];
-        }else if(matrix[first_counter].length < second_counter && matrix.length > first_counter){
-            ss = matrix[first_counter++][0];
+        Object res = matrix[i][j++];
+        if(j == matrix[i].length) {
+            j = 0;
+            i++;
         }
-        return ss;
+
+        return res; // matrix[i].length == j ? matrix[i++][j=0] : matrix[i][j++];
     }
 }
