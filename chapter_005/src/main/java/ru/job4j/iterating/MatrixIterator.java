@@ -31,7 +31,7 @@ public class MatrixIterator implements Iterator {
     @Override
     public Object next() {
         Object res = matrix[i][j++];
-        if(j == matrix[i].length) {
+        if (j == matrix[i].length) {
             j = 0;
             i++;
         }
