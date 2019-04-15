@@ -25,6 +25,7 @@ public class JaggedArrayIteratorTest {
         assertThat(it.next(), is(3));
         assertThat(it.next(), is(4));
         assertThat(it.next(), is(7));
+        //it.next();
     }
 
     @Test
