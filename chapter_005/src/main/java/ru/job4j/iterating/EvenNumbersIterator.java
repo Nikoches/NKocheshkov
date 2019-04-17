@@ -21,9 +21,8 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        int j = 0;
+        int j = i;
         boolean event = false;
-        j = i;
         for (; j < array.length; j++) {
             if (array[j] % 2 == 0) {
                 event = true;
