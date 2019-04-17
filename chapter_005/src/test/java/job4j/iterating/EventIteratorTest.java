@@ -15,7 +15,6 @@ import static org.hamcrest.Matchers.is;
 public class EventIteratorTest {
 
     private Iterator<Integer> it;
-
     @Before
     public void setUp() {
         it = new EvenNumbersIterator(new int[]{1, 2, 3, 4, 5, 6, 7});
@@ -60,6 +59,7 @@ public class EventIteratorTest {
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(8));
     }
+
     @Test
     public void wtfhappens() {
         assertThat(it.next(), is(2));

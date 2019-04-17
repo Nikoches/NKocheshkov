@@ -35,7 +35,7 @@ public class MatrixIterator implements Iterator {
         if (j == matrix[i].length) {
             j = 0;
             i++;
-        }else if(matrix.length==i){
+        } else if (matrix.length == i) {
             throw new NoSuchElementException("no");  //else throw new NoSuchElementException("no");
         }
 
