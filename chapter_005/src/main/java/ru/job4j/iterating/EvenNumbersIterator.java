@@ -13,6 +13,7 @@ public class EvenNumbersIterator implements Iterator<Integer> {
      * @return {@code true} if the iteration has more elements
      */
     private int i = 0;
+    private int j = 0;
     final private int[] array;
 
     public EvenNumbersIterator(final int[] array) {
@@ -21,12 +22,13 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        int j = i;
         boolean event = false;
-        for (; j < array.length; j++) {
-            if (array[j] % 2 == 0) {
+        for (; i < array.length;) {
+            if (array[i] % 2 == 0) {
+                j = array[i];
                 event = true;
-            }
+                break;
+            } else i++;
         }
         return event;
     }
@@ -39,17 +41,10 @@ public class EvenNumbersIterator implements Iterator<Integer> {
      */
     @Override
     public Integer next()throws NoSuchElementException {
-        int res = 0;
-        for (; i < array.length; i++) {
-                if (array[i] % 2 == 0) {
-                    res = array[i];
-                    break;
-            }
-        }
-        if (i == array.length) {
-            throw new NoSuchElementException("no");  //else throw new NoSuchElementException("no");
-        }
-        i++;
+        int res = 0 ;
+        if (hasNext()) {
+            res = array[i++];
+        } else throw new NoSuchElementException("no");
         return res;
-}
+    }
 }

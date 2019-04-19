@@ -62,6 +62,8 @@ public class EventIteratorTest {
 
     @Test
     public void wtfhappens() {
-        assertThat(it.next(), is(2));
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
     }
 }
