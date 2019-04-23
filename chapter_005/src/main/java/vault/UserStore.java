@@ -19,11 +19,11 @@ public class UserStore implements Store<User> {
         while (ss.hasNext()) {
             pointer++;
             if (ss.next().getId().equals(id)) {
+                store.set(pointer, user);
                 exist = true;
                 break;
             }
         }
-        store.set(pointer, user);
         return exist;
     }
 

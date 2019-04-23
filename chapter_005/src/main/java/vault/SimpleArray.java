@@ -14,10 +14,13 @@ private int pos = 0;
     public void add(T value) {
         mass[pos++] = value;
     }
-    public void set(int index, T value) {
+    public boolean set(int index, T value) {
+        boolean exist = false;
         if (index <= pos) {
             mass[index] = value;
+            exist = true;
         }
+        return exist;
     }
     public T get(int index) {
         return (T) mass[index];
