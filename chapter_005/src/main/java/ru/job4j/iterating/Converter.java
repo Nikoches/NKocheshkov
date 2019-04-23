@@ -12,7 +12,7 @@ public class Converter {
             public boolean hasNext() {
                 boolean answer = false;
                 boolean checker = true;
-                while(!start.hasNext() && it.hasNext()) {
+                while (!start.hasNext() && it.hasNext()) {
                    start = it.next();
                 }
                 return start.hasNext();

@@ -26,7 +26,8 @@ public class EvenNumbersIterator implements Iterator<Integer> {
             if (array[i] % 2 == 0) {
                 event = true;
                 break;
-            } else i++;
+            } else { i++;
+                }
         }
         return event;
     }
