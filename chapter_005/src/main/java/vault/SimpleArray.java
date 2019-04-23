@@ -36,15 +36,19 @@ private int pos = 0;
             @Override
             public boolean hasNext() throws NullPointerException{
                 boolean checker = false;
-                if (index <= pos ) {
+                if (index < pos ) {
                 checker = !(mass[index + 1] == null);
                 } else throw new NullPointerException("no,no,no");
                 return checker;
             }
 
             @Override
-            public T next() {
-                return (T) mass[index++];
+            public T next() throws NullPointerException {
+                T res = null;
+                if(hasNext()) {
+                    res  = (T) mass[index++];
+                } else throw new NullPointerException("no,no,no");
+                return res;
             }
         };
     }
