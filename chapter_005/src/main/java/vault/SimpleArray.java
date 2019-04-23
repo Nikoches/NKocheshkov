@@ -15,7 +15,7 @@ private int pos = 0;
         mass[pos++] = value;
     }
     public void set(int index, T value) {
-        if (index >= 0 && index < mass.length - 1) {
+        if (index <= pos) {
             mass[index] = value;
         }
     }
@@ -23,7 +23,7 @@ private int pos = 0;
         return (T) mass[index];
     }
     public void remove(int index) {
-        if (index >= 0 && index < mass.length - 1) {
+        if (index <= pos) {
             System.arraycopy(mass, index, mass, index + 1, mass.length - index - 1);
         }
     }
@@ -33,7 +33,7 @@ private int pos = 0;
             @Override
             public boolean hasNext() throws NullPointerException{
                 boolean checker = false;
-                if (index <= mass.length ) {
+                if (index <= pos ) {
                 checker = !(mass[index + 1] == null);
                 } else throw new NullPointerException("no,no,no");
                 return checker;
