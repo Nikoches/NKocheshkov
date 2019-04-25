@@ -2,33 +2,31 @@ package vault;
 
 import java.util.Iterator;
 
-public class UserStore<User> extends AbsrtactStore<User>  {
-    private SimpleArray<User> store;
-    public <User> UserStore(int size) {
-        super(size);
+public abstract class AbsrtactStore<T extends Base> implements Store {
+    public SimpleArray store;
+    Iterator<T> ss =  store.iterator();
+    public AbsrtactStore(int size){
+        store = new SimpleArray<T>(size);
     }
-    Iterator<User> ss =  store.iterator();
-    /*public  void add(User user) {
+    public <T> void add(T user) {
         store.add(user);
-    }/*
-    @Override
-    public boolean replace(String id, User user) {
+    }
+
+    public boolean replace(String id, Base user) {
         int pointer = 0;
         boolean exist = false;
         while (ss.hasNext()) {
             pointer++;
             if (ss.next().getId().equals(id)) {
-                store.set(pointer, user);
                 exist = true;
                 break;
             }
         }
+        store.set(pointer, user);
         return exist;
     }
-
-    @Override
     public boolean delete(String id) {
-        User res = null;
+        T res = null;
         boolean exist = false;
         int pointer = 0;
         while (ss.hasNext()) {
@@ -41,25 +39,13 @@ public class UserStore<User> extends AbsrtactStore<User>  {
         store.remove(pointer);
         return exist;
     }
-
-    @Override
-    public User findbyid(String id) {
-        User res = null;
+    public T findbyid(String id) {
+        T res = null;
         while (ss.hasNext()) {
             if (ss.next().getId().equals(id)) {
                 res = ss.next();
             }
         }
         return res;
-    }*/
-
-    @Override
-    public void add(User model) {
-
-    }
-
-    @Override
-    public boolean replace(String id, Base model) {
-        return false;
     }
 }
