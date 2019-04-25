@@ -1,6 +1,5 @@
 package vault;
 
-import java.lang.reflect.Array;
 import java.util.Iterator;
 
 public class SimpleArray<T> implements Iterable<T> {
@@ -37,7 +36,7 @@ private int pos = 0;
             public boolean hasNext() throws NullPointerException{
                 boolean checker = false;
                 if (index < pos ) {
-                checker = !(mass[index + 1] == null);
+                checker = true;
                 } else throw new NullPointerException("no,no,no");
                 return checker;
             }
