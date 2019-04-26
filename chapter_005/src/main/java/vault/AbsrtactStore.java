@@ -2,8 +2,8 @@ package vault;
 
 import java.util.Iterator;
 
-public abstract class AbsrtactStore<T extends Base> implements Store {
-    public SimpleArray store;
+public abstract class AbsrtactStore<T extends Base> implements Store<T> {
+    public SimpleArray<T> store;
     Iterator<T> ss =  store.iterator();
     public AbsrtactStore(int size){
         store = new SimpleArray<T>(size);
@@ -12,7 +12,7 @@ public abstract class AbsrtactStore<T extends Base> implements Store {
         store.add(user);
     }
 
-    public boolean replace(String id, Base user) {
+    public boolean replace(String id, T user) {
         int pointer = 0;
         boolean exist = false;
         while (ss.hasNext()) {
