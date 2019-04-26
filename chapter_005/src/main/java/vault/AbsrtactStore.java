@@ -8,7 +8,7 @@ public abstract class AbsrtactStore<T extends Base> implements Store<T> {
     public AbsrtactStore(int size){
         store = new SimpleArray<T>(size);
     }
-    public <T> void add(T user) {
+    public  void add(T user) {
         store.add(user);
     }
 
