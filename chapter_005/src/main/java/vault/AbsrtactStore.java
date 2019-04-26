@@ -48,4 +48,16 @@ public abstract class AbsrtactStore<T extends Base> implements Store<T> {
         }
         return res;
     }
+    public int getIndex(T user){
+        int returned = 0;
+        int index = -1;
+        while (ss.hasNext()){
+            if (user.equals(ss.next())){
+                index = returned;
+                break;
+            }
+            returned++;
+        }
+        return index;
+    }
 }
