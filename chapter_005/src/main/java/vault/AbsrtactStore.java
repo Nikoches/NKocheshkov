@@ -2,19 +2,17 @@ package vault;
 
 import java.util.Iterator;
 
-public abstract class AbsrtactStore<T extends Base> implements Store {
+public abstract class AbsrtactStore<T extends Base> implements Store<T> {
     public SimpleArray store;
     Iterator<T> ss =  store.iterator();
+
     public AbsrtactStore(int size){
         store = new SimpleArray<T>(size);
     }
-    public <T> void add(T user) {
+    public void add(T user) {
         store.add(user);
     }
-
-    public abstract void add(User model);
-
-    public boolean replace(String id, Base user) {
+    public boolean replace(String id, T user) {
         int pointer = 0;
         boolean exist = false;
         while (ss.hasNext()) {

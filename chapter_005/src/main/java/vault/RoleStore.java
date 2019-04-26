@@ -1,5 +1,7 @@
 package vault;
 
-public class RoleStore  {
-//extends AbsrtactStore<Role> implements Store<Role>
+public class RoleStore extends AbsrtactStore<Role>  {
+    public <Role> RoleStore(int size){
+        super(size);
+    }
 }
