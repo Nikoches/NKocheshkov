@@ -1,4 +1,4 @@
-package vault;
+package ru.job4j.iterating.vault;
 
 import java.util.Iterator;
 
@@ -43,7 +43,7 @@ public class SimpleArray<T> implements Iterable<T> {
                 boolean checker = false;
                 if (index < pos) {
                     checker = true;
-                } else throw new NullPointerException("no,no,no");
+                }
                 return checker;
             }
 

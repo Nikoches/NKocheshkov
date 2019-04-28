@@ -1,4 +1,4 @@
-package vault;
+package ru.job4j.iterating.vault;
 
 import java.util.Iterator;
 
