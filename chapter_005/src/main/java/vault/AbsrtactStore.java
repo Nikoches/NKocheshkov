@@ -3,62 +3,52 @@ package vault;
 import java.util.Iterator;
 
 public abstract class AbsrtactStore<T extends Base> implements Store<T> {
-    public SimpleArray store;
+    public SimpleArray<T> store;
     public AbsrtactStore(int size){
         store = new SimpleArray<T>(size);
     }
     public void add(T user) {
         store.add(user);
     }
+
+
+
     public boolean replace(String id, T user) {
-        int pointer = 0;
-        Iterator<T> ss =  store.iterator();
-        boolean exist = false;
-        while (ss.hasNext()) {
-            pointer++;
-            if (ss.next().getId().equals(id)) {
-                exist = true;
-                break;
-            }
+        int index = getIndex(id);
+        boolean result = false;
+        if (index != -1) {
+            this.store.set(index, user);
+            result = true;
         }
-        store.set(pointer, user);
-        return exist;
+        return result;
     }
+
     public boolean delete(String id) {
-        Iterator<T> ss =  store.iterator();
-        T res = null;
         boolean exist = false;
-        int pointer = 0;
-        while (ss.hasNext()) {
-            pointer++;
-            if (ss.next().getId().equals(id)) {
-                exist = true;
-                break;
-            }
+        if(getIndex(id) != -1) {
+            store.remove(getIndex(id));
+            exist = true;
         }
-        store.remove(pointer);
+        store.remove(getIndex(id));
         return exist;
     }
     public T findbyid(String id) {
-        Iterator<T> ss =  store.iterator();
-        T res = null;
-        while (ss.hasNext()) {
-            if (ss.next().getId().equals(id)) {
-                res = ss.next();
-            }
+        T ss = null;
+        if(getIndex(id) != -1) {
+            ss = store.get(getIndex(id));
         }
-        return res;
+        return ss;
     }
-    public int getIndex(T user){
+    public int getIndex(String id){
         Iterator<T> ss =  store.iterator();
-        int returned = 0;
         int index = -1;
+        int count = 0;
         while (ss.hasNext()){
-            if (user.equals(ss.next())){
-                index = returned;
+            if (id.equals(ss.next().getId())){
+                index = count;
                 break;
             }
-            returned++;
+            count++;
         }
         return index;
     }
