@@ -13,6 +13,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public void add(T value) {
         mass[pos++] = value;
+
     }
 
     public boolean set(int index, T value) {
@@ -39,7 +40,7 @@ public class SimpleArray<T> implements Iterable<T> {
             private int index = 0;
 
             @Override
-            public boolean hasNext() throws NullPointerException {
+            public boolean hasNext() {
                 boolean checker = false;
                 if (index < pos) {
                     checker = true;
