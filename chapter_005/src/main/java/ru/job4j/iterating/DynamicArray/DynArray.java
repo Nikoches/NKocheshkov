@@ -13,7 +13,6 @@ public class DynArray<T> implements Iterable<T> {
     }
 
     public T get(int index) {
-        modCount++;
         return (T) array[index];
     }
 
@@ -21,9 +20,8 @@ public class DynArray<T> implements Iterable<T> {
         if (pos < array.length - 1) {
             array[pos++] = value;
         } else {
-            Object[] array1 = new Object[pos + 100];
-            System.arraycopy(array, 0, array1, 0, pos);
-            array = array1;
+            array = extensionArray();
+            array[pos++] = value;
         }
         modCount++;
     }
@@ -33,6 +31,13 @@ public class DynArray<T> implements Iterable<T> {
      *
      * @return an Iterator.
      */
+    private Object[] extensionArray() {
+        Object[] array1 = new Object[pos + 100];
+        System.arraycopy(array, 0, array1, 0, pos);
+        array = array1;
+        return array;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator() {
@@ -54,8 +59,12 @@ public class DynArray<T> implements Iterable<T> {
                 if (expModCount != modCount) {
                     if (hasNext()) {
                         res = (T) array[index++];
-                    }else throw new NullPointerException("no,no,no");
-                }else throw new ConcurrentModificationException("Modification detected");
+                    } else {
+                        throw new NullPointerException("no,no,no");
+                    }
+                } else {
+                    throw new ConcurrentModificationException("Modification detected");
+                }
                 return res;
             }
         };

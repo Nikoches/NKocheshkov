@@ -27,7 +27,7 @@ public class SimpleArrayListTest {
         assertThat(list.getSize(), is(3));
     }
     @Test
-    public void whenDeleteFirstAndSecond(){
+    public void whenDeleteFirstAndSecond() {
         //System.out.println(list.get(0));
         list.remove();
         assertThat(list.get(0), is(2));

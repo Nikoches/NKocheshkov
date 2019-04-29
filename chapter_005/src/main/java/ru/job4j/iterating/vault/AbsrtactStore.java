@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public abstract class AbsrtactStore<T extends Base> implements Store<T> {
     public SimpleArray<T> store;
-    public AbsrtactStore(int size){
+    public AbsrtactStore(int size) {
         store = new SimpleArray<T>(size);
     }
     public void add(T user) {
@@ -25,7 +25,7 @@ public abstract class AbsrtactStore<T extends Base> implements Store<T> {
 
     public boolean delete(String id) {
         boolean exist = false;
-        if(getIndex(id) != -1) {
+        if (getIndex(id) != -1) {
             store.remove(getIndex(id));
             exist = true;
         }
@@ -34,17 +34,17 @@ public abstract class AbsrtactStore<T extends Base> implements Store<T> {
     }
     public T findbyid(String id) {
         T ss = null;
-        if(getIndex(id) != -1) {
+        if (getIndex(id) != -1) {
             ss = store.get(getIndex(id));
         }
         return ss;
     }
-    public int getIndex(String id){
+    public int getIndex(String id) {
         Iterator<T> ss =  store.iterator();
         int index = -1;
         int count = 0;
-        while (ss.hasNext()){
-            if (id.equals(ss.next().getId())){
+        while (ss.hasNext()) {
+            if (id.equals(ss.next().getId())) {
                 index = count;
                 break;
             }

@@ -34,7 +34,6 @@ public class DynArrayList<E> implements Iterable<E> {
      * Метод получения элемента по индексу.
      */
     public E get(int index) {
-        modCount++;
         Node<E> result = this.first;
         for (int i = 0; i < index; i++) {
             result = result.next;
@@ -75,8 +74,12 @@ public class DynArrayList<E> implements Iterable<E> {
                     if (hasNext()) {
                         ss = result.next;
                         result = result.next;
-                    }else throw new NullPointerException("no no no");
-                }else throw new ConcurrentModificationException("Modification detected");
+                    } else {
+                        throw new NullPointerException("no no no");
+                    }
+                } else {
+                    throw new ConcurrentModificationException("Modification detected");
+                }
                 return ss.date;
             }
         };

@@ -53,7 +53,9 @@ public class SimpleArray<T> implements Iterable<T> {
                 T res = null;
                 if (hasNext()) {
                     res = (T) mass[index++];
-                } else throw new NullPointerException("no,no,no");
+                } else {
+                    throw new NullPointerException("no,no,no");
+                }
                 return res;
             }
         };
