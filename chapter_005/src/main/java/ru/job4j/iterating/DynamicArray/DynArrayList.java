@@ -71,15 +71,13 @@ public class DynArrayList<E> implements Iterable<E> {
             public E next() throws NullPointerException {
                 Node<E> ss = null;
                 if (expModCount != modCount) {
-                    if (hasNext()) {
-                        ss = result.next;
-                        result = result.next;
-                    } else {
-                        throw new NullPointerException("no no no");
-                    }
-                } else {
                     throw new ConcurrentModificationException("Modification detected");
                 }
+                if (!hasNext()) {
+                    throw new NullPointerException("no no no");
+                }
+                    ss = result.next;
+                    result = result.next;
                 return ss.date;
             }
         };

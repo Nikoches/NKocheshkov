@@ -57,14 +57,12 @@ public class DynArray<T> implements Iterable<T> {
             public T next() throws NullPointerException, ConcurrentModificationException {
                 T res = null;
                 if (expModCount != modCount) {
-                    if (hasNext()) {
-                        res = (T) array[index++];
-                    } else {
-                        throw new NullPointerException("no,no,no");
-                    }
-                } else {
                     throw new ConcurrentModificationException("Modification detected");
                 }
+                if (!hasNext()) {
+                    throw new NullPointerException("no,no,no");
+                }
+                    res = (T) array[index++];
                 return res;
             }
         };
