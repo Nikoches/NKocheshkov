@@ -20,6 +20,7 @@ public class SimpleArrayList<E> {
     public E remove() {
         Node<E> exp = this.first;
         this.first = this.first.next;
+        exp.next = null;
         return exp.date;
     }
 
