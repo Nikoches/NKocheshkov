@@ -21,7 +21,7 @@ public class DynArray<T> implements Iterable<T> {
         if (pos < array.length - 1) {
             array[pos++] = value;
         } else {
-            Object[] array1 = new Object[pos+100];
+            Object[] array1 = new Object[pos + 100];
             System.arraycopy(array, 0, array1, 0, pos);
             array = array1;
         }
@@ -54,8 +54,8 @@ public class DynArray<T> implements Iterable<T> {
                 if (expModCount != modCount) {
                     if (hasNext()) {
                         res = (T) array[index++];
-                    } else throw new NullPointerException("no,no,no");
-                } else throw new ConcurrentModificationException("Modification detected");
+                    }else throw new NullPointerException("no,no,no");
+                }else throw new ConcurrentModificationException("Modification detected");
                 return res;
             }
         };

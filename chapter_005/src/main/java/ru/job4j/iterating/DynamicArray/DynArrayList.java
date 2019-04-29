@@ -1,0 +1,94 @@
+package ru.job4j.iterating.DynamicArray;
+
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+
+public class DynArrayList<E> implements Iterable<E> {
+    protected int modCount = 0;
+    private int size;
+    private Node<E> first;
+
+    /**
+     * Метод вставляет в начало списка данные.
+     */
+    public void add(E date) {
+        modCount++;
+        Node<E> newLink = new Node<>(date);
+        newLink.next = this.first;
+        this.first = newLink;
+        this.size++;
+    }
+
+    /**
+     * Реализовать метод удаления первого элемент в списке.
+     */
+    public E remove() {
+        modCount++;
+        Node<E> exp = this.first;
+        this.first = this.first.next;
+        exp.next = null;
+        return exp.date;
+    }
+
+    /**
+     * Метод получения элемента по индексу.
+     */
+    public E get(int index) {
+        modCount++;
+        Node<E> result = this.first;
+        for (int i = 0; i < index; i++) {
+            result = result.next;
+        }
+        return result.date;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+    /**
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
+    @Override
+    public Iterator<E> iterator() {
+
+        return new Iterator() {
+            Node<E> result = first;
+            private int expModCount = modCount;
+
+            @Override
+            public boolean hasNext() {
+                boolean checker = false;
+                if (result.next != null) {
+                    checker = true;
+                    result = result.next;
+                }
+                return checker;
+            }
+
+            @Override
+            public E next() throws NullPointerException {
+                Node<E> ss = null;
+                if (expModCount != modCount) {
+                    if (hasNext()) {
+                        ss = result.next;
+                        result = result.next;
+                    }else throw new NullPointerException("no no no");
+                }else throw new ConcurrentModificationException("Modification detected");
+                return ss.date;
+            }
+        };
+    }
+
+    private static class Node<E> {
+
+        E date;
+        Node<E> next;
+
+        Node(E date) {
+            this.date = date;
+        }
+    }
+}
