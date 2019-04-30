@@ -54,7 +54,7 @@ public class DynArrayList<E> implements Iterable<E> {
     public Iterator<E> iterator() {
 
         Iterator<E> iterator = new Iterator<>() {
-            public Node<E> result =first;
+            public Node<E> result = first;
             private int expModCount = modCount;
 
             @Override
