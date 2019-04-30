@@ -4,7 +4,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class DynArrayList<E> implements Iterable<E> {
-    protected int modCount = 0;
+    public int modCount = 0;
     private int size;
     private Node<E> first;
 
@@ -53,16 +53,15 @@ public class DynArrayList<E> implements Iterable<E> {
     @Override
     public Iterator<E> iterator() {
 
-        return new Iterator() {
-            Node<E> result = first;
+        Iterator<E> iterator = new Iterator<>() {
+            public Node<E> result =first;
             private int expModCount = modCount;
 
             @Override
             public boolean hasNext() {
                 boolean checker = false;
-                if (result.next != null) {
+                if (result != null) {
                     checker = true;
-                    result = result.next;
                 }
                 return checker;
             }
@@ -76,11 +75,12 @@ public class DynArrayList<E> implements Iterable<E> {
                 if (!hasNext()) {
                     throw new NullPointerException("no no no");
                 }
-                    ss = result.next;
-                    result = result.next;
+                ss = result;
+                result = result.next;
                 return ss.date;
             }
         };
+        return iterator;
     }
 
     private static class Node<E> {

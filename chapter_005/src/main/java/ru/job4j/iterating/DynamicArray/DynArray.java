@@ -40,12 +40,13 @@ public class DynArray<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator() {
+        return new Iterator<>() {
             private int expModCount = modCount;
             private int index = 0;
 
             @Override
             public boolean hasNext() {
+
                 boolean checker = false;
                 if (index < pos) {
                     checker = true;
