@@ -5,18 +5,18 @@ import java.util.Iterator;
 
 public class DynArrayList<E> implements Iterable<E> {
     public int modCount = 0;
-    private int size;
-    private Node<E> first;
+    private int size = 0;
+    private Node<E> first = null;
 
     /**
      * Метод вставляет в начало списка данные.
      */
     public void add(E date) {
-        modCount++;
         Node<E> newLink = new Node<>(date);
         newLink.next = this.first;
         this.first = newLink;
         this.size++;
+        modCount++;
     }
 
     /**
