@@ -18,7 +18,6 @@ public class DynArrayList<E> implements Iterable<E> {
         this.size++;
         modCount++;
     }
-
     /**
      * Реализовать метод удаления первого элемент в списке.
      */
@@ -40,7 +39,35 @@ public class DynArrayList<E> implements Iterable<E> {
         }
         return result.date;
     }
+    public Node<E> getFirst(){
+        return this.first;
+    }
 
+    public boolean cycled(Node<E> first){
+        if(first == null) {
+            return false;
+        }
+        Node slow, fast;
+
+        slow = fast = first;
+
+        while(true) {
+
+            slow = slow.next;
+
+            if(fast.next != null){
+                fast = fast.next.next;
+            } else {return false;
+                }
+
+            if(slow == null || fast == null) {
+                return false;
+            }
+            if(slow == fast) {
+                return true;
+            }
+        }
+    }
     public int getSize() {
         return this.size;
     }
@@ -83,12 +110,12 @@ public class DynArrayList<E> implements Iterable<E> {
         return iterator;
     }
 
-    private static class Node<E> {
+    public static class Node<E> {
 
         E date;
         Node<E> next;
 
-        Node(E date) {
+        public Node(E date) {
             this.date = date;
         }
     }
