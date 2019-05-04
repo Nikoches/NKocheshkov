@@ -3,43 +3,31 @@ package ru.job4j.iterating.DynamicArray;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
-public class DynArray<T> implements Iterable<T> {
+public class SimpleSet<E>  implements Iterable<E>  {
     public int modCount = 0;
-    private Object[] array;
-    public int pos = 0;
-
-    public DynArray() {
-        array = new Object[100];
-    }
-
-    public T get(int index) {
-        return (T) array[index];
-    }
-
-    public void add(T value) {
-        if (pos < array.length - 1) {
-            array[pos++] = value;
-        } else {
-            array = extensionArray();
-            array[pos++] = value;
+    DynArray<E> set = new DynArray<>();
+    public boolean add(E value){
+        Iterator<E> iter =  set.iterator();
+        boolean checker = true;
+        while (iter.hasNext()) {
+            if(iter.next().equals(value)) {
+                checker = false;
+                break;
+            }
         }
-        modCount++;
+        return checker;
     }
+
 
     /**
      * Returns an iterator over elements of type {@code T}.
      *
      * @return an Iterator.
      */
-    private Object[] extensionArray() {
-        Object[] array1 = new Object[pos + 100];
-        System.arraycopy(array, 0, array1, 0, pos);
-        array = array1;
-        return array;
-    }
-
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<E> iterator() {
+
+
         return new Iterator<>() {
             private int expModCount = modCount;
             private int index = 0;
@@ -48,22 +36,22 @@ public class DynArray<T> implements Iterable<T> {
             public boolean hasNext() {
 
                 boolean checker = false;
-                if (index < pos) {
+                if (index < set.pos) {
                     checker = true;
                 }
                 return checker;
             }
 
             @Override
-            public T next() throws NullPointerException, ConcurrentModificationException {
-                T res = null;
+            public E next() throws NullPointerException, ConcurrentModificationException {
+                E res = null;
                 if (expModCount != modCount) {
                     throw new ConcurrentModificationException("Modification detected");
                 }
                 if (!hasNext()) {
                     throw new NullPointerException("no,no,no");
                 }
-                    res = (T) array[index++];
+                res = (E) set.get(index++);
                 return res;
             }
         };
