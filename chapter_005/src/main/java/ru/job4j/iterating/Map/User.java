@@ -11,4 +11,11 @@ public class User {
             this.birthday = birthday;
             this.children = children;
         }
+    @Override
+    public int hashCode(){
+        int result = Integer.hashCode(children);
+        result = 31 * result + name.hashCode();
+        result = 31 * result + birthday.hashCode();
+        return result;
+    }
 }
