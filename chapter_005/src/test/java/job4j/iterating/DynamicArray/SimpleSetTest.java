@@ -16,6 +16,8 @@ public class SimpleSetTest {
        set.add(7);
        set.add(null);
        set.add(4);
+        set.add(null);
+        set.add(5);
        Iterator<Integer> seet  = set.iterator();
        assertThat(seet.next(), is(5));
         assertThat(seet.next(), is(7));

@@ -6,15 +6,9 @@ import java.util.Iterator;
 public class SimpleSet<E> implements Iterable<E> {
     DynArray<E> set = new DynArray<>();
     private int mode = 0;
-    private boolean nullchecker = false;
     public boolean add(E value) {
         boolean checker = false;
-        if(value == null && !nullchecker){
-            nullchecker = true;
-            checker = true;
-            set.add(value);
-            return checker;
-        }
+
         if (mode != 0) {
             if (checkuniq(value)) {
                 set.add(value);
@@ -34,7 +28,7 @@ public class SimpleSet<E> implements Iterable<E> {
         boolean checker = true;
             while (iter.hasNext()) {
                 E item = iter.next();
-                if (item != null && item.equals(value)) {
+                if ((item != null && item.equals(value)) || item == value) {
                     checker = false;
                     break;
                 }
