@@ -18,4 +18,20 @@ public class User {
         result = 31 * result + birthday.hashCode();
         return result;
     }
+   /* @Override
+    public boolean equals(Object obj){
+        boolean equality = false;
+        if(obj == this){
+            equality = true;
+        }
+
+        if (obj == null || obj.getClass() != this.getClass()) {
+            equality =  false;
+        }
+        User user = (User) obj;
+        if(user.name != null && user.birthday != null && this.name.equals(user.name) && this.birthday.equals(user.birthday) && this.children == user.children ){
+            equality = true;
+        }
+        return equality;
+    }*/
 }
