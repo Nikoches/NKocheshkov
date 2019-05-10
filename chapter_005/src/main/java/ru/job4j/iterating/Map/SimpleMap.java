@@ -10,8 +10,8 @@ public class SimpleMap<K, V> implements Iterable<V> {
     private int capacity = 0;
 
     public boolean insert(K key, V value) {
-        if(capacity == size-1){
-            explore();
+        if (capacity == size - 1) {
+            this.array = explore();
         }
         boolean checker = false;
         int index = key.hashCode() & (size - 1);
@@ -20,21 +20,23 @@ public class SimpleMap<K, V> implements Iterable<V> {
             array[index].add(new Node(index, value, key.hashCode()));
             checker = true;
             capacity++;
-        } else if(array[index] != null){
+        } else if (array[index] != null) {
             Iterator<Node<V, K>> it = array[index].iterator();
             while (it.hasNext()) {
                 Node<V, K> oldvalue = it.next();
                 if (oldvalue.key_index.equals(key)) {
+                    oldvalue = new Node(index, value, key.hashCode());
                     break;
                 }
             }
-            array[index].add(new Node(key,value,key.hashCode()));
+            array[index].add(new Node(key, value, key.hashCode()));
             checker = true;
         }
         return checker;
     }
 
     public V get(K key) {
+        V value = null;
         Node<V, K> oldvalue = null;
         int index = key.hashCode() & (size - 1);
         if (array[index] != null) {
@@ -42,11 +44,11 @@ public class SimpleMap<K, V> implements Iterable<V> {
             while (it.hasNext()) {
                 oldvalue = it.next();
                 if (oldvalue.key_index.equals(key)) {
-                    break;
+                    oldvalue.value = value;
                 }
             }
         }
-        return oldvalue.value;
+        return value;
     }
 
     public boolean delete(K key) {
@@ -57,7 +59,7 @@ public class SimpleMap<K, V> implements Iterable<V> {
             while (it.hasNext()) {
                 Node<V, K> oldvalue = it.next();
                 if (oldvalue.key_index.equals(key)) {
-                    oldvalue = null;
+                    array[index].remove(oldvalue);
                     checker = true;
                 }
             }
@@ -65,14 +67,14 @@ public class SimpleMap<K, V> implements Iterable<V> {
         return checker;
     }
 
-    private void explore() {
+    private LinkedList[] explore() {
         LinkedList<Node<V, K>>[] arraynew = new LinkedList[size * 2];
         System.arraycopy(array, 0, arraynew, 0, array.length);
-        array = arraynew;
+        return arraynew;
     }
 
     public Iterator<V> iterator() {
-        return new Iterator(){
+        return new Iterator<V>() {
 
             /**
              * Returns {@code true} if the iteration has more elements.
@@ -81,15 +83,17 @@ public class SimpleMap<K, V> implements Iterable<V> {
              *
              * @return {@code true} if the iteration has more elements
              */
+            int index_list = 0;
 
             @Override
             public boolean hasNext() {
                 boolean cheker = false;
-                for(LinkedList<Node<V,K>> list : array){
-                    Iterator it = list.iterator();
-                    if(list != null && it.hasNext()) {
+                Iterator it = array[index_list].iterator();
+                while (cheker == false && index_list < size) {
+                    if (it.hasNext()) {
                         cheker = true;
-                    }
+                        break;
+                    } else index_list++;
                 }
                 return cheker;
             }
@@ -101,8 +105,13 @@ public class SimpleMap<K, V> implements Iterable<V> {
              * @throws //NoSuchElementException if the iteration has no more elements
              */
             @Override
-            public Object next() {
-                return null;
+            public V next() {
+                Node<V, K> value = null;
+                Iterator it = array[index_list].iterator();
+                if (hasNext()) {
+                    value = (Node) it.next();
+                } else index_list++;
+                return value.value;
             }
         };
     }
