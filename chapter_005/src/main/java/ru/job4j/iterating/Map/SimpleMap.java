@@ -10,27 +10,36 @@ public class SimpleMap<K, V> implements Iterable<V> {
     private int capacity = 0;
 
     public boolean insert(K key, V value) {
+        boolean checker = false;
+        int index = key.hashCode() & (size - 1);
+        //если емкость превышена
         if (capacity == size - 1) {
             this.array = explore();
         }
-        boolean checker = false;
-        int index = key.hashCode() & (size - 1);
+
+        //если корзина пустая
         if (array[index] == null) {
             array[index] = new LinkedList<>();
             array[index].add(new Node(index, value, key.hashCode()));
             checker = true;
             capacity++;
+            //если корзина не пустая
         } else if (array[index] != null) {
             Iterator<Node<V, K>> it = array[index].iterator();
-            while (it.hasNext()) {
+            boolean rewrited = false;
+            //ищем ключ в корзине
+            while (it.hasNext() && !rewrited) {
                 Node<V, K> oldvalue = it.next();
                 if (oldvalue.key_index.equals(key)) {
-                    oldvalue = new Node(index, value, key.hashCode());
-                    break;
+                    oldvalue.value = value;
+                    rewrited = true;
+                    checker = true;
                 }
             }
-            array[index].add(new Node(key, value, key.hashCode()));
-            checker = true;
+            if (!rewrited) {
+                array[index].add(new Node(key, value, key.hashCode()));
+                checker = true;
+            }
         }
         return checker;
     }
