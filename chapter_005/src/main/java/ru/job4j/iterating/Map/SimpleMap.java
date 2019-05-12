@@ -20,7 +20,7 @@ public class SimpleMap<K, V> implements Iterable<V> {
         //если корзина пустая
         if (array[index] == null) {
             array[index] = new LinkedList<>();
-            array[index].add(new Node(index, value, key.hashCode()));
+            array[index].add(new Node(key, value, key.hashCode()));
             checker = true;
             capacity++;
             //если корзина не пустая
@@ -78,7 +78,16 @@ public class SimpleMap<K, V> implements Iterable<V> {
 
     private LinkedList[] explore() {
         LinkedList<Node<V, K>>[] arraynew = new LinkedList[size * 2];
-        System.arraycopy(array, 0, arraynew, 0, array.length);
+        size *= 2;
+        for(var list : array) {
+            if(list != null) {
+                var it =  list.iterator();
+                while (it.hasNext()) {
+                    var oldv = it.next();
+                    arraynew[oldv.key_index.hashCode() & (size - 1)].add(new Node(oldv.key_index, oldv.value, oldv.key_index.hashCode()));
+                }
+            }
+        }
         return arraynew;
     }
 
