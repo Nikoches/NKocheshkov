@@ -3,6 +3,7 @@ package ru.job4j.iterating.Map;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 public class SimpleMap<K, V> implements Iterable<V> {
     private int size = 16;
@@ -79,9 +80,9 @@ public class SimpleMap<K, V> implements Iterable<V> {
     private LinkedList[] explore() {
         LinkedList<Node<V, K>>[] arraynew = new LinkedList[size * 2];
         size *= 2;
-        for(var list : array) {
-            if(list != null) {
-                var it =  list.iterator();
+        for (var list : array) {
+            if (list != null) {
+                var it = list.iterator();
                 while (it.hasNext()) {
                     var oldv = it.next();
                     arraynew[oldv.key_index.hashCode() & (size - 1)].add(new Node(oldv.key_index, oldv.value, oldv.key_index.hashCode()));
@@ -92,7 +93,7 @@ public class SimpleMap<K, V> implements Iterable<V> {
     }
 
     public Iterator<V> iterator() {
-        return new Iterator<V>() {
+        return new Iterator<V>()  {
 
             /**
              * Returns {@code true} if the iteration has more elements.
@@ -102,16 +103,23 @@ public class SimpleMap<K, V> implements Iterable<V> {
              * @return {@code true} if the iteration has more elements
              */
             int index_list = 0;
+            int index = 0;
 
             @Override
             public boolean hasNext() {
                 boolean cheker = false;
-                Iterator it = array[index_list].iterator();
-                while (cheker == false && index_list < size) {
-                    if (it.hasNext()) {
-                        cheker = true;
-                        break;
-                    } else index_list++;
+                if (array[index_list] != null) {
+                    Iterator it = array[index_list].iterator();
+                    while (!cheker && index_list < size) {
+                        for (;index > 0;index++) {
+                            it.next();
+                        }
+                        if (it.hasNext()) {
+                            cheker = true;
+                            break;
+                        } else index_list++;
+                    }
+
                 }
                 return cheker;
             }
@@ -123,12 +131,20 @@ public class SimpleMap<K, V> implements Iterable<V> {
              * @throws //NoSuchElementException if the iteration has no more elements
              */
             @Override
-            public V next() {
+            public V next()throws NoSuchElementException {
                 Node<V, K> value = null;
                 Iterator it = array[index_list].iterator();
                 if (hasNext()) {
+                    for (;index > 0;index++) {
+                        it.next();
+                    }
                     value = (Node) it.next();
-                } else index_list++;
+                    index++;
+                } else if (!hasNext() && index_list < array.length) {
+                    index_list++;
+                }else {
+                    throw new NoSuchElementException("no,no,no");
+                }
                 return value.value;
             }
         };
