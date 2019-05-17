@@ -48,7 +48,18 @@ public class SimpleTree<E extends Comparable<E>> implements SimpleTreeInterface<
         }
         return rsl;
     }
-
+    public boolean isBinary() {
+        Iterator it = this.iterator();
+        boolean checker = true;
+        while(it.hasNext()) {
+            LinkedList<Node<E>> childrenGen = new LinkedList<Node<E>>((findBy((E)it.next()).get().leaves()));
+            if(childrenGen.size() > 2 ){
+                checker = false;
+                break;
+            }
+        }
+        return checker;
+    }
 
     /**
      * Returns an iterator over elements of type {@code T}.

@@ -47,16 +47,7 @@ public class TreeTest {
         tree.add(2, 4);
         tree.add(4, 5);
         tree.add(5, 6);
-        Iterator it = tree.iterator();
-        System.out.println(it.next());
-
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-
-        //System.out.println(it.next());
+        System.out.println(tree.isBinary());
 
     }
 }
