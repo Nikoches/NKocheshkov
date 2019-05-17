@@ -4,6 +4,8 @@ package job4j.iterating.SimpleTree;
 import org.junit.Test;
 import ru.job4j.iterating.SimpleTree.SimpleTree;
 
+import java.util.Iterator;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -15,7 +17,7 @@ import static org.junit.Assert.*;
 public class TreeTest {
     @Test
     public void when6ElFindLastThen6() {
-        SimpleTree<Integer> tree = new SimpleTree<>(1);
+        SimpleTree<Integer> tree = new SimpleTree(1);
         tree.add(1, 2);
         tree.add(1, 3);
         tree.add(1, 4);
@@ -35,5 +37,26 @@ public class TreeTest {
                 tree.findBy(7).isPresent(),
                 is(false)
         );
+    }
+
+    @Test
+    public void iteratorTest() {
+        SimpleTree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(2, 4);
+        tree.add(4, 5);
+        tree.add(5, 6);
+        Iterator it = tree.iterator();
+        System.out.println(it.next());
+
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+
+        //System.out.println(it.next());
+
     }
 }

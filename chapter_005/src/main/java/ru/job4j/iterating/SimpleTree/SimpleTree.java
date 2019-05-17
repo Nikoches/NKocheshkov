@@ -1,7 +1,5 @@
 package ru.job4j.iterating.SimpleTree;
 
-import ru.job4j.iterating.DynamicArray.SimpleStack;
-
 import java.util.*;
 
 public class SimpleTree<E extends Comparable<E>> implements SimpleTreeInterface<E> {
@@ -15,18 +13,21 @@ public class SimpleTree<E extends Comparable<E>> implements SimpleTreeInterface<
 
     public boolean add(E parent, E child) {
         boolean checker = false;
-        if (size == 0) {
-            this.root = new Node<>(child);
-            size++;
-            return checker = true;
-        } else {
-            Node<E> parent_finded = findBy(parent).isPresent() ? findBy(parent).get() : null;
-            if (parent_finded != null) {
-                Node<E> ss = new Node<>(child);
-                parent_finded.add(ss);
-                size++;
-                checker = true;
+
+        final Optional<Node<E>> byParent = findBy(parent);
+        final Optional<Node<E>> byChild = findBy(child);
+
+        if (!byChild.isPresent()) {
+            if (byParent.isPresent()) {
+                byParent.get().leaves().add(new Node<>(child));
+            }else {
+                final Node<E> eNode = new Node<>(parent);
+                eNode.leaves().addAll(root.leaves());
+                eNode.leaves().add(new Node<>(child));
+                this.root = eNode;
             }
+            checker = true;
+            size++;
         }
         return checker;
     }
@@ -58,13 +59,10 @@ public class SimpleTree<E extends Comparable<E>> implements SimpleTreeInterface<
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             private final LinkedList<Node<E>> children = new LinkedList<>(Collections.singletonList(root));
-            private boolean nextExist = root != null;
-            private int childCount = (root != null) ? root.leaves().size() : -1;
-
             @Override
             public boolean hasNext() {
 
-                return nextExist;
+                return !children.isEmpty();
             }
 
             @Override
@@ -73,14 +71,10 @@ public class SimpleTree<E extends Comparable<E>> implements SimpleTreeInterface<
                     throw new NoSuchElementException();
                 }
                 E result = null;
-                if (children.size() != 0) {
-                    Node<E> firstOfChildren = children.pollFirst();
-                    if (firstOfChildren != null) {
-                        children.addAll(firstOfChildren.leaves());
-                        result = firstOfChildren.getValue();
-                        childCount = firstOfChildren.leaves().size();
-                        nextExist = children.size() != 0;
-                    }
+                final Node<E> poll = children.poll();
+                if (poll != null) {
+                    result = poll.getValue();
+                    children.addAll(poll.leaves());
                 }
                 return result;
             }
