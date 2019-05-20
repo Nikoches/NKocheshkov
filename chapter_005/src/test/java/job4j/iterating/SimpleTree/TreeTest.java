@@ -2,6 +2,7 @@ package job4j.iterating.SimpleTree;
 
 
 import org.junit.Test;
+import ru.job4j.iterating.ArrayComparison;
 import ru.job4j.iterating.SimpleTree.SimpleTree;
 
 import java.util.Iterator;
@@ -50,4 +51,5 @@ public class TreeTest {
         System.out.println(tree.isBinary());
 
     }
+
 }

@@ -93,7 +93,7 @@ public class SimpleMap<K, V> implements Iterable<V> {
     }
 
     public Iterator<V> iterator() {
-        return new Iterator<V>()  {
+        return new Iterator<V>() {
 
             /**
              * Returns {@code true} if the iteration has more elements.

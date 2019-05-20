@@ -20,7 +20,7 @@ public class SimpleTree<E extends Comparable<E>> implements SimpleTreeInterface<
         if (!byChild.isPresent()) {
             if (byParent.isPresent()) {
                 byParent.get().leaves().add(new Node<>(child));
-            }else {
+            } else {
                 final Node<E> eNode = new Node<>(parent);
                 eNode.leaves().addAll(root.leaves());
                 eNode.leaves().add(new Node<>(child));
@@ -48,12 +48,13 @@ public class SimpleTree<E extends Comparable<E>> implements SimpleTreeInterface<
         }
         return rsl;
     }
+
     public boolean isBinary() {
         Iterator it = this.iterator();
         boolean checker = true;
-        while(it.hasNext()) {
-            LinkedList<Node<E>> childrenGen = new LinkedList<Node<E>>((findBy((E)it.next()).get().leaves()));
-            if(childrenGen.size() > 2 ){
+        while (it.hasNext()) {
+            LinkedList<Node<E>> childrenGen = new LinkedList<Node<E>>((findBy((E) it.next()).get().leaves()));
+            if (childrenGen.size() > 2) {
                 checker = false;
                 break;
             }
@@ -70,9 +71,10 @@ public class SimpleTree<E extends Comparable<E>> implements SimpleTreeInterface<
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             private final LinkedList<Node<E>> children = new LinkedList<>(Collections.singletonList(root));
+            LinkedList<?> ss = new LinkedList<>();
+
             @Override
             public boolean hasNext() {
-
                 return !children.isEmpty();
             }
 
