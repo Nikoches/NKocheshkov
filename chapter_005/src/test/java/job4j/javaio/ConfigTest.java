@@ -9,7 +9,7 @@ public class ConfigTest {
 
     @Test
     public void readingfile() {
-        Config con =  new Config("app.properties");
+        Config con =  new Config("src/main/resources/app.properties");
         con.load();
         assertThat(con.value("hibernate.connection.username"),is("postgres"));
 
