@@ -71,7 +71,6 @@ public class SimpleTree<E extends Comparable<E>> implements SimpleTreeInterface<
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             private final LinkedList<Node<E>> children = new LinkedList<>(Collections.singletonList(root));
-            LinkedList<?> ss = new LinkedList<>();
 
             @Override
             public boolean hasNext() {

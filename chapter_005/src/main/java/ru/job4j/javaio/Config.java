@@ -15,7 +15,7 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        Config ss  = new Config("app.properties");
+        Config ss = new Config("app.properties");
         ss.load();
         System.out.println(ss.value("hibernate.connection.username"));
     }
@@ -24,8 +24,8 @@ public class Config {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String s;
             while ((s = br.readLine()) != null) {
-                if(s.contains("=")){
-                    values.put(s.split("=")[0],s.split("=")[1]);
+                if (s.contains("=")) {
+                    values.put(s.split("=")[0], s.split("=")[1]);
                 }
             }
         } catch (IOException ex) {

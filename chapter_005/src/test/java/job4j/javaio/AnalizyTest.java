@@ -1,4 +1,5 @@
 package job4j.javaio;
+
 import org.junit.Test;
 import ru.job4j.javaio.Analizy;
 
@@ -11,10 +12,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AnalizyTest {
     @Test
-    public void testAnalizy(){
+    public void testAnalizy() {
         Analizy ss = new Analizy();
         StringBuffer bufer = new StringBuffer();
-        ss.unavailable("C:\\Projects\\server.log","C:\\Projects\\unavailable.csv");
+        ss.unavailable("C:\\Projects\\server.log", "C:\\Projects\\unavailable.csv");
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\Projects\\unavailable.csv"))) {
             String s;
             while ((s = br.readLine()) != null) {
@@ -26,7 +27,7 @@ public class AnalizyTest {
         }
         StringBuffer bufer2 = new StringBuffer();
         bufer2.append("400 11:03:20500 11:03:46400 11:04:00");
-        assertThat(bufer2,is(bufer));
+        assertThat(bufer2, is(bufer));
 
 
     }
