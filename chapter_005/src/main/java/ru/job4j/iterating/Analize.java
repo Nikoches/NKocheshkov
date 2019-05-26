@@ -16,8 +16,12 @@ public class Analize {
             if (mymap.containsKey(previousUser.id)) {
                 if (!previousUser.name.equals(mymap.get(previousUser.id).name)) {
                     info.changed++;
-                } else nochanges++;
-            } else nofinded++;
+                } else {
+                    nochanges++;
+                }
+            } else {
+                nofinded++;
+            }
         }
         info.deleted = nofinded;
         info.added = current.size() - nochanges - info.changed;

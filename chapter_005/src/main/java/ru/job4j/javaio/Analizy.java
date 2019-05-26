@@ -21,10 +21,14 @@ public class Analizy {
                     b = checker == 1 ? s : b;
                     if (checker >= 2) {
                         if (checker == 2) {
-                            bufer.append(b + "\n").append(s + "\n");
-                        } else bufer.append(s + "\n");
+                            bufer.append(b).append("\n").append(s).append("\n");
+                        } else {
+                            bufer.append(s).append("\n");
+                        }
                     }
-                } else if (!s.equals("")) checker = 0;
+                } else if (!s.equals("")) {
+                    checker = 0;
+                }
             }
         } catch (IOException ex) {
             ex.printStackTrace();
