@@ -1,4 +1,4 @@
-package job4j.iterating.simpletree;
+package ru.job4j.iterating.simpletree;
 
 
 import org.junit.Test;

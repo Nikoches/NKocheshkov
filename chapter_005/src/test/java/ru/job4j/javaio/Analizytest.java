@@ -1,4 +1,4 @@
-package job4j.javaio;
+package ru.job4j.javaio;
 
 import org.junit.Test;
 import ru.job4j.javaio.Analizy;

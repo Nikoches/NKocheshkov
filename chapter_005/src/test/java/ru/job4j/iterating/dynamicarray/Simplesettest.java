@@ -1,4 +1,4 @@
-package job4j.iterating.dynamicarray;
+package ru.job4j.iterating.dynamicarray;
 import org.junit.Test;
 import ru.job4j.iterating.dynamicarray.SimpleSet;
 
@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.is;
 
 public class Simplesettest {
     @Test
-    public void TestingSet() {
+    public void testingSet() {
        SimpleSet<Integer> set = new SimpleSet<>();
        set.add(5);
        set.add(7);

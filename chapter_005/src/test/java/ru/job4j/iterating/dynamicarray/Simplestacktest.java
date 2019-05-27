@@ -1,4 +1,4 @@
-package job4j.iterating.dynamicarray;
+package ru.job4j.iterating.dynamicarray;
 
 import org.junit.Test;
 import ru.job4j.iterating.dynamicarray.SimpleStack;
@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.is;
 
 public class Simplestacktest {
     @Test
-    public void TestingStack() {
+    public void testingStack() {
         SimpleStack<Integer> ss = new SimpleStack<>();
         ss.push(12);
         ss.push(13);

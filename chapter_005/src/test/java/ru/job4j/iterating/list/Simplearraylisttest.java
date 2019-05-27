@@ -1,4 +1,4 @@
-package job4j.iterating.list;
+package ru.job4j.iterating.list;
 import org.junit.Test;
 import org.junit.Before;
 import ru.job4j.iterating.list.Simplearraylist;

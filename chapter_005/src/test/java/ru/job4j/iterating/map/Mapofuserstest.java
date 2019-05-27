@@ -1,9 +1,7 @@
-package job4j.iterating.Map;
+package ru.job4j.iterating.map;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.job4j.iterating.map.Simplemap;
-import ru.job4j.iterating.map.User;
 
 import java.util.Calendar;
 import java.util.HashMap;

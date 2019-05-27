@@ -50,7 +50,8 @@ public class DynArrayList<E> implements Iterable<E> {
             return false;
         }
         Node slow, fast;
-        slow = fast = first;
+        fast = first;
+        slow = first;
         while (true) {
 
             slow = slow.next;
