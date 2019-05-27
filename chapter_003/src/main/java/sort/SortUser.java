@@ -8,7 +8,7 @@ public class SortUser {
     public Set<User> sort(List<User> users) {
         return new TreeSet<>(users);
     }
-    public List<User> sortNameLength(List<User> users) {
+    public List<User> sortNameLength(LinkedList<User> users) {
         User.UserComparator compus = new User.UserComparator();
         users.sort(compus);
         return users;

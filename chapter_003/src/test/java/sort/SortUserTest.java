@@ -20,26 +20,22 @@ public class SortUserTest {
     }
     @Test
     public void sorttestlistbyname() {
-        //list<User> usersList;
-        List<User> usersList = List.of(
-                new User(12, "vova"),
-                new User(21, "adamson"),
-                new User(7, "anton")
-        );
+        LinkedList<User> usersList = new LinkedList<>();
+        usersList.add(new User(12, "vova"));
+        usersList.add(new User(21, "adamson"));
+        usersList.add(new User(7, "anton"));
         SortUser ss1 = new SortUser();
         ss1.sortNameLength(usersList);
-       // System.out.println(ss1.sortNameLength(usersList));
+        System.out.println(ss1.sortNameLength(usersList));
     }
 
     @Test
     public void sorttestlistbyallfields() {
-        List<User> usersList;
-        usersList = List.of(
-                new User(25, "Иван"),
-                new User(30, "Иван"),
-                new User(20, "Сергей"),
-                new User(25, "Сергей")
-        );
+        LinkedList<User> usersList = new LinkedList<>();
+        usersList.add(new User(25, "Иван"));
+        usersList.add(new User(30, "Иван"));
+        usersList.add(new User(20, "Сергей"));
+        usersList.add(new User(25, "Сергей"));
         SortUser ss1 = new SortUser();
         System.out.println(ss1.sortByAllFields(usersList));
     }
