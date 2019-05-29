@@ -1,10 +1,12 @@
 package ru.job4j.javaio;
 
 import java.io.*;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Consolechat {
-    StringBuilder log = new StringBuilder();
-    String[] answers = new String[25];
+    private StringBuilder log = new StringBuilder();
+    private LinkedList<String> answers = new LinkedList<>();
 
     public static void main(String[] args) {
         Consolechat cc = new Consolechat();
@@ -14,9 +16,8 @@ public class Consolechat {
     public void chating() {
         try (BufferedReader textreader = new BufferedReader(new FileReader("chat_text.txt"))) {
             String s;
-            int i = 0;
             while ((s = textreader.readLine()) != null) {
-                answers[i++] = s;
+                answers.add(s);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -24,16 +25,18 @@ public class Consolechat {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             boolean stopper = false;
-            int i = 0;
+            Iterator<String> it = answers.iterator();
             String answ = reader.readLine();
             while (!answ.equals("конец")) {
-                log.append(answ).append("\n");
+                log.append(answ + System.lineSeparator());
                 if (answ.equals("стоп")) {
                     stopper = true;
                     System.out.println();
                 } else if (answ.equals("продолжить") || !stopper) {
                     stopper = false;
-                    System.out.println(answers[i++]);
+                    String ss = it.next();
+                    System.out.println(ss);
+                    log.append(ss + System.lineSeparator());
                 }
                 answ = reader.readLine();
             }
