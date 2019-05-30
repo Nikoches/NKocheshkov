@@ -26,7 +26,7 @@ public class Search {
         }
         return list2;
     }
-
+    //Метод получения расширения файла
     private String getFileExtension(File file) {
         String fileName = file.getName();
         // если в имени файла есть точка и она не является первым символом в названии файла
@@ -34,7 +34,7 @@ public class Search {
             // то вырезаем все знаки после последней точки в названии файла, то есть ХХХХХ.txt -> txt
             return fileName.substring(fileName.lastIndexOf(".") + 1);
         } else {
-            return "";
+            return " ";
         }
     }
 }
