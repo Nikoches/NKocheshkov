@@ -17,7 +17,7 @@ public class Zip {
     public void pack(List<File> sources, File target) {
         try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
             for (File x : sources) {
-                zip.putNextEntry(new ZipEntry(x.getPath()));
+                zip.putNextEntry(new ZipEntry(x.getPath().substring(11)));
                 System.out.println(x.getName());
             }
         } catch (Exception e) {
