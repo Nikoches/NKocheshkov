@@ -13,18 +13,18 @@ public class Zip {
         Zip zipper = new Zip();
         zipper.pack(zipper.seekBy(arg.exclude(), arg.directory()), new File(arg.output()));
     }
-
+    String directory;
     public void pack(List<File> sources, File target) {
         try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
             for (File x : sources) {
-                zip.putNextEntry(new ZipEntry(x.getPath().substring(11)));
-                System.out.println(x.getName());
+                zip.putNextEntry(new ZipEntry(new File(directory).toURI().relativize(x.toURI()).getPath()));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     public List<File> seekBy(String ext, String directory) {
+        this.directory = directory;
         File file = new File((directory));
         LinkedList<File> list1 = new LinkedList<>();
         LinkedList<File> list2 = new LinkedList<>();
