@@ -17,14 +17,15 @@ public class Client {
         try( Socket socket = new Socket(InetAddress.getByName(ip), port);PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             Scanner console = new Scanner(System.in);
+            String str;
             do {
-                String str = console.nextLine();
+                str = console.nextLine();
                 out.println(str);
-
-                while (!(str = in.readLine()).isEmpty()) {
-                    System.out.println(str);
+                String str1;
+                if (!(str1 = in.readLine()).isEmpty()) {
+                    System.out.println(str1);
                 }
-            } while (!toString().equals("пока"));
+            } while (!str.equals("пока"));
         } catch (Exception ex) {
             ex.printStackTrace();
         }

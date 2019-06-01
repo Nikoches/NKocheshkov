@@ -28,9 +28,8 @@ public class Server {
                 System.out.println(ask);
                 if ("hello".equals(ask)) {
                     out.println("Hello, dear friend, I'm a oracle.");
-                    out.println();
-                }
-            } while (!"exit".equals(ask));
+                }else out.println("not understand");
+            } while (!"пока".equals(ask));
         }catch (Exception ex){
             ex.printStackTrace();
         }
