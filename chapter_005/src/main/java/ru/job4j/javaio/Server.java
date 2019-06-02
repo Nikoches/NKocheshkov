@@ -8,19 +8,24 @@ import java.net.Socket;
 
 public class Server {
 
-    public static void main(String[] args){
-        Server serv = new Server(5000);
-        serv.startserv();
+    private final Socket sock;
+
+    public Server(Socket sock) {
+        this.sock = sock;
     }
-    private int port;
-    public Server(int port) {
-       this.port = port;
+
+    public static void main(String[] args) {
+        try (Socket socket = new ServerSocket(5000).accept()) {
+            new Server(socket);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void startserv() {
-        try(ServerSocket serverSocket = new ServerSocket(port); Socket socket = serverSocket.accept();
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+        try (PrintWriter out = new PrintWriter(this.sock.getOutputStream(), true);
+             BufferedReader in = new BufferedReader(new InputStreamReader(this.sock.getInputStream()))) {
             System.out.println("wait command ...");
             String ask;
             do {
@@ -28,9 +33,11 @@ public class Server {
                 System.out.println(ask);
                 if ("hello".equals(ask)) {
                     out.println("Hello, dear friend, I'm a oracle.");
-                }else out.println("not understand");
+                } else if(!"пока".equals(ask)){
+                    out.println("not understand");
+                }
             } while (!"пока".equals(ask));
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
