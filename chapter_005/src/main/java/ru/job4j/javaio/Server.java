@@ -33,7 +33,7 @@ public class Server {
                 System.out.println(ask);
                 if ("hello".equals(ask)) {
                     out.println("Hello, dear friend, I'm a oracle.");
-                } else if(!"пока".equals(ask)){
+                } else if (!"пока".equals(ask)) {
                     out.println("not understand");
                 }
             } while (!"пока".equals(ask));

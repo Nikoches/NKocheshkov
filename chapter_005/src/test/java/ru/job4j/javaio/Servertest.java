@@ -32,7 +32,7 @@ public class Servertest {
         Socket socket = mock(Socket.class);
         Server server = new Server(socket);
         ByteArrayInputStream in = new ByteArrayInputStream(
-                String.format("hello%sпока",System.lineSeparator()).getBytes());
+                String.format("hello%sпока", System.lineSeparator()).getBytes());
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         when(socket.getInputStream()).thenReturn(in);
         when(socket.getOutputStream()).thenReturn(out);
@@ -45,7 +45,7 @@ public class Servertest {
         Socket socket = mock(Socket.class);
         Server server = new Server(socket);
         ByteArrayInputStream in = new ByteArrayInputStream(
-                String.format("anyway%sпока",System.lineSeparator()).getBytes());
+                String.format("anyway%sпока", System.lineSeparator()).getBytes());
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         when(socket.getInputStream()).thenReturn(in);
         when(socket.getOutputStream()).thenReturn(out);
