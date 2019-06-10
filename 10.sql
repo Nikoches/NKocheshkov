@@ -40,3 +40,7 @@ insert into auto
  join body on auto_body_id = body.id
  join engine on auto_eng_id = engine.id
  join transmission on auto_trns_id = transmission.id;
+ 
+ 
+ select transmission.id,transmission.gears,engine.id,engine.valve,body.id,body.type from body,transmission,engine
+	where (select auto_trns_id from auto where auto.brend = 'mercedes')!=transmission.id and (select auto_eng_id from auto where auto.brend = 'mercedes')!=engine.id and (select auto_body_id from auto where auto.brend = 'mercedes')!=body.id;
