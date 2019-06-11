@@ -20,7 +20,8 @@ create table auto(
 insert into transmission
 	values('D1',4),
  ('D2',5),
- ('D3',6);
+ ('D3',6),
+ ('D4',7);
  
 insert into body
 	values('WAG','hatchback'),
@@ -44,3 +45,7 @@ insert into auto
  
  select transmission.id,transmission.gears,engine.id,engine.valve,body.id,body.type from body,transmission,engine
 	where (select auto_trns_id from auto where auto.brend = 'mercedes')!=transmission.id and (select auto_eng_id from auto where auto.brend = 'mercedes')!=engine.id and (select auto_body_id from auto where auto.brend = 'mercedes')!=body.id;
+	
+	select t.id, t.gears from transmission as t
+left join  auto a on a.auto_trns_id = t.id
+where a.brend is null;
