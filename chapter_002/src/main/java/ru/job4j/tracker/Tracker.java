@@ -6,11 +6,11 @@ import java.util.Random;
  * @version $Id$
  * @since 0.1
  */
-public class Tracker {
+public class Tracker implements ITracker {
     /**
      * Массив для хранение заявок.
      */
-    private List<Item> items = new ArrayList<Item>();
+    private List<Item> items = new ArrayList<>();
     /**
      * Указатель ячейки для новой заявки.
      * Метод реализаущий добавление заявки в хранилище
@@ -32,7 +32,7 @@ public class Tracker {
 
     private String generateId() {
         Random random = new Random();
-        return ((Integer.toString(random.nextInt(15)) + Integer.toString(unicInt++)));
+        return (((random.nextInt(15)) + Integer.toString(unicInt++)));
     }
 
     public void replace(String id, Item item) {
@@ -48,13 +48,13 @@ public class Tracker {
     }
 
     public List<Item>  findAll() {
-        List<Item> itemsall = new ArrayList<Item>();
+        List<Item> itemsall = new ArrayList<>();
         itemsall.addAll(items);
         return itemsall;
     }
 
     public List<Item> findByName(String key) {
-        List<Item> foundItems = new ArrayList<Item>();
+        List<Item> foundItems = new ArrayList<>();
         if (key != null) {
          for (Item fitem : items) {
              if (fitem.getName().equals(key)) {
