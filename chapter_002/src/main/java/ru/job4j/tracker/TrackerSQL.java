@@ -2,10 +2,7 @@ package ru.job4j.tracker;
 
 import java.io.Closeable;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -28,8 +25,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             Statement st = connection.createStatement();
             st.execute(" create table if not exists items(id integer primary key,name text,description text,created integer);");
             st.close();
-
         } catch (Exception e) {
+            e.printStackTrace();
             throw new IllegalStateException(e);
         }
         return this.connection != null;
@@ -38,12 +35,15 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     @Override
     public Item add(Item item) {
-        try {
-            Statement st = connection.createStatement();
+        String sqlc = ("insert into items values(?,?,?,?); ");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
             item.setId("" + iditem++);
-            int rs = st.executeUpdate("insert into items values( " + item.getId() + " ,'" + item.getName() + "','" + item.getDescription() + "'," + item.getCreate() + "); ");
+            preparedStatement.setInt(1, iditem);
+            preparedStatement.setString(2, item.getName());
+            preparedStatement.setString(3, item.getDescription());
+            preparedStatement.setLong(4, item.getCreate());
+            int rs = preparedStatement.executeUpdate();
             System.out.println("количество добавленных строк = " + rs);
-            st.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,11 +52,15 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     @Override
     public void replace(String id, Item item) {
-        try {
+        String sqlc = ("update items set id = ?,name = ?,description = ?,created = ? where id = ?;");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
             item.setId("" + iditem++);
-            Statement st = connection.createStatement();
-            st.execute("UPDATE items SET id = " + item.getId() + ",name=" + item.getName() + ",description=" + item.getDescription() + ",created=" + item.getCreate() + " WHERE id =" + id + ";");
-            st.close();
+            preparedStatement.setInt(1, Integer.parseInt(id));
+            preparedStatement.setString(2, item.getName());
+            preparedStatement.setString(3, item.getDescription());
+            preparedStatement.setLong(4, item.getCreate());
+            preparedStatement.setInt(5, Integer.parseInt(item.getId()));
+            preparedStatement.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,10 +68,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     @Override
     public void deleteItem(String id) {
-        try {
-            Statement st = connection.createStatement();
-            st.execute("delete from items where id = " + id + ";");
-            st.close();
+        String sqlc = ("delete from items where id = ? ;");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
+            preparedStatement.setInt(1, Integer.parseInt(id));
+            preparedStatement.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,15 +80,12 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public List<Item> findAll() {
         LinkedList<Item> list = new LinkedList<>();
-        try {
-            Statement st = connection.createStatement();
-            ResultSet resultSet = st.executeQuery("select * from items;");
+        String sqlc = ("select * from items;");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc); ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 list.add(new Item(resultSet.getString("name"), resultSet.getString("description"), resultSet.getLong("created")));
                 System.out.println(resultSet.getString("id") + "  " + resultSet.getString("name"));
             }
-            st.close();
-            resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,13 +96,13 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public List<Item> findByName(String key) {
         LinkedList<Item> list = new LinkedList<>();
-        try {
-            Statement st = connection.createStatement();
-            ResultSet resultSet = st.executeQuery("select * from items where name = " + key + ";");
+        String sqlc = ("select * from items where name = ?;");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setString(1, key);
             while (resultSet.next()) {
                 list.add(new Item(resultSet.getString("name"), resultSet.getString("description"), resultSet.getLong("created")));
             }
-            st.close();
             resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,11 +114,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public Item findById(String id) {
         Item item = null;
-        try {
-            Statement st = connection.createStatement();
-            ResultSet resultSet = st.executeQuery("select * from items where id = " + id + ";");
-            item = new Item(resultSet.getString("name"),resultSet.getString("description"),resultSet.getLong("created"));
-            st.close();
+        String sqlc = ("select * from items where id = ?");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
+            preparedStatement.setInt(1, Integer.parseInt(id));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            item = new Item(resultSet.getString("name"), resultSet.getString("description"), resultSet.getLong("created"));
             resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
