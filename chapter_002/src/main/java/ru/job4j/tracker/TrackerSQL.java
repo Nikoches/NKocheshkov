@@ -10,8 +10,9 @@ import java.util.Properties;
 public class TrackerSQL implements ITracker, AutoCloseable {
 
     private Connection connection;
-    private int iditem = 0;
-
+    public TrackerSQL() {
+        this.init();
+    }
     public boolean init() {
         try (InputStream in = TrackerSQL.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
@@ -35,13 +36,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     @Override
     public Item add(Item item) {
-        String sqlc = ("insert into items values(?,?,?,?); ");
+        String sqlc = ("insert into items(name,description,created) values(?,?,?); ");
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
-            item.setId("" + iditem++);
-            preparedStatement.setInt(1, iditem);
-            preparedStatement.setString(2, item.getName());
-            preparedStatement.setString(3, item.getDescription());
-            preparedStatement.setLong(4, item.getCreate());
+            preparedStatement.setString(1, item.getName());
+            preparedStatement.setString(2, item.getDescription());
+            preparedStatement.setLong(3, item.getCreate());
             int rs = preparedStatement.executeUpdate();
             System.out.println("количество добавленных строк = " + rs);
         } catch (Exception e) {
@@ -54,7 +53,6 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     public void replace(String id, Item item) {
         String sqlc = ("update items set id = ?,name = ?,description = ?,created = ? where id = ?;");
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
-            item.setId("" + iditem++);
             preparedStatement.setInt(1, Integer.parseInt(id));
             preparedStatement.setString(2, item.getName());
             preparedStatement.setString(3, item.getDescription());
