@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import java.io.Closeable;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.LinkedList;
@@ -10,9 +9,11 @@ import java.util.Properties;
 public class TrackerSQL implements ITracker, AutoCloseable {
 
     private Connection connection;
+
     public TrackerSQL() {
         this.init();
     }
+
     public boolean init() {
         try (InputStream in = TrackerSQL.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
@@ -116,7 +117,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
             preparedStatement.setInt(1, Integer.parseInt(id));
             ResultSet resultSet = preparedStatement.executeQuery();
-            item = new Item(resultSet.getString("name"), resultSet.getString("description"), resultSet.getLong("created"));
+            if (resultSet.next()) {
+                item = new Item(resultSet.getString("name"), resultSet.getString("description"), resultSet.getLong("created"));
+                item.setId(resultSet.getString("id"));
+                System.out.println(item.getId()+"    "+item.getName()+"  "+item.getDescription()+"    "+item.getCreate());
+            }
             resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
