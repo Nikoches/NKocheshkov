@@ -5,9 +5,11 @@ import java.util.Properties;
 
 public class Config {
     private final Properties values = new Properties();
-    public Config(){
+
+    public Config() {
         this.init();
     }
+
     public void init() {
         try (InputStream in = Config.class.getClassLoader().getResourceAsStream("sql_config/app.properties")) {
             values.load(in);

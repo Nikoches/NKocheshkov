@@ -120,7 +120,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             if (resultSet.next()) {
                 item = new Item(resultSet.getString("name"), resultSet.getString("description"), resultSet.getLong("created"));
                 item.setId(resultSet.getString("id"));
-                System.out.println(item.getId()+"    "+item.getName()+"  "+item.getDescription()+"    "+item.getCreate());
+                System.out.println(item.getId() + "    " + item.getName() + "  " + item.getDescription() + "    " + item.getCreate());
             }
             resultSet.close();
         } catch (Exception e) {
