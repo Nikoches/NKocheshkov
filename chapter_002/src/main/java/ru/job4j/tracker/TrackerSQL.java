@@ -12,7 +12,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     public TrackerSQL(Connection connection) {
         this.connection = connection;
-        this.init();
+       // this.init();
     }
 
     public boolean init() {
