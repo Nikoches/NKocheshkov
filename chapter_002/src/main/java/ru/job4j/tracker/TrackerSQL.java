@@ -10,7 +10,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     private Connection connection;
 
-    public TrackerSQL() {
+    public TrackerSQL(Connection connection) {
+        this.connection = connection;
         this.init();
     }
 
@@ -25,7 +26,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
                     config.getProperty("password")
             );
             Statement st = connection.createStatement();
-            st.execute(" create table if not exists items(id integer primary key,name text,description text,created integer);");
+            st.execute(" create table if not exists items(id serial primary key,name text,description text,created integer);");
             st.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,8 +98,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
         LinkedList<Item> list = new LinkedList<>();
         String sqlc = ("select * from items where name = ?;");
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
             preparedStatement.setString(1, key);
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 list.add(new Item(resultSet.getString("name"), resultSet.getString("description"), resultSet.getLong("created")));
             }

@@ -6,14 +6,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Entry {
     @XmlElement
-    private  int field;
-    public  int getField() {
-        return field;
-    }
-    public Entry(){
+    private int field;
+
+    public Entry() {
 
     }
+
     public Entry(int field) {
         this.field = field;
+    }
+
+    public int getField() {
+        return field;
     }
 }

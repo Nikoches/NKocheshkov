@@ -18,7 +18,7 @@ public class StoreXML {
             JAXBContext context = JAXBContext.newInstance(Entrys.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            marshaller.marshal( new Entrys(entry), target);
+            marshaller.marshal(new Entrys(entry), target);
         } catch (JAXBException e) {
             e.printStackTrace();
         }

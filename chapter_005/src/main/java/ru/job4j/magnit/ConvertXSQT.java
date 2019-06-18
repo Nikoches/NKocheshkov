@@ -12,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class ConvertXSQT {
-    public static void main (String args[]) throws TransformerException, IOException {
+    public static void main(String[] args) throws TransformerException, IOException {
         byte[] exFile = Files.readAllBytes(Paths.get("C:\\projects/example.xml"));
         TransformerFactory factory = TransformerFactory.newInstance();
         byte[] bFile = Files.readAllBytes(Paths.get("C:\\projects/file.xml"));

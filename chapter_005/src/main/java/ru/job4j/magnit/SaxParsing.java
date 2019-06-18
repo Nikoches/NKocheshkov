@@ -7,6 +7,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class SaxParsing extends DefaultHandler {
     String thisElement = "";
     int sum = 0;
+
     @Override
     public void startDocument() throws SAXException {
         System.out.println("Start parse XML...");
@@ -32,6 +33,6 @@ public class SaxParsing extends DefaultHandler {
 
     @Override
     public void endDocument() {
-        System.out.println("Stop parse XML...\n sum = "+sum);
+        System.out.println("Stop parse XML...\n sum = " + sum);
     }
 }

@@ -1,0 +1,1 @@
+create table if not exists items(id SERIAL primary key,name text,description text,created integer);
