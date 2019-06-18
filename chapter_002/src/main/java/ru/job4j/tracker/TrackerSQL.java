@@ -55,11 +55,11 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     public void replace(String id, Item item) {
         String sqlc = ("update items set id = ?,name = ?,description = ?,created = ? where id = ?;");
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
-            preparedStatement.setInt(1, Integer.parseInt(id));
+            preparedStatement.setInt(1, Integer.parseInt(item.getId()));
             preparedStatement.setString(2, item.getName());
             preparedStatement.setString(3, item.getDescription());
             preparedStatement.setLong(4, item.getCreate());
-            preparedStatement.setInt(5, Integer.parseInt(item.getId()));
+            preparedStatement.setInt(5, Integer.parseInt(id));
             preparedStatement.execute();
         } catch (Exception e) {
             e.printStackTrace();
