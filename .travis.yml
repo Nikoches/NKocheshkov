@@ -2,6 +2,12 @@
 language: java
 jdk:
   openjdk11
+
+services:
+  - postgresql
+before_install:
+  - psql -c 'create database tracker;' -U postgres
+
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 
@@ -10,7 +16,7 @@ sudo: false
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 
-# Отправлять уведомление на почтуyouremail@smtp.ru(Изменить на свою) если сборка упала
+# Отправлять уведомление на почту если сборка упала
 notifications:
   email:
     recipients:
