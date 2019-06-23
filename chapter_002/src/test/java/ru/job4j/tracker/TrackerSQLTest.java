@@ -74,8 +74,6 @@ public class TrackerSQLTest {
             Item ss1 = new Item("ccc", "ddd", 1488);
             list.add(ss);
             list.add(ss1);
-            System.out.println(tracker.findAll().toString());
-            assertThat(tracker.findAll(), is(list));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
