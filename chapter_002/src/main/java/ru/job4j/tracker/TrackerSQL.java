@@ -12,7 +12,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     public TrackerSQL(Connection connection) {
         this.connection = connection;
-       // this.init();
+        // this.init();
     }
 
     public boolean init() {
@@ -39,14 +39,14 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public Item add(Item item) {
         String sqlc = ("insert into items(name,description,created) values(?,?,?); ");
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc,Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, item.getName());
             preparedStatement.setString(2, item.getDescription());
             preparedStatement.setLong(3, item.getCreate());
             int rs = preparedStatement.executeUpdate();
             System.out.println("количество добавленных строк = " + rs);
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            if(generatedKeys.next()){
+            if (generatedKeys.next()) {
                 item.setId(String.valueOf(generatedKeys.getInt(1)));
             }
         } catch (Exception e) {
