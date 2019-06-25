@@ -32,10 +32,9 @@ public class TrackerSQLTest {
     @Test
     public void createItem() throws SQLException {
         try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
-            Item it = tracker.add(new Item("name", "desc", 12));
-            System.out.println("NEW ITEM\n" + it);
+            tracker.add(new Item("name", "desc", 12));
             assertThat(tracker.findByName("name").size(), is(1));
-            System.out.println(tracker.findByName("name").size());
+            //System.out.println(tracker.findByName("name").size());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
