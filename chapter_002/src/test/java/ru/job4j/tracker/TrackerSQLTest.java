@@ -43,8 +43,8 @@ public class TrackerSQLTest {
     @Test
     public void removeItem() throws SQLException {
         try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("name", "desc", 12));
-            tracker.deleteItem("1");
+            Item ss = tracker.add(new Item("name", "desc", 12));
+            tracker.deleteItem(ss.getId());
             assertThat(tracker.findByName("name").size(), is(0));
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -54,10 +54,10 @@ public class TrackerSQLTest {
     @Test
     public void replaceItem() throws SQLException {
         try (TrackerSQL tracker = new TrackerSQL(ConnectionRollback.create(this.init()))) {
-            tracker.add(new Item("name", "desc", 12));
+            Item sq = tracker.add(new Item("name", "desc", 12));
             Item ss = new Item("aaa", "bbb", 1488);
             ss.setId("12");
-            tracker.replace("1", ss);
+            tracker.replace(sq.getId(), ss);
             assertThat(tracker.findById("12").getName(), is("aaa"));
         } catch (Exception ex) {
             ex.printStackTrace();
