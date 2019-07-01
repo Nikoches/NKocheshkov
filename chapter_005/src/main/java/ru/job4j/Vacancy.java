@@ -25,10 +25,12 @@ public class Vacancy {
     public String getUrl() {
         return this.url;
     }
-    public String getDate(){
+
+    public String getDate() {
         return this.date;
     }
-    public boolean  equals(Object obj) {
+
+    public boolean equals(Object obj) {
         boolean equality;
         if (obj == this) {
             equality = true;
@@ -41,5 +43,10 @@ public class Vacancy {
             equality = false;
         }
         return equality;
+    }
+    public int hashCode() {
+        int res = 17;
+        res = 31 * res + name.hashCode();
+        return res;
     }
 }

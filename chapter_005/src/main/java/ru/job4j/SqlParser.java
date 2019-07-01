@@ -68,21 +68,21 @@ public class SqlParser implements Job {
 
     public boolean getvancy() {
         Set<Vacancy> list = new HashSet<>();
-        String sqlc = ("insert into vacancy(name,description,link,created) values(?,?,?,?)");
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
-            Document doc = Jsoup.connect("https://www.sql.ru/forum/job-offers").get();//получает html-код страницы
+        String sqlc = ("insert into vacancy(name,description,link,created) values(?, ?, ?, ?)");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlc)) {
+            Document doc = Jsoup.connect("https://www.sql.ru/forum/job-offers").get(); //получает html-код страницы
             Element table = doc.select("table").get(2); //находим первую таблицу в документе
             //если надо вторую, третью или т.д. используем .get(номер)
-            Elements rows = table.select("tr");// разбиваем нашу таблицу на строки по тегу
+            Elements rows = table.select("tr"); // разбиваем нашу таблицу на строки по тегу
             for (int i = 1; i < rows.size(); i++) {
                 Element row = rows.get(i); //по номеру индекса получает строку
-                Elements cols = row.select("td");// разбиваем полученную строку по тегу  на столбы
+                Elements cols = row.select("td"); // разбиваем полученную строку по тегу  на столбы
                 if (cols.get(1).text().contains("Java") && !cols.get(1).text().contains("JavaScript")) {
                     Document docdesc = Jsoup.connect(cols.get(1).select("a").attr("href")).get();
-                    System.out.print(cols.get(1).text());// название
+                    System.out.print(cols.get(1).text()); // название
                     System.out.println(cols.get(5).text()); //дата
                     //ссылка
-                    System.out.print(cols.get(1).select("a").attr("href")+"  \n ");
+                    System.out.print(cols.get(1).select("a").attr("href") + "  \n ");
                     //описание
                     System.out.println(docdesc.select("table").get(1).select("tr").get(1).select("td").get(1).text());
                     list.add(new Vacancy(cols.get(1).text(),
@@ -91,7 +91,7 @@ public class SqlParser implements Job {
                             cols.get(1).select("a").attr("href")));
                 }
             }
-            for(Vacancy i:list){
+            for (Vacancy i : list) {
                 preparedStatement.setString(1, i.getName());
                 preparedStatement.setString(2, i.getDescription());
                 preparedStatement.setString(3, i.getUrl());
