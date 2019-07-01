@@ -5,13 +5,14 @@ import java.util.Properties;
 
 public class Config {
     private final Properties values = new Properties();
-
-    public Config() {
-        this.init();
+    private String path;
+    public Config(String path) {
+        this.path = path;
+        this.init(path);
     }
 
-    public void init() {
-        try (InputStream in = Config.class.getClassLoader().getResourceAsStream("sql_config/app.properties")) {
+    public void init(String path) {
+        try (InputStream in = Config.class.getClassLoader().getResourceAsStream(path)) {
             values.load(in);
         } catch (Exception e) {
             throw new IllegalStateException(e);

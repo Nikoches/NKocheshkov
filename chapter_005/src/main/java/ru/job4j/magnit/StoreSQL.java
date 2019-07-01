@@ -20,7 +20,7 @@ public class StoreSQL implements AutoCloseable {
     }
 
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-        Config cfg = new Config();
+        Config cfg = new Config("sql_config/app.properties");
         StoreSQL ss = new StoreSQL(cfg);
         System.out.println(ss.createNewDatabase("mydb"));
         ss.generate(5);
