@@ -25,7 +25,7 @@ public class Dbinput {
                     config.getProperty("password")
             );
             Statement st = connection.createStatement();
-            st.execute(" create table if not exists vacancy(id serial primary key,name text,description text,link text,created text);");
+            st.execute(" create table if not exists vacancy(id serial primary key,name text NOT NULL UNIQUE,description text,link text,created text);");
             st.close();
             JobDetail job = newJob(SqlParser.class)
                     .withIdentity("myJob", "group1")
