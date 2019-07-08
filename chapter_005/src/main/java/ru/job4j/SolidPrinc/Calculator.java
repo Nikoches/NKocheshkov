@@ -28,7 +28,7 @@ public class Calculator {
             do {
                 System.out.println("Input values:");
                 String ask1 = reader.readLine();
-                //String ask2 = reader.readLine();
+                String ask2 = reader.readLine();
                 double x = ask1.equals("prev")?Double.valueOf(prev):Double.valueOf(ask1);
                 double y = ask1.equals("prev")?Double.valueOf(prev):Double.valueOf(ask1);
                     System.out.println("Act:\n1=add\n2=subsctract\n3=multiply\n4=div\n5=res");
