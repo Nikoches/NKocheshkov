@@ -14,7 +14,7 @@ public class Consolechat {
     }
 
     public void chating() {
-        try (BufferedReader textreader = new BufferedReader(new FileReader("chat_text.txt"))) {
+        try (BufferedReader textreader = new BufferedReader(new FileReader("logs/chat_text.txt"))) {
             String s;
             while ((s = textreader.readLine()) != null) {
                 answers.add(s);
