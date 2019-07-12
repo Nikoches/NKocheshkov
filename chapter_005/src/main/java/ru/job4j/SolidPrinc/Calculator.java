@@ -1,10 +1,14 @@
 package ru.job4j.SolidPrinc;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
 public class Calculator {
     private UserInput userInput;
     private Calc calc;
     private Menu menu;
-
+    private final Map<String , Function<Double, Boolean>> dispatch = new HashMap<>();
     public Calculator(Calc cc, UserInput us, Menu menu) {
         calc = cc;
         userInput = us;
@@ -14,24 +18,7 @@ public class Calculator {
     public void setMenu() {
         do {
             menu.printOperation();
-            switch (userInput.read()) {
-                case "0":
-                    menu.printValues();
-                    calc.add(userInput.read(), userInput.read());
-                    break;
-                case "1":
-                    menu.printValues();
-                    calc.subtract(userInput.read(), userInput.read());
-                    break;
-                case "2":
-                    menu.printValues();
-                    calc.multiple(userInput.read(), userInput.read());
-                    break;
-                case "3":
-                    menu.printValues();
-                    calc.div(userInput.read(), userInput.read());
-                    break;
-            }
+            System.out.println(calc.getres(userInput.read()).apply(userInput.read(),userInput.read()));
             System.out.println("exit?");
         }while (!userInput.read().equals("y"));
     }

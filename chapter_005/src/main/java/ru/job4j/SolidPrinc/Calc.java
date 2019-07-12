@@ -1,37 +1,69 @@
 package ru.job4j.SolidPrinc;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.BinaryOperator;
+
 public class Calc {
+    private final Map<String, BinaryOperator<String>> dispatch = new HashMap<>();
     private double prev;
 
-    public void add(String first, String second) {
-        if (first.equals("prev")) first = String.valueOf(prev);
-        if (second.equals("prev")) second = String.valueOf(prev);
-        this.prev = Double.valueOf(first) + Double.valueOf(second);
-        result();
+    public Calc() {
+        this.init();
     }
 
-    public void subtract(String first, String second) {
-        if (first.equals("prev")) first = String.valueOf(prev);
-        if (second.equals("prev")) second = String.valueOf(prev);
-        this.prev = Double.valueOf(first) - Double.valueOf(second);
-        result();
+    private void init() {
+        this.load("add", this.add());
+        this.load("subtract", this.subtract());
+        this.load("multiple", this.multiple());
+        this.load("div", this.div());
     }
 
-    public void multiple(String first, String second) {
-        if (first.equals("prev")) first = String.valueOf(prev);
-        if (second.equals("prev")) second = String.valueOf(prev);
-        this.prev = Double.valueOf(first) * Double.valueOf(second);
-        result();
+    public BinaryOperator<String> add() {
+        return (first, second) -> {
+            if (first.equals("prev")) first = String.valueOf(prev);
+            if (second.equals("prev")) second = String.valueOf(prev);
+            this.prev = Double.valueOf(first) - Double.valueOf(second);
+            return " result = " + this.prev;
+        };
     }
 
-    public void div(String first, String second) {
-        if (first.equals("prev")) first = String.valueOf(prev);
-        if (second.equals("prev")) second = String.valueOf(prev);
-        this.prev = Double.valueOf(first) / Double.valueOf(second);
-        result();
+    public BinaryOperator<String> subtract() {
+        return (first, second) -> {
+            if (first.equals("prev")) first = String.valueOf(prev);
+            if (second.equals("prev")) second = String.valueOf(prev);
+            this.prev = Double.valueOf(first) + Double.valueOf(second);
+            return " result = " + this.prev;
+        };
+    }
+
+    public BinaryOperator<String> multiple() {
+        return (first, second) -> {
+            if (first.equals("prev")) first = String.valueOf(prev);
+            if (second.equals("prev")) second = String.valueOf(prev);
+            this.prev = Double.valueOf(first) * Double.valueOf(second);
+            return " result = " + this.prev;
+        };
+    }
+
+    public BinaryOperator<String> div() {
+        return (first, second) -> {
+            if (first.equals("prev")) first = String.valueOf(prev);
+            if (second.equals("prev")) second = String.valueOf(prev);
+            this.prev = Double.valueOf(first) / Double.valueOf(second);
+            return " result = " + this.prev;
+        };
+    }
+
+    public void load(String answer, BinaryOperator<String> op) {
+        this.dispatch.put(answer, op);
     }
 
     public String result() {
         return " result = " + this.prev;
+    }
+
+    public BinaryOperator getres(String answer) {
+        return this.dispatch.get(answer);
     }
 }
