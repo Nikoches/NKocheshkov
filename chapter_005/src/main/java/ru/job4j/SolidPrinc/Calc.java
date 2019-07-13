@@ -46,6 +46,23 @@ public class Calc {
         };
     }
 
+    public BinaryOperator<String> cosfirst() {
+        return (first, second) -> {
+            if (first.equals("prev")) first = String.valueOf(prev);
+            if (second.equals("prev")) second = String.valueOf(prev);
+            this.prev = Math.cos(Math.toRadians(Double.valueOf(first)));
+            return " result = " + this.prev;
+        };
+    }
+    public BinaryOperator<String> sinfirst() {
+        return (first, second) -> {
+            if (first.equals("prev")) first = String.valueOf(prev);
+            if (second.equals("prev")) second = String.valueOf(prev);
+            this.prev = Math.sin(Math.toRadians(Double.valueOf(first)));
+            return " result = " + this.prev;
+        };
+    }
+
     public BinaryOperator<String> div() {
         return (first, second) -> {
             if (first.equals("prev")) first = String.valueOf(prev);
@@ -54,7 +71,6 @@ public class Calc {
             return " result = " + this.prev;
         };
     }
-
     public void load(String answer, BinaryOperator<String> op) {
         this.dispatch.put(answer, op);
     }
