@@ -4,30 +4,31 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class Finder {
-    public static void main(String[] args) {
-        Finder ss =  new Finder(new ArgsFinder(args));
-        ss.init();
-    }
     private ArgsFinder arg;
-
+    private HashMap<String, Supplier<List<File>>> mymap;
     public Finder(ArgsFinder ar) {
         arg = ar;
+        mymap.put("-f", this::findOnFullname);
+        mymap.put("-m", this::findOnMask);
     }
 
-    public void init() {
-        if (arg.gettype().equals("-f")) {
-            findOnFullname();
-        } else if (arg.gettype().equals("-m")) {
-            findOnMask();
-        }
+    public static void main(String[] args) throws Exception {
+        Finder ss = new Finder(new ArgsFinder(args));
+        ss.init();
+    }
+
+    public void init() throws Exception {
+       writeResult(mymap.get(arg.gettype()).get());
     }
 
     private List<File> findOnMask() {
-        File file = new File((arg.directory()));
+        File file = new File((arg.getKey("-d")));
         LinkedList<File> list1 = new LinkedList<>();
         LinkedList<File> list2 = new LinkedList<>();
         list1.add(file);
@@ -37,7 +38,7 @@ public class Finder {
             if (file1.listFiles() != null) {
                 list1.addAll(Arrays.asList(file1.listFiles()));
                 for (File x : file1.listFiles()) {
-                    if (x.isFile() && x.getName().contains(arg.getName())) {
+                    if (x.isFile() && x.getName().contains(arg.getKey("-n"))) {
                         list2.add(x);
                     }
                 }
@@ -47,9 +48,9 @@ public class Finder {
         return list2;
     }
 
-    private File findOnFullname() {
-        File file = new File((arg.directory()));
-        File finded = null;
+    private List<File> findOnFullname() {
+        LinkedList<File> list2 = new LinkedList<>();
+        File file = new File((arg.getKey("-d")));
         LinkedList<File> list1 = new LinkedList<>();
         list1.add(file);
         while (!list1.isEmpty()) {
@@ -58,28 +59,19 @@ public class Finder {
             if (file1.listFiles() != null) {
                 list1.addAll(Arrays.asList(file1.listFiles()));
                 for (File x : file1.listFiles()) {
-                    if (x.isFile() && x.getName().equals(arg.getName())) {
-                        finded = x;
+                    if (x.isFile() && x.getName().equals(arg.getKey("-n"))) {
+                        list2.add(x);
                         break;
                     }
                 }
             }
         }
-        writeResult(finded);
-        return finded;
+        return list2;
 
-    }
-
-    private void writeResult(File file) {
-        try (PrintWriter out = new PrintWriter(new FileOutputStream(arg.output()))) {
-            out.println(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void writeResult(List<File> filelist) {
-        try (PrintWriter out = new PrintWriter(new FileOutputStream(arg.output()))) {
+        try (PrintWriter out = new PrintWriter(new FileOutputStream(arg.getKey("-o")))) {
             for (File x : filelist) {
                 out.println(x);
             }
