@@ -15,4 +15,9 @@ public class Warehouse implements Storage {
     public List<Food> getFood() {
         return this.str;
     }
+
+    @Override
+    public boolean accept(Food food) {
+        return 0 < food.getQuality() & food.getQuality() < 25;
+    }
 }

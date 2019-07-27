@@ -15,4 +15,12 @@ public class Shop implements Storage {
     public List<Food> getFood() {
         return this.str;
     }
+
+    @Override
+    public boolean accept(Food food) {
+        if (food.getQuality() > 75 & food.getQuality() < 100){
+            food.setDiscount();
+            return true;
+        }return false;
+    }
 }

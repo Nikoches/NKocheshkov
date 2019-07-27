@@ -54,6 +54,7 @@ public class Calc {
             return " result = " + this.prev;
         };
     }
+
     public BinaryOperator<String> sinfirst() {
         return (first, second) -> {
             if (first.equals("prev")) first = String.valueOf(prev);
@@ -71,6 +72,7 @@ public class Calc {
             return " result = " + this.prev;
         };
     }
+
     public void load(String answer, BinaryOperator<String> op) {
         this.dispatch.put(answer, op);
     }

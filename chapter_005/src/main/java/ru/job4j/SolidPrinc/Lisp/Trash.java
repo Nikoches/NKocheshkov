@@ -15,4 +15,9 @@ public class Trash implements Storage {
     public List<Food> getFood() {
         return this.str;
     }
+
+    @Override
+    public boolean accept(Food food) {
+        return food.getQuality() < 0;
+    }
 }
