@@ -24,7 +24,7 @@ public class Finder {
     }
 
     public void init() throws Exception {
-       writeResult(mymap.get(arg.gettype()).get());
+       //writeResult(mymap.get(arg.gettype()).get());
     }
 
     private List<File> findOnMask() {

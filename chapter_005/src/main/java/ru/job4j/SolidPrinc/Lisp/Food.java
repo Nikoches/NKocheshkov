@@ -8,13 +8,16 @@ public class Food {
     private int price;
     private long expire;
     private boolean discount;
-    private long quality = (100 * (new Date().getTime() - this.getCreated().getTime())) / expire;
+    private long qtime;
+    private long quality;
 
-    public Food(String name, Date created, int price, long expire) {
+    public Food(String name, Date created, int price, long expire, long qtime) {
         this.name = name;
         this.created = created;
         this.price = price;
         this.expire = expire;
+        this.qtime = qtime;
+        this.quality = (new Date(System.currentTimeMillis()).getTime() - created.getTime()) * 100 / qtime > 0 ? (new Date(System.currentTimeMillis()).getTime() - created.getTime()) * 100 / qtime : 0;
     }
 
     public void setDiscount() {
@@ -36,24 +39,26 @@ public class Food {
     public int getPrice() {
         return this.price;
     }
-    public long getQuality(){
+
+    public long getQuality() {
         return this.quality;
     }
+
     public static class Cheese extends Food {
-        public Cheese(String name, Date created, int price, long expire) {
-            super(name, created, price, expire);
+        public Cheese(String name, Date created, int price, long expire, long qtime) {
+            super(name, created, price, expire, qtime);
         }
     }
 
     public static class Milk extends Food {
-        public Milk(String name, Date created, int price, long expire) {
-            super(name, created, price, expire);
+        public Milk(String name, Date created, int price, long expire, long qtime) {
+            super(name, created, price, expire, qtime);
         }
     }
 
     public static class Bread extends Food {
-        public Bread(String name, Date created, int price, long expire) {
-            super(name, created, price, expire);
+        public Bread(String name, Date created, int price, long expire, long qtime) {
+            super(name, created, price, expire, qtime);
         }
     }
 }
