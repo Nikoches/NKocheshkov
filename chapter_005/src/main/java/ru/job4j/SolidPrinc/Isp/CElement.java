@@ -7,6 +7,10 @@ public class CElement implements Element {
     private int lvl;
     private String name;
 
+    public String getName() {
+        return this.name;
+    }
+
     public CElement(String name, int lvl) {
         this.name = name;
         this.lvl = lvl;
@@ -32,7 +36,7 @@ public class CElement implements Element {
         System.out.println(this.name + " " + this.lvl);
         if (!this.elements.isEmpty()) {
             for (Element e : elements) {
-                e.print();
+                System.out.println(e.getName() + " " + e.getLvl());
             }
         }
     }
