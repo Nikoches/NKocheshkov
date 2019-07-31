@@ -2,7 +2,7 @@ package ru.job4j.SolidPrinc.Lisp;
 
 import java.util.Date;
 
-public class Food {
+public class Food implements Markable {
     private String name;
     private Date created;
     private int price;
@@ -44,9 +44,18 @@ public class Food {
         return this.quality;
     }
 
+    @Override
+    public String getMark() {
+        return "usual";
+    }
+
     public static class Cheese extends Food {
         public Cheese(String name, Date created, int price, long expire, long qtime) {
             super(name, created, price, expire, qtime);
+        }
+        @Override
+        public String getMark() {
+            return "usual";
         }
     }
 
@@ -54,11 +63,29 @@ public class Food {
         public Milk(String name, Date created, int price, long expire, long qtime) {
             super(name, created, price, expire, qtime);
         }
+        @Override
+        public String getMark() {
+            return "usual";
+        }
     }
 
     public static class Bread extends Food {
         public Bread(String name, Date created, int price, long expire, long qtime) {
             super(name, created, price, expire, qtime);
         }
+        @Override
+        public String getMark() {
+            return "usual";
+        }
     }
+    public static class Vegetable extends Food implements Markable {
+        public Vegetable(String name, Date created, int price, long expire, long qtime) {
+            super(name, created, price, expire, qtime);
+        }
+        @Override
+        public String getMark() {
+            return "vegetable";
+        }
+    }
+
 }

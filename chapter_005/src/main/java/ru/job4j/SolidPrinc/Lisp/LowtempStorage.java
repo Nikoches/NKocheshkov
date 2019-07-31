@@ -3,10 +3,9 @@ package ru.job4j.SolidPrinc.Lisp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Trash implements Storage {
+public class LowtempStorage implements Storage {
     public ArrayList<Food> str = new ArrayList<>();
     private int capacity = 0;
-
     @Override
     public void add(Food food) {
         capacity++;
@@ -20,20 +19,20 @@ public class Trash implements Storage {
 
     @Override
     public boolean accept(Food food) {
-        return food.getQuality() < 0;
+        return 0 < food.getQuality() & food.getQuality() < 25 ;
     }
 
     @Override
     public boolean getSpace() {
-        return capacity <= 10;
+         return capacity <= 10;
     }
 
     @Override
     public Storage getExpansion() {
-        return new Trash();
+        return new LowtempStorage();
     }
     @Override
     public String getMark() {
-        return "usual";
+        return "lowtemp";
     }
 }

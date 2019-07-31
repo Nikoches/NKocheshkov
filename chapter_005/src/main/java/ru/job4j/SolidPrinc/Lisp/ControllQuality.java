@@ -2,7 +2,7 @@ package ru.job4j.SolidPrinc.Lisp;
 
 import java.util.ArrayList;
 
-public class ControllQuality {
+public class ControllQuality extends ExtendedControl {
     private ArrayList<Storage> storageArrayList = new ArrayList<>();
 
     public ControllQuality() {
@@ -13,7 +13,20 @@ public class ControllQuality {
 
     public void productCheck(Food prd) {
         for (Storage x : storageArrayList) {
-            if (x.accept(prd)) {
+            if (x.accept(prd) & x.getSpace()) {
+                x.add(prd);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void extendedCheck(Food prd) {
+        for (Storage x : storageArrayList) {
+            if (!x.getSpace()) {
+                this.storageArrayList.add(x.getExpansion());
+            }
+            if (x.accept(prd) & x.getSpace() & prd.getMark().equals(x.getMark())) {
                 x.add(prd);
                 break;
             }
