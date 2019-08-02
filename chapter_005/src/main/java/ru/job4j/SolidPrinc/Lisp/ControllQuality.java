@@ -32,4 +32,13 @@ public class ControllQuality extends ExtendedControl {
             }
         }
     }
+
+    @Override
+    public void resort() {
+        for (Storage x : storageArrayList) {
+            for (Food y : x.getFood()){
+                this.extendedCheck(y);
+            }
+        }
+    }
 }
