@@ -21,8 +21,12 @@ public class Calc {
 
     public BinaryOperator<String> add() {
         return (first, second) -> {
-            if (first.equals("prev")) first = String.valueOf(prev);
-            if (second.equals("prev")) second = String.valueOf(prev);
+            if (first.equals("prev")) {
+                first = String.valueOf(prev);
+            }
+            if (second.equals("prev")) {
+                second = String.valueOf(prev);
+            }
             this.prev = Double.valueOf(first) - Double.valueOf(second);
             return " result = " + this.prev;
         };
@@ -30,8 +34,12 @@ public class Calc {
 
     public BinaryOperator<String> subtract() {
         return (first, second) -> {
-            if (first.equals("prev")) first = String.valueOf(prev);
-            if (second.equals("prev")) second = String.valueOf(prev);
+            if (first.equals("prev")) {
+                first = String.valueOf(prev);
+            }
+            if (second.equals("prev")) {
+                second = String.valueOf(prev);
+            }
             this.prev = Double.valueOf(first) + Double.valueOf(second);
             return " result = " + this.prev;
         };
@@ -39,8 +47,12 @@ public class Calc {
 
     public BinaryOperator<String> multiple() {
         return (first, second) -> {
-            if (first.equals("prev")) first = String.valueOf(prev);
-            if (second.equals("prev")) second = String.valueOf(prev);
+            if (first.equals("prev")) {
+                first = String.valueOf(prev);
+            }
+            if (second.equals("prev")) {
+                second = String.valueOf(prev);
+            }
             this.prev = Double.valueOf(first) * Double.valueOf(second);
             return " result = " + this.prev;
         };
@@ -48,8 +60,12 @@ public class Calc {
 
     public BinaryOperator<String> cosfirst() {
         return (first, second) -> {
-            if (first.equals("prev")) first = String.valueOf(prev);
-            if (second.equals("prev")) second = String.valueOf(prev);
+            if (first.equals("prev")) {
+                first = String.valueOf(prev);
+            }
+            if (second.equals("prev")) {
+                second = String.valueOf(prev);
+            }
             this.prev = Math.cos(Math.toRadians(Double.valueOf(first)));
             return " result = " + this.prev;
         };
@@ -57,8 +73,12 @@ public class Calc {
 
     public BinaryOperator<String> sinfirst() {
         return (first, second) -> {
-            if (first.equals("prev")) first = String.valueOf(prev);
-            if (second.equals("prev")) second = String.valueOf(prev);
+            if (first.equals("prev")) {
+                first = String.valueOf(prev);
+            }
+            if (second.equals("prev")) {
+                second = String.valueOf(prev);
+            }
             this.prev = Math.sin(Math.toRadians(Double.valueOf(first)));
             return " result = " + this.prev;
         };
@@ -66,8 +86,12 @@ public class Calc {
 
     public BinaryOperator<String> div() {
         return (first, second) -> {
-            if (first.equals("prev")) first = String.valueOf(prev);
-            if (second.equals("prev")) second = String.valueOf(prev);
+            if (first.equals("prev")) {
+                first = String.valueOf(prev);
+            }
+            if (second.equals("prev")) {
+                second = String.valueOf(prev);
+            }
             this.prev = Double.valueOf(first) / Double.valueOf(second);
             return " result = " + this.prev;
         };

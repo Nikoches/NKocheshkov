@@ -46,9 +46,10 @@ public class SimpleGenerator implements Template {
      * @throws Exception Проверяет наличие конкретного ключа в карте.
      */
     private boolean extCheck(String patt, Map<String, String> regmap) throws Exception {
-        if (regmap.containsKey(patt)) {
-            return true;
-        } else throw new Exception("Keys does not exist!");
+        if (!regmap.containsKey(patt)) {
+            throw new Exception("Keys does not exist!");
+        }
+        return true;
     }
 
     /**
@@ -62,8 +63,9 @@ public class SimpleGenerator implements Template {
         while (matcher.find()) {
             capacity++;
         }
-        if (regmap.size() == capacity) {
-            return true;
-        } else throw new Exception("Number of keys does not match!");
+        if (regmap.size() != capacity) {
+            throw new Exception("Number of keys does not match!");
+        }
+        return true;
     }
 }
