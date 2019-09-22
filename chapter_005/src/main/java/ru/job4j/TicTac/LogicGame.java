@@ -1,18 +1,20 @@
 package ru.job4j.TicTac;
 
+import java.util.function.Consumer;
+
 public class LogicGame {
     private char[][] playtable;
     private Player firstPlayer;
     private Player secondPlayer;
     private WinChecker winChecker;
-
+    private Consumer printDriver;
     /*
     Конструктор с выборож режима и игрока.
      */
-    private LogicGame(Player player, int size) {
-        firstPlayer = new RealPlayer(size);
+    private LogicGame(Player playerF,Player playerS,int size) {
+        firstPlayer = playerF;
         playtable = new char[size][size];
-        secondPlayer = player;
+        secondPlayer = playerS;
         winChecker = new WinChecker();
     }
 
@@ -25,20 +27,23 @@ public class LogicGame {
             return logicGame;
         }
         if (mode == 1) {
-            logicGame = new LogicGame(new RealPlayer(size), size);
+            logicGame = new LogicGame(new RealPlayer(size,'X'),new RealPlayer(size,'O'), size);
         } else if (mode == 2) {
-            logicGame = new LogicGame(new LogicComputer(size), size);
+            logicGame = new LogicGame(new RealPlayer(size,'X'),new LogicComputer(size,'O'), size);
+        }else if (mode == 3) {
+            logicGame = new LogicGame(new LogicComputer(size,'X'),new RealPlayer(size,'O'), size);
         }
         return logicGame;
     }
 
     public int startGame() {
+        printDriver = Asker.ask("Выберите отображение 1/2 :") == 1 ?printPlayTableTypeOne:printPlayTableTypeTwo;
         int playerCounter = 0;
         Player[] players = new Player[]{firstPlayer, secondPlayer};
-        printPlayTable(this.playtable);
+        printDriver.accept(this.playtable);
         while (!winChecker.checkAll()) {
             players[playerCounter].move(this.playtable);
-            printPlayTable(this.playtable);
+            printDriver.accept(this.playtable);
             playerCounter = playerCounter == 0 ? 1 : 0;
         }
         System.out.println("END OF GAME PLAYER=" + playerCounter);
@@ -48,17 +53,29 @@ public class LogicGame {
     /*
         Печать поля.
      */
-    private void printPlayTable(char[][] playtable) {
+
+    private Consumer<char[][]> printPlayTableTypeOne = playtable -> {
+        System.out.println("_______");
+        for (char[] x : playtable) {
+            for (char a : x) {
+                System.out.print("|" + a);
+            }
+            System.out.println("|");
+            System.out.println("_______");
+            }
+        System.out.println("************************");
+        };
+    private Consumer<char[][]> printPlayTableTypeTwo = playtable -> {
+        System.out.println("************************");
         for (char[] x : playtable) {
             for (char a : x) {
                 System.out.print("|" + a);
             }
             System.out.print("|");
-            System.out.println();
+            System.out.println("************************");
         }
-        System.out.println("----------------------");
-    }
-
+        System.out.println("************************");
+    };
 
     private class WinChecker {
         /**

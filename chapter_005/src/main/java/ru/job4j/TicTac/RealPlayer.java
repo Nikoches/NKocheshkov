@@ -2,8 +2,8 @@ package ru.job4j.TicTac;
 
 public class RealPlayer extends Player {
 
-    public RealPlayer(int size) {
-        super(size);
+    public RealPlayer(int size,char point) {
+        super(size,point);
     }
 
     @Override
@@ -14,7 +14,7 @@ public class RealPlayer extends Player {
             if (answ[0] < size && answ[1] < size) {
                 char c = playtable[answ[0]][answ[1]];
                 if (c != 'X' && c != 'O') {
-                    playtable[answ[0]][answ[1]] = 'X';
+                    playtable[answ[0]][answ[1]] = point;
                     break;
                 }
             }

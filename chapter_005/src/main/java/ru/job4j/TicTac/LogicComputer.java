@@ -2,8 +2,8 @@ package ru.job4j.TicTac;
 
 public class LogicComputer extends Player {
 
-    public LogicComputer(int size) {
-        super(size);
+    public LogicComputer(int size,char point) {
+        super(size,point);
     }
 
     @Override
@@ -15,7 +15,7 @@ public class LogicComputer extends Player {
             y = (int) (Math.random() * size);
             c = playtable[x][y];
         } while (c == 'O' || c == 'X');
-        playtable[x][y] = 'O';
+        playtable[x][y] = point;
         return new int[]{x, y};
     }
 

@@ -12,7 +12,7 @@ public class Menu {
      */
     private void show() {
         do {
-            int[] ss = Asker.askCord("Добро пожаловать, выберите режим:\n 1.Игра с игроком.\n 2.Игра с пк.\n\nЧерез пробел укажите размер поля");
+            int[] ss = Asker.askCord("Добро пожаловать, выберите режим:\n 1.Игра с игроком.\n 2.Игра с пк.\n3.Игра Пк-Пк\nЧерез пробел укажите размер поля");
             logicGame = LogicGame.getInstance(ss[0], ss[1]);
             if (logicGame != null) {
                 break;
