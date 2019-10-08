@@ -10,9 +10,9 @@ public class Menu {
     /*
     Отображение стартового меню
      */
-    private void show() {
+    private void show(String...args) {
         do {
-            int[] ss = Asker.askCord("Добро пожаловать, выберите режим:\n 1.Игра с игроком.\n 2.Игра с пк.\n3.Игра Пк-Пк\nЧерез пробел укажите размер поля");
+            int[] ss = Aske.askCord("Добро пожаловать, выберите режим:\n 1.Игра с игроком.\n 2.Игра с пк \n3.Игра Пк-Пк\nЧерез пробел укажите размер поля");
             logicGame = LogicGame.getInstance(ss[0], ss[1]);
             if (logicGame != null) {
                 break;
@@ -26,12 +26,12 @@ public class Menu {
     Старт игры
     Инициализация логики и отображения меню.
      */
-    public void start() {
+    public void start(String...args) {
         int i;
         do {
-            show();
+            show(args);
             logicGame.startGame();
-            i = Asker.ask("Повторить?\n1- повторить\n2- выход");
+            i = Aske.ask("Повторить?\n1- повторить\n2- выход");
         } while (i != 2);
     }
 

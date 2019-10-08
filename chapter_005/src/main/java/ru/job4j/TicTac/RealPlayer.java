@@ -10,7 +10,7 @@ public class RealPlayer extends Player {
     public int[] move(char[][] playtable) {
         int[] answ;
         do {
-            answ = Asker.askCord("Ваш ход:");
+            answ = Aske.askCord("Ваш ход:");
             if (answ[0] < size && answ[1] < size) {
                 char c = playtable[answ[0]][answ[1]];
                 if (c != 'X' && c != 'O') {

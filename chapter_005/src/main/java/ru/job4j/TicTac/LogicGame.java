@@ -37,7 +37,7 @@ public class LogicGame {
     }
 
     public int startGame() {
-        printDriver = Asker.ask("Выберите отображение 1/2 :") == 1 ?printPlayTableTypeOne:printPlayTableTypeTwo;
+        printDriver = Aske.ask("Выберите отображение 1/2 :") == 1 ?printPlayTableTypeOne:printPlayTableTypeTwo;
         int playerCounter = 0;
         Player[] players = new Player[]{firstPlayer, secondPlayer};
         printDriver.accept(this.playtable);
