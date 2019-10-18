@@ -23,7 +23,7 @@
         <module>chapter_003</module>
         <module>chapter_004</module>
         <module>chapter_005</module>
-        <module>spring-app1</module>
+        <module>spring_app</module>
     </modules>
 
     <dependencies>
