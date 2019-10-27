@@ -3,10 +3,7 @@ package ru.job4j.javaio;
 import java.util.HashMap;
 
 public class ArgsFinder {
-    private String[] args;
-    private String key;
     private HashMap<String, String> map;
-
     public ArgsFinder(String[] args) {
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals("-d")) {
