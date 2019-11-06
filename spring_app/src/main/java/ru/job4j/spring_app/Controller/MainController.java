@@ -1,8 +1,7 @@
-package ru.job4j.spring_app;
+package ru.job4j.spring_app.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,16 +14,12 @@ import java.util.Map;
 public class MainController {
     @Autowired
     private MessageRepo messageRepo;
+
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
         return "greeting";
     }
-    @ExceptionHandler({ Exception.class})
-    public void handleException(Exception ex) {
-        ex.printStackTrace();
-        ex.getMessage();
-        System.out.println("SHIT");
-    }
+
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<Message> messages = messageRepo.findAll();
@@ -33,6 +28,7 @@ public class MainController {
 
         return "main";
     }
+
     @PostMapping("/main")
     public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
         Message message = new Message(text, tag);
