@@ -19,7 +19,7 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration() {
-        return "registration";
+        return "error";
     }
 
     @PostMapping("/registration")
