@@ -24,7 +24,7 @@
         <module>chapter_004</module>
         <module>chapter_005</module>
         <module>spring_app</module>
-        <module>XmlPar</module>
+        <module>Spring_app_1</module>
     </modules>
 
     <dependencies>
