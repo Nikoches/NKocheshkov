@@ -18,7 +18,8 @@ public class RegistrationController {
     private UserRepo userRepo;
 
     @GetMapping("/registration")
-    public String registration() {
+    public String registration(Map<String, Object> model) {
+        model.put("message", "Creating of user");
         return "registration";
     }
 
@@ -29,8 +30,9 @@ public class RegistrationController {
         if (userFromDb != null) {
             model.put("message", "User exists!");
             return "registration";
+        }else {
+            model.put("message", "");
         }
-
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepo.save(user);
