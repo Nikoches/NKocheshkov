@@ -12,6 +12,17 @@ public class Message {
     private User author;
     private String text;
     private String tag;
+    private String filename;
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     protected Message() {
 
     }
@@ -50,6 +61,14 @@ public class Message {
 
     public String getTag() {
         return tag;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getFilename() {
+        return filename;
     }
 
     public void setTag(String tag) {
