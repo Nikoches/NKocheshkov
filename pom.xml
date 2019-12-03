@@ -25,6 +25,7 @@
         <module>chapter_005</module>
         <module>spring_app</module>
         <module>Spring_app_1</module>
+        <module>PcapTest</module>
     </modules>
 
     <dependencies>
