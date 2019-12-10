@@ -17,6 +17,9 @@ public class RectangleMove implements Runnable {
     public void run() {
         int col = 1;
         while (true) {
+            if(Thread.currentThread().isInterrupted()){
+                return;
+            }
             if (this.rect.getX() == 300) {
                 col = -1;
             }
@@ -24,8 +27,9 @@ public class RectangleMove implements Runnable {
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+
             }
         }
     }
+
 }

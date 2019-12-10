@@ -1,6 +1,7 @@
 package PingPongApp;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.shape.Rectangle;
@@ -16,10 +17,20 @@ public class PingPong extends Application {
         Group group = new Group();
         Rectangle rect = new Rectangle(50, 100, 10, 10);
         group.getChildren().add(rect);
-        new Thread(new RectangleMove(rect)).start();
+        Thread mover = new Thread(new RectangleMove(rect));
+        mover.start();
         stage.setScene(new Scene(group, limitX, limitY));
         stage.setTitle(JOB4J);
         stage.setResizable(false);
         stage.show();
+        stage.setOnCloseRequest(
+                event -> {
+                    mover.interrupt();
+                    Platform.exit();
+                    stage.close();
+                    Thread.currentThread().interrupt();
+                    System.out.println("End");
+                }
+        );
     }
 }
