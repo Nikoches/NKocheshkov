@@ -27,6 +27,7 @@
         <module>Spring_app_1</module>
         <module>PcapTest</module>
         <module>JavaMailArduino</module>
+        <module>chapter_006</module>
     </modules>
 
     <dependencies>
