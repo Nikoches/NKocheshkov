@@ -1,22 +1,18 @@
 public class Example {
-    public static void main(String[] args) throws InterruptedException {
-        Thread run = new Thread() {
-            @Override
-            public void run() {
-                while (!Thread.currentThread().isInterrupted()) {
-                    try {
-                        System.out.println("Sleep");
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        System.out.println("Is interrupted");
-                        Thread.currentThread().interrupt();
+    public static int value = 0;
+    public static void main(String... args)  {
+                Runnable task = () -> {
+                    for (int i = 0; i < 10000; i++) {
+                        int oldValue = value;
+                        int newValue = ++value;
+                        if (oldValue + 1 != newValue) {
+                            throw new IllegalStateException(oldValue + " + 1 = " + newValue);
+                        }
                     }
-                }
-            }
-        };
+                };
+                new Thread(task).start();
+                new Thread(task).start();
+                new Thread(task).start();
 
-        run.start();
-        Thread.sleep(500);
-        run.interrupt();
     }
 }
