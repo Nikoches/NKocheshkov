@@ -8,11 +8,9 @@ import java.util.Random;
 public class RectangleMove implements Runnable {
     final Random random = new Random();
     private final Rectangle rect;
-
     public RectangleMove(Rectangle rect) {
         this.rect = rect;
     }
-
     @Override
     public void run() {
         int col = 1;
