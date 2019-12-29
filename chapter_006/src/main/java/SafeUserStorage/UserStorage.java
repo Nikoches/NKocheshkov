@@ -17,10 +17,8 @@ public class UserStorage {
 
     public synchronized boolean transfer(int fromId, int toId, int amount) {
         if (storage.containsKey(fromId) && storage.containsKey(toId) && storage.get(fromId).getAmount() >= amount) {
-            User from = storage.get(fromId);
-            User toid = storage.get(toId);
-            from.setAmout(from.getAmount() - amount);
-            toid.setAmout(toid.getAmount() + amount);
+            storage.get(fromId).setAmout(-amount);
+            storage.get(toId).setAmout(amount);
         } else return false;
         return true;
     }

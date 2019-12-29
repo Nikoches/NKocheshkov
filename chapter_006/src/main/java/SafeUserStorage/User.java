@@ -24,6 +24,6 @@ public class User {
     }
 
     public void setAmout(int amount) {
-        this.amount = amount;
+        this.amount += amount;
     }
 }
