@@ -11,7 +11,7 @@ public class Counter {
     public synchronized void  increment() {
         this.value++;
     }
-    public int get() {
+    public synchronized int get() {
         return this.value;
     }
 
