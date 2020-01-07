@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class Dynarray<T> implements Iterable<T> {
     protected int modCount = 0;
-    protected Object[] array;
+    public Object[] array;
     protected int pos = 0;
 
     public Dynarray() {
