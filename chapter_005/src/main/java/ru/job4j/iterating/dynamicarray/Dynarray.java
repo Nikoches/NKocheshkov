@@ -4,9 +4,9 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class Dynarray<T> implements Iterable<T> {
-    protected int modCount = 0;
-    public Object[] array;
-    protected int pos = 0;
+    private int modCount = 0;
+    private Object[] array;
+    private int pos = 0;
 
     public Dynarray() {
         array = new Object[100];
@@ -39,7 +39,9 @@ public class Dynarray<T> implements Iterable<T> {
         array = array1;
         return array;
     }
-
+    public Object[] getArray(){
+        return  this.array;
+    }
     @Override
     public Iterator<T> iterator() {
         return new Iterator<>() {
