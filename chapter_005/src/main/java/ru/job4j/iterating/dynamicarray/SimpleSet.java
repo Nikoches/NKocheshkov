@@ -52,7 +52,7 @@ public class SimpleSet<E> implements Iterable<E> {
             public boolean hasNext() {
 
                 boolean checker = false;
-                if (index < set.pos) {
+                if (index < set.getPos()) {
                     checker = true;
                 }
                 return checker;

@@ -16,6 +16,10 @@ public class Dynarray<T> implements Iterable<T> {
         return (T) array[index];
     }
 
+    public int getPos() {
+        return pos;
+    }
+
     public void add(T value) {
         if (pos < array.length - 1) {
             array[pos++] = value;

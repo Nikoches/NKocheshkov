@@ -13,6 +13,14 @@ public class ConcurentArray<E> implements Iterable<E> {
         this.eDynarray = eDynarray;
     }
 
+    public void add(E value) {
+        eDynarray.add(value);
+    }
+
+    public E get(int pos) {
+        return eDynarray.get(pos);
+    }
+
     private Dynarray<E> copySnapshot(Object[] array) {
         Dynarray<E> snap = new Dynarray<>();
         for (Object x : array) {
