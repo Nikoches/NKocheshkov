@@ -13,11 +13,11 @@ public class ConcurentArray<E> implements Iterable<E> {
         this.eDynarray = eDynarray;
     }
 
-    public void add(E value) {
+    public synchronized void add(E value) {
         eDynarray.add(value);
     }
 
-    public E get(int pos) {
+    public synchronized E get(int pos) {
         return eDynarray.get(pos);
     }
 
