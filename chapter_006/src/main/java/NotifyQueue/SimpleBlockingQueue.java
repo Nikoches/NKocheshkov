@@ -5,34 +5,34 @@ import net.jcip.annotations.GuardedBy;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class SimpleBlockingQueue {
+public class SimpleBlockingQueue<E> {
     @GuardedBy("this")
-    private Queue<Integer> queue = new LinkedList<>();
+    private Queue<E> queue = new LinkedList<>();
     private int size = 0;
 
-    public synchronized void offer(Integer value) {
+    public synchronized void offer(E value) {
         while (size >= 3) {
             try {
-                queue.wait();
+                wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         queue.add(value);
         size++;
-        queue.notify();
+        notify();
     }
 
-    public synchronized Integer poll() {
+    public synchronized E poll() {
         while (size < 1) {
             try {
-                queue.wait();
+                wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         size--;
-        queue.notify();
+        notify();
         return queue.poll();
     }
 

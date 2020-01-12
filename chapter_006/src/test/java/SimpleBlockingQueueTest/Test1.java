@@ -6,15 +6,15 @@ import NotifyQueue.SimpleBlockingQueue;
 import org.junit.Test;
 
 public class Test1 {
-    SimpleBlockingQueue ss = new SimpleBlockingQueue();
+    SimpleBlockingQueue<Integer> ss = new SimpleBlockingQueue();
     Thread cust = new Thread(new Customer(ss));
     Thread prod = new Thread(new Producer(ss));
 
     @Test
     public void test1() throws InterruptedException {
         prod.start();
-        prod.join();
         cust.start();
+        prod.join();
         cust.join();
     }
 
