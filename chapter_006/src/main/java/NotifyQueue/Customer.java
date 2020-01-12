@@ -1,6 +1,6 @@
 package NotifyQueue;
 
-public class Customer implements Runnable{
+public class Customer implements Runnable {
     private SimpleBlockingQueue queue;
 
     public Customer(SimpleBlockingQueue queue) {
@@ -9,9 +9,8 @@ public class Customer implements Runnable{
 
     @Override
     public void run() {
-        while (true){
-            int x = queue.poll();
-            System.out.println("Объекты получен = "+x);
+        while (true) {
+            System.out.println("Объекты получен = " + queue.poll());
         }
     }
 }

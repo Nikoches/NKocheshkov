@@ -13,8 +13,8 @@ public class Test1 {
     @Test
     public void test1() throws InterruptedException {
         prod.start();
-        cust.start();
         prod.join();
+        cust.start();
         cust.join();
     }
 

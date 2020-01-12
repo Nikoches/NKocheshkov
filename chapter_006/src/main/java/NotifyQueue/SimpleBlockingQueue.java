@@ -8,10 +8,10 @@ import java.util.Queue;
 public class SimpleBlockingQueue {
     @GuardedBy("this")
     private Queue<Integer> queue = new LinkedList<>();
-    private int size;
+    private int size = 0;
 
     public synchronized void offer(Integer value) {
-        while (queue.size() >= 3) {
+        while (size >= 3) {
             try {
                 queue.wait();
             } catch (InterruptedException e) {
@@ -19,13 +19,12 @@ public class SimpleBlockingQueue {
             }
         }
         queue.add(value);
-        System.out.println("Объект добавлен =" + value);
         size++;
         queue.notify();
     }
 
     public synchronized Integer poll() {
-        while (queue.size() < 1) {
+        while (size < 1) {
             try {
                 queue.wait();
             } catch (InterruptedException e) {
