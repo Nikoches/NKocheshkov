@@ -14,7 +14,7 @@ public class ParallelSearch {
                             e.printStackTrace();
                         }
                     }
-                    Thread.currentThread().interrupt();
+                   // Thread.currentThread().interrupt();
                 }
         );
         consumer.start();

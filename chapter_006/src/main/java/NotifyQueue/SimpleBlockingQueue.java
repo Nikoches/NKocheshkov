@@ -40,4 +40,7 @@ public class SimpleBlockingQueue<E> {
         return size;
     }
 
+    public boolean isEmpty() {
+        return size==0;
+    }
 }
