@@ -8,10 +8,16 @@ import java.util.Queue;
 public class SimpleBlockingQueue<E> {
     @GuardedBy("this")
     private Queue<E> queue = new LinkedList<>();
-    private int size = 0;
+    private int size;
+    private int offset=3;
+    public SimpleBlockingQueue(int offset) {
+        this.offset = offset;
+    }
+    public SimpleBlockingQueue(){
 
+    }
     public synchronized void offer(E value) {
-        while (size >= 3) {
+        while (size >= offset) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -41,6 +47,6 @@ public class SimpleBlockingQueue<E> {
     }
 
     public boolean isEmpty() {
-        return size==0;
+        return size == 0;
     }
 }
