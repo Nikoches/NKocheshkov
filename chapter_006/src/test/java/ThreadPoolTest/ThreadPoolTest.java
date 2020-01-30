@@ -9,7 +9,7 @@ public class ThreadPoolTest {
         ThreadPool threadPool = new ThreadPool(true);
 
         Thread main2 = new Thread(threadPool);
-        main2.join();
+        // main2.join();
         main2.start();
     }
 }

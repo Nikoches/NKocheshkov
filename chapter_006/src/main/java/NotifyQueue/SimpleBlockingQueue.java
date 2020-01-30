@@ -16,7 +16,7 @@ public class SimpleBlockingQueue<E> {
     public SimpleBlockingQueue(){
 
     }
-    public synchronized void offer(E value) {
+    public synchronized void offer(E value)  {
         while (size >= offset) {
             try {
                 wait();
@@ -29,7 +29,7 @@ public class SimpleBlockingQueue<E> {
         notify();
     }
 
-    public synchronized E poll() {
+    public synchronized E poll() throws InterruptedException {
         while (size < 1) {
             try {
                 wait();
@@ -42,11 +42,11 @@ public class SimpleBlockingQueue<E> {
         return queue.poll();
     }
 
-    public int getsize() {
+    public synchronized int getsize() {
         return size;
     }
 
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return size == 0;
     }
 }

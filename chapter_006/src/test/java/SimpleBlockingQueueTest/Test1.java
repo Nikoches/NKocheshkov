@@ -18,4 +18,10 @@ public class Test1 {
         cust.join();
     }
 
+    @Test
+    public void test2() {
+        String ss = "Username = %s, email = %s";
+        System.out.println(String.format(ss,"vova","vova@eban.en"));
+
+    }
 }

@@ -12,7 +12,12 @@ public class Worker extends Thread {
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
-            Runnable task = queue.poll();
+            Runnable task = null;
+            try {
+                task = queue.poll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (task != null) {
                 task.run();
             }

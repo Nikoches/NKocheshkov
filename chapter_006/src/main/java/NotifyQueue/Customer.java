@@ -10,7 +10,11 @@ public class Customer implements Runnable {
     @Override
     public void run() {
         while (true) {
-            System.out.println("Объекты получен = " + queue.poll());
+            try {
+                System.out.println("Объекты получен = " + queue.poll());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
