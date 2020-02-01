@@ -8,8 +8,8 @@
     <url>http://job4j.ru/</url>
 
     <properties>
-        <maven.compiler.source>12</maven.compiler.source>
-        <maven.compiler.target>12</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javax.activation.version>1.2.0</javax.activation.version>
         <jaxb.api.version>2.3.0</jaxb.api.version>
@@ -28,6 +28,7 @@
         <module>PcapTest</module>
         <module>JavaMailArduino</module>
         <module>chapter_006</module>
+        <module>chapter_008</module>
     </modules>
 
     <dependencies>
