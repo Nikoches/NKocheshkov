@@ -4,12 +4,38 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
-    <servlet>
+    <!--<servlet>
         <servlet-name>ServletExample</servlet-name>
         <servlet-class>ServletExample.ServletExample</servlet-class>
+    </servlet>-->
+
+    <servlet>
+        <servlet-name>UsersServlet</servlet-name>
+        <servlet-class>ServletExample.UsersServlet</servlet-class>
+
     </servlet>
-    <servlet-mapping>
+
+
+    <!--<servlet-mapping>
         <servlet-name>ServletExample</servlet-name>
         <url-pattern>/echo</url-pattern>
     </servlet-mapping>
+
+
+
+    <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+
+
+
+    -->
+
+    <servlet-mapping>
+        <servlet-name>UsersServlet</servlet-name>
+        <url-pattern>users</url-pattern>
+    </servlet-mapping>
+
 </web-app>
