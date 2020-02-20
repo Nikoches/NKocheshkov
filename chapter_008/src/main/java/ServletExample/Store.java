@@ -1,15 +1,14 @@
 package ServletExample;
 
-import java.util.Map;
-
 public interface Store {
     boolean add(User user);
 
-    boolean update();
+    boolean update(User user,String id);
 
-    boolean delete();
+    boolean delete(String id);
 
-    Map<Integer,User> findlAll();
+    String findlAll();
 
-    User findById(Integer id);
+    User findById(String id);
+
 }

@@ -4,29 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UsersStorage implements Store {
-    private Map<Integer, User> userList = new HashMap<Integer, User>();
-    private int counterId = 0;
     private final static UsersStorage usersStorage = new UsersStorage();
-    private UsersStorage()  {
+    private final Map<Integer, User> userList = new HashMap<Integer, User>();
+    private int counterId = 0;
+
+    private UsersStorage() {
 
     }
 
     public static UsersStorage getInstance() {
         return usersStorage;
     }
-
-    public void deleteUser(int id) {
-        userList.remove(id);
-    }
-
-    public void updateUser() {
-
-    }
-
     @Override
     public boolean add(User user) {
-        if (!userList.containsValue(user)) {
-            userList.put(counterId, user);
+        if(!alreadyHas(user)){
+            userList.put(counterId,user);
             counterId++;
             return true;
         }
@@ -34,29 +26,46 @@ public class UsersStorage implements Store {
     }
 
     @Override
-    public boolean update() {
-        return true;
-    }
-
-    @Override
-    public boolean delete() {
-        return true;
-    }
-
-    @Override
-    public Map<Integer, User> findlAll() {
-        return userList;
-    }
-
-    @Override
-    public User findById(Integer id) {
-        User returned = null;
-        if (!userList.containsKey(id)) {
-            return userList.get(id);
+    public boolean update(User user, String id) {
+        if(alreadyHas(user)){
+           userList.put(Integer.parseInt(id),user);
+            return true;
         }
-        return returned;
+        return false;
     }
-    public boolean alreadyHas(User user){
+
+    @Override
+    public boolean delete(String id) {
+        if(userList.containsKey(Integer.parseInt(id))){
+            userList.remove(Integer.parseInt(id));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String findlAll() {
+        return "User List" + toString();
+    }
+
+    @Override
+    public User findById(String id) {
+        return userList.get(Integer.parseInt(id));
+    }
+
+    public boolean alreadyHas(User user) {
         return userList.containsValue(user);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (User x:userList.values()){
+            stringBuilder.append(x.toString()).append("\n");
+        }
+        return stringBuilder.toString();
+    }
+    public void removeAll(){
+        userList.clear();
     }
 }

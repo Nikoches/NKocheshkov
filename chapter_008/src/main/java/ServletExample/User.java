@@ -4,14 +4,12 @@ public class User {
     private String name;
     private String login;
     private String email;
-    private int id;
     private long createDate;
 
-    public User(String name, String login, String email, int id, long createDate) {
+    public User(String name, String login, String email, long createDate) {
         this.name = name;
         this.login = login;
         this.email = email;
-        this.id = id;
         this.createDate = createDate;
     }
 
@@ -39,19 +37,17 @@ public class User {
         this.email = email;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public long getCreateDate() {
         return createDate;
     }
 
     public void setCreateDate(long createDate) {
         this.createDate = createDate;
+    }
+
+
+    @Override
+    public String toString() {
+        return " name=" + this.name + " login=" + this.login + " email=" + this.email;
     }
 }
