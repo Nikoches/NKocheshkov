@@ -1,4 +1,4 @@
-package ServletExample;
+package ServletExample.Servlets;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

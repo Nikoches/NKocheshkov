@@ -1,6 +1,10 @@
-package ServletExample;
+package ServletExample.Logic;
 
+import ServletExample.Model.User;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class UsersStorage implements Store {
@@ -15,11 +19,16 @@ public class UsersStorage implements Store {
     public static UsersStorage getInstance() {
         return usersStorage;
     }
+
+    public int getCounterId() {
+        return counterId++;
+    }
+
     @Override
+    //TODO Сделай что нибудь с ид, проверка не проходит при втором добавлении
     public boolean add(User user) {
-        if(!alreadyHas(user)){
-            userList.put(counterId,user);
-            counterId++;
+        if(!alreadyHas(user)) {
+            userList.put(user.getId(),user);
             return true;
         }
         return false;
@@ -27,6 +36,7 @@ public class UsersStorage implements Store {
 
     @Override
     public boolean update(User user, String id) {
+        user.setId(Integer.parseInt(id));
         if(alreadyHas(user)){
            userList.put(Integer.parseInt(id),user);
             return true;
@@ -44,8 +54,8 @@ public class UsersStorage implements Store {
     }
 
     @Override
-    public String findlAll() {
-        return "User List" + toString();
+    public List<User> findlAll() {
+        return new ArrayList<>(userList.values());
     }
 
     @Override
@@ -54,16 +64,7 @@ public class UsersStorage implements Store {
     }
 
     public boolean alreadyHas(User user) {
-        return userList.containsValue(user);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (User x:userList.values()){
-            stringBuilder.append(x.toString()).append("\n");
-        }
-        return stringBuilder.toString();
+        return userList.containsKey(user.getId());
     }
     public void removeAll(){
         userList.clear();

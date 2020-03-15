@@ -1,4 +1,8 @@
-package ServletExample;
+package ServletExample.Logic;
+
+import ServletExample.Model.User;
+
+import java.util.List;
 
 public interface Store {
     boolean add(User user);
@@ -7,7 +11,7 @@ public interface Store {
 
     boolean delete(String id);
 
-    String findlAll();
+    List<User> findlAll();
 
     User findById(String id);
 

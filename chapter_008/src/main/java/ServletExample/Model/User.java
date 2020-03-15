@@ -1,16 +1,25 @@
-package ServletExample;
+package ServletExample.Model;
 
 public class User {
     private String name;
     private String login;
     private String email;
     private long createDate;
-
-    public User(String name, String login, String email, long createDate) {
+    private int id;
+    public User(String name, String login, String email, long createDate,int id) {
         this.name = name;
         this.login = login;
         this.email = email;
         this.createDate = createDate;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -43,11 +52,5 @@ public class User {
 
     public void setCreateDate(long createDate) {
         this.createDate = createDate;
-    }
-
-
-    @Override
-    public String toString() {
-        return " name=" + this.name + " login=" + this.login + " email=" + this.email;
     }
 }

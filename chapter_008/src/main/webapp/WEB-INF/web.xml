@@ -4,27 +4,37 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
+
     <servlet>
-        <servlet-name>ServletExample</servlet-name>
-        <servlet-class>ServletExample.ServletExample</servlet-class>
+        <servlet-name>AllUsers</servlet-name>
+        <servlet-class>ServletExample.Servlets.AllUsersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUser</servlet-name>
+        <servlet-class>ServletExample.Servlets.UpdateUserServlet</servlet-class>
     </servlet>
 
     <servlet>
-        <servlet-name>UsersServlet</servlet-name>
-        <servlet-class>ServletExample.ServletUser</servlet-class>
+        <servlet-name>AddUser</servlet-name>
+        <servlet-class>ServletExample.Servlets.AddUserServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
 
     </servlet>
 
-
     <servlet-mapping>
-        <servlet-name>ServletExample</servlet-name>
-        <url-pattern>/echo</url-pattern>
+        <servlet-name>AddUser</servlet-name>
+        <url-pattern>/add</url-pattern>
     </servlet-mapping>
-
-
     <servlet-mapping>
-        <servlet-name>UsersServlet</servlet-name>
-        <url-pattern>/users</url-pattern>
+        <servlet-name>UpdateUser</servlet-name>
+        <url-pattern>/update</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>AllUsers</servlet-name>
+        <url-pattern>/all</url-pattern>
+    </servlet-mapping>
 </web-app>
