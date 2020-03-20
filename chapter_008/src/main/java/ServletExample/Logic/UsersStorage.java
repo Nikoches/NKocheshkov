@@ -3,14 +3,13 @@ package ServletExample.Logic;
 import ServletExample.Model.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class UsersStorage implements Store {
     private final static UsersStorage usersStorage = new UsersStorage();
-    private final Map<Integer, User> userList = new HashMap<Integer, User>();
-    private int counterId = 0;
+    private final ConcurrentHashMap<Integer, User> userList = new ConcurrentHashMap<>();
+    private volatile int counterId = 0;
 
     private UsersStorage() {
 
