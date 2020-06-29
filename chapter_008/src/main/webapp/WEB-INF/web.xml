@@ -9,10 +9,17 @@
         <servlet-name>AllUsers</servlet-name>
         <servlet-class>ServletExample.Servlets.AllUsersServlet</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>UpdateUser</servlet-name>
         <servlet-class>ServletExample.Servlets.UpdateUserServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>DownloadImage</servlet-name>
+        <servlet-class>ServletExample.Servlets.DownloadServlet</servlet-class>
+    </servlet>
+
 
     <servlet>
         <servlet-name>AddUser</servlet-name>
@@ -22,19 +29,60 @@
             <param-value>true</param-value>
         </init-param>
         <load-on-startup>0</load-on-startup>
+    </servlet>
 
+    <servlet>
+        <servlet-name>RemoveUser</servlet-name>
+        <servlet-class>ServletExample.Servlets.RemoveUserServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>AddUser</servlet-name>
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RemoveUser</servlet-name>
+        <url-pattern>/remove</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>UpdateUser</servlet-name>
         <url-pattern>/update</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>AllUsers</servlet-name>
         <url-pattern>/all</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DownloadImage</servlet-name>
+        <url-pattern>/download</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>ServletExample.Servlets.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>ServletExample.Filters.AuthenticationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>

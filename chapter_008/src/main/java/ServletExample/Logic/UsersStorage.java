@@ -5,11 +5,12 @@ import ServletExample.Model.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class UsersStorage implements Store {
     private final static UsersStorage usersStorage = new UsersStorage();
     private final ConcurrentHashMap<Integer, User> userList = new ConcurrentHashMap<>();
-    private volatile int counterId = 0;
+    private volatile AtomicInteger counterId = new AtomicInteger(0);
 
     private UsersStorage() {
 
@@ -20,11 +21,10 @@ public class UsersStorage implements Store {
     }
 
     public int getCounterId() {
-        return counterId++;
+        return  counterId.getAndIncrement();
     }
 
     @Override
-    //TODO Сделай что нибудь с ид, проверка не проходит при втором добавлении
     public boolean add(User user) {
         if(!alreadyHas(user)) {
             userList.put(user.getId(),user);
@@ -65,7 +65,7 @@ public class UsersStorage implements Store {
     public boolean alreadyHas(User user) {
         return userList.containsKey(user.getId());
     }
-    public void removeAll(){
+    public void removeAll() {
         userList.clear();
     }
 }

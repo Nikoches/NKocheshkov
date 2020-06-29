@@ -8,14 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Optional;
 
 public class UpdateUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ValidateService validateService = ValidateService.getInstance();
-        Optional ss = (Optional) validateService.process(req,"findbyid");
-        User user = (User) ss.get();
+        User user = (User) validateService.process(req,"findbyid").get();
         req.setAttribute("user", user);
         req.getRequestDispatcher("Views/UpdateUser.jsp").forward(req, resp);
     }

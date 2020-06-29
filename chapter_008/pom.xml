@@ -10,11 +10,43 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>chapter_008</artifactId>
 <dependencies>
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
         <groupId>javax.servlet</groupId>
-        <artifactId>servlet-api</artifactId>
-        <version>3.0-alpha-1</version>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
         <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-dbcp2</artifactId>
+        <version>2.4.0</version>
+    </dependency>
+    <!-- taglibs-standard-spec-*.jar -->
+    <!-- http://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-spec -->
+    <dependency>
+        <groupId>org.apache.taglibs</groupId>
+        <artifactId>taglibs-standard-spec</artifactId>
+        <version>1.2.5</version>
+    </dependency>
+
+    <!-- taglibs-standard-impl-*.jar -->
+    <!-- http://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
+    <dependency>
+        <groupId>org.apache.taglibs</groupId>
+        <artifactId>taglibs-standard-impl</artifactId>
+        <version>1.2.5</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+        <version>1.4</version>
     </dependency>
 </dependencies>
     <packaging>war</packaging>

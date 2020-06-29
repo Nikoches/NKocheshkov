@@ -1,11 +1,24 @@
 package ru.job4j.tracker;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "items")
+
 public class Item {
+    @Id
     private String id;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private String name;
     private String description;
     private long create;
+    public Item(){
 
+    }
     Item(String name, String description, long create) {
         this.name = name;
         this.description = description;

@@ -8,23 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class AllUsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ValidateService validateService = ValidateService.getInstance();
-        Optional ss = (Optional) validateService.process(req,"findAll");
-        ArrayList s2 = (ArrayList) ss.get();
+        ArrayList s2 = (ArrayList) validateService.process(req,"findAll").get();
         req.setAttribute("list", s2);
-        req.getRequestDispatcher("Views/xx.jsp").forward(req, resp);
+        req.getRequestDispatcher("Views/AllUsers.jsp").forward(req, resp);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ValidateService validateService = ValidateService.getInstance();
-        Optional ss = (Optional) validateService.process(req,"findAll");
-        ArrayList s2 = (ArrayList) ss.get();
+        ArrayList s2 = (ArrayList) validateService.process(req,"findAll").get();
         req.setAttribute("list", s2);
-        req.getRequestDispatcher("Views/xx.jsp").forward(req, resp);
+        req.getRequestDispatcher("Views/AllUsers.jsp").forward(req, resp);
     }
 }

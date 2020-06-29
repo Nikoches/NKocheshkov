@@ -15,4 +15,7 @@ public interface Store {
 
     User findById(String id);
 
+    void removeAll();
+
+    int getCounterId();
 }
