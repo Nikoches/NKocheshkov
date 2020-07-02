@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+            $(document).ready($.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/cnm/update',
+                dataType: 'json'
+            }).done(function(data) {
+                for (let i = 0; i < 3; i++){
+                    for (let y = 0;y < 3; y++){
+                        if(data[i][y]===0) {
+                            var b = document.getElementById("place"+i+''+y);
+                            b.setAttribute("disabled", "disabled");
+                            console.log(data);
+                        }
+                    }
+                }
+            }).fail(function(err){
+                console.log(err);
+            }));
+    </script>
+    <script>
+        function addRow() {
+            $('#table tr:last').after('<tr><td>' + "ss1" +'</td><td>' + "ss2" +'</td></tr>');
+        }
+    </script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <h1>Things to do</h1>
+    <p>This is some text.</p>
+    <table class="table" id="table">
+        <thead>
+        <tr>
+            <th>Case Description</th>
+            <th>Creation Date</th>
+            <th>done</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+        </tr>
+        </tbody>
+    </table>
+    <button onclick="addRow()" class="btn btn-primary" >add row</button>
+
+</div>
+
+</body>
+</html>
