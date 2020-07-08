@@ -2,6 +2,14 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>chapter_002</artifactId>
     <version>2.0</version>
+    <dependencies>
+        <dependency>
+            <groupId>ru.job4j</groupId>
+            <artifactId>chapter_009</artifactId>
+            <version>2.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
     <packaging>jar</packaging>
     <parent>
         <groupId>ru.job4j</groupId>

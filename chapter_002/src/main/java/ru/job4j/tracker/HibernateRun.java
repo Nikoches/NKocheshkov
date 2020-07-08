@@ -19,9 +19,9 @@ public class HibernateRun {
             item.setName("Learn Hibernate 5.");
             update(item, sf);
             System.out.println(item);
-            Item rsl = findById(item.getId(), sf);
+            Item rsl = findById(Integer.parseInt(item.getId()), sf);
             System.out.println(rsl);
-            delete(rsl.getId(), sf);
+            delete(Integer.parseInt(rsl.getId()), sf);
             List<Item> list = findAll(sf);
             for (Item it : list) {
                 System.out.println(it);
@@ -54,7 +54,7 @@ public class HibernateRun {
         Session session = sf.openSession();
         session.beginTransaction();
         Item item = new Item(null);
-        item.setId(id);
+        item.setId(String.valueOf(id));
         session.delete(item);
         session.getTransaction().commit();
         session.close();

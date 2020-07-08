@@ -3,19 +3,17 @@ package Logic;
 import Persistence.Item;
 import com.google.gson.Gson;
 
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-       Logic logic =Logic.getInstance();
+       Logic logic = Logic.getInstance();
        Item item =  new Item();
-       item.setId(2);
-       item.setDesc("somebody");
-       item.setDone(false);
-       item.setCreated(new Date());
-       logic.save(item);
+       item.setDescription("something");
+       item.setDone(true);
+       item.setName("else");
+        logic.save(item);
     }
 
     public String createGson() {

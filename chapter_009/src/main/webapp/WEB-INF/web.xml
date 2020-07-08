@@ -5,5 +5,20 @@
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
-
+<servlet>
+    <servlet-name>updater</servlet-name>
+    <servlet-class>Servlets.Updater</servlet-class>
+</servlet>
+    <servlet-mapping>
+        <servlet-name>updater</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Main</servlet-name>
+        <servlet-class>Servlets.MainMenu</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Main</servlet-name>
+        <url-pattern>/main</url-pattern>
+    </servlet-mapping>
 </web-app>

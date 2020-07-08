@@ -9,6 +9,9 @@ public class Item {
     @Id
     private String id;
 
+    public Item(String learn_hibernate) {
+    }
+
     public void setName(String name) {
         this.name = name;
     }

@@ -1,60 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Main</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .table {
+            width: 1000px; /* Ширина блока */
+            background: #fc0; /* Цвет фона */
+            padding: 7px; /* Поля вокруг текста */
+            border: 1px solid #ccc; /* Параметры рамки */
+        }
+
+        .form-c {
+            width: 300px; /* Ширина текстового блока */
+            padding: 15px;
+            background: #d6d6b0;
+        }
+    </style>
     <script>
-            $(document).ready($.ajax({
-                type: 'GET',
-                url: 'http://localhost:8080/cnm/update',
-                dataType: 'json'
-            }).done(function(data) {
-                for (let i = 0; i < 3; i++){
-                    for (let y = 0;y < 3; y++){
-                        if(data[i][y]===0) {
-                            var b = document.getElementById("place"+i+''+y);
-                            b.setAttribute("disabled", "disabled");
-                            console.log(data);
-                        }
-                    }
-                }
-            }).fail(function(err){
-                console.log(err);
-            }));
+        // function first() {
+        //     $(document).ready($.ajax({
+        //         type: 'GET',
+        //         url: 'http://localhost:8080/cl/update',
+        //         dataType: 'json'
+        //     }).done(function (data) {
+        //         var table = document.getElementById("table");
+        //         // for(let i = 0;i < table.rows.length;i++){
+        //         //     table.deleteRow(i);
+        //         // }
+        //         for (let i = 0; i < data.length; i++) {
+        //             $('#table tr:last').after('<tr><td>' + data[i].name + '</td><td>' + data[i].description + '</td><td>' + '<input type="checkbox" id="chk" name="chk" ' + f(data[i].done) + '>' + '</td></tr>');
+        //         }
+        //     }).fail(function (err) {
+        //         console.log(err);
+        //     }));
+        //
+        //     function f(data) {
+        //         if (data) {
+        //             return "checked"
+        //         }
+        //         return "";
+        //     }
+        // }
     </script>
     <script>
-        function addRow() {
-            $('#table tr:last').after('<tr><td>' + "ss1" +'</td><td>' + "ss2" +'</td></tr>');
+        function clear() {
+            var table = document.getElementById("table");
+            for(let i = 1;i < table.rows.length;i++) {
+                console.log("removed=" +i);
+                table.deleteRow(i);
+            }
         }
     </script>
-
+    <script>
+        function update_selected(sel) {
+            $(document).ready($.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/cl/update',
+                data: {"parametr":(sel.options[sel.selectedIndex].text)},
+                dataType: 'json'
+            }).done(function (data) {
+                for (let i = 0; i < data.length; i++) {
+                    $('#table tr:last').after('<tr><td>' + data[i].name + '</td><td>' + data[i].description + '</td><td>' + '<input type="checkbox" id="chk" name="chk" ' + f(data[i].done) + '>' + '</td></tr>');
+                    console.log("added =" + i);
+                }
+            }).fail(function (err) {
+                console.log(err);
+            }));
+            function f(data) {
+                        if (data) {
+                            return "checked"
+                        }
+                        return "";
+                    }
+        }
+    </script>
 </head>
 <body>
 
 <div class="container-fluid">
+    <select id="opt" name="opt" onchange="update_selected(this);">
+        <option value="1" >1</option>
+        <option value="2" >2</option>
+        <option value="3" >3</option>
+    </select>
     <h1>Things to do</h1>
-    <p>This is some text.</p>
     <table class="table" id="table">
         <thead>
         <tr>
-            <th>Case Description</th>
-            <th>Creation Date</th>
+            <th>Name</th>
+            <th>Description</th>
             <th>done</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-
-        </tr>
+        <tbody id="body">
         </tbody>
     </table>
-    <button onclick="addRow()" class="btn btn-primary" >add row</button>
-
+    <button onclick="clear()" class="btn btn-primary">add row</button>
+    <br>
+    <br>
 </div>
+
+<form class="form-c" method="post">
+    <p>Item Creation</p>
+    <div class="form-group">
+        <label for="name"> Name:</label>
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="desc">Description</label>
+        <input type="text" class="form-control" id="desc" name="desc">
+    </div>
+    <div class="form-group">
+        <input type="checkbox" name="done" id="done" value="true">Done<Br>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
 
 </body>
 </html>

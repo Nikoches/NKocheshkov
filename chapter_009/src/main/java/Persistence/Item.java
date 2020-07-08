@@ -1,7 +1,6 @@
 package Persistence;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "items")
@@ -10,12 +9,20 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "desc")
-    private String desc;
+    @Column(name = "description")
+    private String description;
     @Column(name = "done")
     private boolean done;
-    @Column(name = "created")
-    private Date created;
+    @Column(name = "name")
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -25,12 +32,12 @@ public class Item {
         this.id = id;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String desc) {
+        this.description = desc;
     }
 
     public boolean isDone() {
@@ -41,16 +48,8 @@ public class Item {
         this.done = done;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     @Override
     public String toString() {
-        return "Desc = " + desc + "IsDone" + done;
+        return "Desc = " + description + "IsDone" + done;
     }
 }
