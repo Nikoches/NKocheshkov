@@ -1,4 +1,7 @@
 package ru.job4j.tracker;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -37,6 +40,11 @@ public class StartUI {
      * @param args as
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker(), System.out::println).init();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.scan("ru/job4j/tracker");
+        context.refresh();
+        ru.job4j.di_test.StartUI ui = context.getBean(ru.job4j.di_test.StartUI.class);
+        new StartUI(context.getBean(ValidateInput.class),context.getBean(Tracker.class),System.out::println).init();
+        //new StartUI(new ValidateInput(new ConsoleInput()), new Tracker(), System.out::println).init();
     }
 }

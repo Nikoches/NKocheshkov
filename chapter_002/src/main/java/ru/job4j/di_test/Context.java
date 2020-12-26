@@ -1,4 +1,4 @@
-package ru.job4j.tracker.di;
+package ru.job4j.di_test;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;

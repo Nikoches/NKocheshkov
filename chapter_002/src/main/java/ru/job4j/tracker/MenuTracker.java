@@ -1,4 +1,6 @@
 package ru.job4j.tracker;
+import org.springframework.stereotype.Component;
+
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -38,7 +40,7 @@ public class MenuTracker {
     public void select(int key) {
         this.actions.get(key).execute(this.input, this.tracker);
     }
-
+    @Component
     private class AddItem extends BaseAction {
 
         public AddItem(int key, String name) {
@@ -51,7 +53,7 @@ public class MenuTracker {
             tracker.add(new Item(name, desc, 1002001));
         }
     }
-
+    @Component
     private  class ShowAll extends BaseAction {
         public ShowAll(int key, String name) {
             super(key, name);
@@ -64,7 +66,7 @@ public class MenuTracker {
             }
         }
     }
-
+    @Component
     private class EditItem extends BaseAction {
         public EditItem(int key, String name) {
             super(key, name);
@@ -80,7 +82,7 @@ public class MenuTracker {
             item.setId(id);
         }
     }
-
+    @Component
     private  class DeleteItem extends BaseAction {
 
         public DeleteItem(int key, String name) {
@@ -94,7 +96,7 @@ public class MenuTracker {
             output.accept(String.format("------------ Заявка с id=%s удалена --------------", id));
         }
     }
-
+    @Component
     private class FoundById extends BaseAction {
         public FoundById(int key, String name) {
             super(key, name);
@@ -112,7 +114,7 @@ public class MenuTracker {
             }
         }
     }
-
+    @Component
     private  class FoundByName extends BaseAction {
         public FoundByName(int key, String name) {
             super(key, name);

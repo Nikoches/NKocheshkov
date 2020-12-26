@@ -1,4 +1,6 @@
 package ru.job4j.tracker;
+import org.springframework.stereotype.Component;
+
 import java.util.*;
 import java.util.Random;
 
@@ -6,6 +8,7 @@ import java.util.Random;
  * @version $Id$
  * @since 0.1
  */
+
 public class Tracker implements ITracker {
     /**
      * Массив для хранение заявок.
