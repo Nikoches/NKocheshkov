@@ -1,16 +1,17 @@
 package ru.job4j;
 
 class Shell {
-    Entity currentEntity = new Entity("/",null);
+    Entity currentEntity = new Entity("/", null);
+
     Shell cd(final String path) {
-        if(path.equals("..")){
+        if (path.equals("..")) {
             currentEntity = currentEntity.getParent();
             return this;
         }
-        if(path.contains("/")){
+        if (path.contains("/")) {
             return this;
         }
-        currentEntity =new Entity(currentEntity.getDirectory().equals("/")?currentEntity.getDirectory()+path:currentEntity.getDirectory()+"/"+path,currentEntity);
+        currentEntity = new Entity(currentEntity.getDirectory().equals("/") ? currentEntity.getDirectory() + path : currentEntity.getDirectory() + "/" + path, currentEntity);
         return this;
     }
 
@@ -46,8 +47,9 @@ public class Directory {
 
 class Entity {
     Entity parent;
-    private String directory;
-    public Entity(String directory,Entity parent) {
+    private final String directory;
+
+    public Entity(String directory, Entity parent) {
         this.directory = directory;
         this.parent = parent;
     }

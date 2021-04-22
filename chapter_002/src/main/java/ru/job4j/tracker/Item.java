@@ -11,20 +11,15 @@ import javax.persistence.Table;
 public class Item {
     @Id
     private String id;
-
-    public Item(String learn_hibernate) {
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     private String name;
     private String description;
     private long create;
-    public Item(){
+    public Item(String learnHibernate) {
+    }
+    public Item() {
 
     }
+
     Item(String name, String description, long create) {
         this.name = name;
         this.description = description;
@@ -33,6 +28,10 @@ public class Item {
 
     public String getName() {
         return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

@@ -1,7 +1,7 @@
 package ru.job4j.Cache;
 
 import org.junit.Test;
-import ru.job4j.AbstractCache.Cache;
+import ru.job4j.abstractcache.Cache;
 
 public class CacheTest {
 

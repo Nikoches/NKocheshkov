@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.job4j.TicTac.GraphicModule.TicApp">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.job4j.tictac.graphicmodule.TicApp">
    <children>
       <GridPane layoutX="152.0" layoutY="91.0" prefHeight="259.0" prefWidth="296.0" fx:id="gridPane">
         <columnConstraints>

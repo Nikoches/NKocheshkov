@@ -29,9 +29,11 @@ public class Dynarray<T> implements Iterable<T> {
         }
         modCount++;
     }
-    public int getSize(){
+
+    public int getSize() {
         return this.pos;
     }
+
     /**
      * Returns an iterator over elements of type {@code T}.
      *
@@ -43,22 +45,21 @@ public class Dynarray<T> implements Iterable<T> {
         array = array1;
         return array;
     }
-    public Object[] getArray(){
-        return  this.array;
+
+    public Object[] getArray() {
+        return this.array;
     }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator<>() {
-            private int expModCount = modCount;
+            private final int expModCount = modCount;
             private int index = 0;
 
             @Override
             public boolean hasNext() {
 
-                boolean checker = false;
-                if (index < pos) {
-                    checker = true;
-                }
+                boolean checker = index < pos;
                 return checker;
             }
 
@@ -71,7 +72,7 @@ public class Dynarray<T> implements Iterable<T> {
                 if (!hasNext()) {
                     throw new NullPointerException("no,no,no");
                 }
-                    res = (T) array[index++];
+                res = (T) array[index++];
                 return res;
             }
         };
